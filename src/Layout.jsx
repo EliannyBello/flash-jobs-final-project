@@ -9,7 +9,7 @@ function Layout() {
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route />
+        <Route path='*' element={<NotFound />}/>
       </Routes>
       <Footer />
     </BrowserRouter>

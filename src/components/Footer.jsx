@@ -1,11 +1,12 @@
 import React from "react";
+import { FaCopyright } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <div className="fixed-bottom">
-            <h1>
-                I'm a Footer pero diferente
-            </h1>
+        <div className="fixed-bottom bg-body-tertiary align-center">
+            Todos los derechos reservados 
+            <FaCopyright />
+            2024
         </div>
     )
 }
