@@ -11,7 +11,13 @@ export const AppContext = ({ children }) => {
 
 
 
-    useEffect
+    
+
+
+
+    useEffect(() => {
+        
+    }, [])
 
     return (
         <Context.Provider value={{ store, logged }}>
