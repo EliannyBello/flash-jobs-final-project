@@ -9,6 +9,10 @@ export const AppContext = ({ children }) => {
     });
     const [logged, setLogged] = useState(false);
 
+
+
+    useEffect
+
     return (
         <Context.Provider value={{ store, logged }}>
             {children}
