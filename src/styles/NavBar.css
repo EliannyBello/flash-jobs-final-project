@@ -2,6 +2,15 @@
     background-color: rgba(131, 115, 115, 1) !important;
 }
 
+.navbar-dark-mode {
+    background-color: rgba(0, 0, 0, 1) !important;
+}
+
+.navbar-dark-mode h5,
+.navbar-dark-mode a {
+    color: white;
+}
+
 .btn-search {
     background-color: white !important;
 }
@@ -16,7 +25,11 @@
     color: grey;
 }
 
-.input-search:focus > .btn-search {
+.input-search:focus>.btn-search {
     border-style: solid !important;
     border-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.border-dark-mode{
+    border-color: grey !important;
 }

@@ -17,7 +17,7 @@ export const AppContext = ({ children }) => {
     }, [])
 
     return (
-        <Context.Provider value={{ store, logged }}>
+        <Context.Provider value={{ store, logged, darkMode }}>
             {children}
         </Context.Provider>
     );

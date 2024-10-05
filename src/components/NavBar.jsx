@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../context/GlobalContext";
-import { FaSearch, FaRegQuestionCircle } from "react-icons/fa";
+import { FaSearch, FaRegQuestionCircle, FaBars } from "react-icons/fa";
 import '../styles/NavBar.css'
 
 const NavBar = () => {
@@ -27,14 +27,7 @@ const NavBar = () => {
 
     //please no delete, used to save temporal changes and tes
     const Testing = () => (
-        <form className="d-flex d-md-none" role="search">
-            <div className="input-group">
-                <input type="text" className="form-control input-search" placeholder="Search..." aria-label="Recipient's username" aria-describedby="button-addon2" />
-                <button className="btn btn-search" type="button" id="btn-search">
-                    <FaSearch className="search-icon" />
-                </button>
-            </div>
-        </form>
+        <div></div>
     )
 
     const setNavBar = () => {
@@ -54,14 +47,14 @@ const NavBar = () => {
     }, []);
 
     return (
-        <nav className="navbar navbar-expand-md navbar-light-mode">
+        <nav className={"navbar navbar-expand-md " + (context.darkMode ? 'navbar-dark-mode' : 'navbar-light-mode')}>
             <div className="container-fluid d-flex justify-content-between">
                 <Link className="navbar-brand" to='/' >Logo</Link>
                 {collapsed && <SearchForm />}
                 {collapsed && <Loggin />}
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nabvarGeneralOptions"
+                <button className={"navbar-toggler " + (context.darkMode && 'border-dark-mode')} type="button" data-bs-toggle="collapse" data-bs-target="#nabvarGeneralOptions"
                     aria-controls="nabvarGeneralOptions" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
+                    <FaBars className={"navbar-toggler-icon text-light " + (context.darkMode && 'text-light')} />
                 </button>
                 <div className="collapse navbar-collapse justify-content-between" id="nabvarGeneralOptions">
                     <ul className="navbar-nav mb-2 mb-lg-0">
@@ -84,7 +77,7 @@ const NavBar = () => {
 
                     <div className="d-flex align-items-center">
                         {!collapsed && <Loggin />}
-                        <FaRegQuestionCircle className="fs-4" />
+                        <FaRegQuestionCircle className={"fs-4 " + (context.darkMode && 'text-light')} />
                     </div>
                 </div>
             </div>
