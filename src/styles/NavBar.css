@@ -1,0 +1,22 @@
+.navbar-light-mode {
+    background-color: rgba(131, 115, 115, 1) !important;
+}
+
+.btn-search {
+    background-color: white !important;
+}
+
+.btn-search:hover {
+    background-color: lightgrey !important;
+    border-style: solid !important;
+    border-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.search-icon {
+    color: grey;
+}
+
+.input-search:focus > .btn-search {
+    border-style: solid !important;
+    border-color: rgba(0, 0, 0, 0.2) !important;
+}
