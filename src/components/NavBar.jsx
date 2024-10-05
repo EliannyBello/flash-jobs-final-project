@@ -69,11 +69,7 @@ const NavBar = () => {
         if (context.logged) return <div></div>
         else return <LogoutNavbar />
     }
-
-    useEffect(() =>{
-        console.log(context);
-    },[])
-
+    
     return (
         <nav className="navbar navbar-expand-md navbar-light-mode">
             {setNavBar()}
