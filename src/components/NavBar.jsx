@@ -20,27 +20,35 @@ const NavBar = () => {
     )
 
     const Loggin = () => (
-        <div className="mx-2">
-            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <div className={"dropdown-center mx-2"}>
+            <a className="nav-link dropdown-toggle me-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Log In
             </a>
-            <form className="dropdown-menu dropdown-menu-end p-3 me-1">
-                <div className="mb-3">
-                    <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="exampleInputPassword1" />
-                </div>
-                <div className="mb-3 form-check">
-                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                    <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" className="btn btn-login">Submit</button>
-            </form>
-        </div>
+            <div className={"dropdown-menu mt-4 " + (collapsed ? 'dropdown-menu-center full-width' : 'dropdown-menu-end me-1')}>
+                <form className="px-4 py-3">
+                    <div className="mb-3">
+                        <label htmlFor="exampleDropdownFormEmail1" className="form-label">Email address</label>
+                        <input type="email" className="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com" />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="exampleDropdownFormPassword1" className="form-label">Password</label>
+                        <input type="password" className="form-control" id="exampleDropdownFormPassword1" placeholder="Password" />
+                    </div>
+                    <div className="mb-3">
+                        <div className="form-check">
+                            <input type="checkbox" className="form-check-input" id="dropdownCheck" />
+                            <label className="form-check-label" htmlFor="dropdownCheck">
+                                Remember me
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" className="btn btn-primary">Sign in</button>
+                </form>
+                <div className="dropdown-divider"></div>
+                <a className="dropdown-item" href="#">New around here? Sign up</a>
+                <a className="dropdown-item" href="#">Forgot password?</a>
+            </div>
+        </div >
     )
 
     const DropdownList = () => (
@@ -90,13 +98,13 @@ const NavBar = () => {
     return (
         <nav className={"navbar navbar-expand-md " + (context.darkMode && 'nb-dark-mode')}> {/* if dark mode is activated, add the dark mode and trigger the styles changes */}
             <div className="container-fluid d-flex justify-content-between">
-                <div className="d-flex justify-content-between w-auto">
+                <div className="d-flex justify-content-between">
                     <Link className="navbar-brand" to='/' >Logo</Link>
                     {collapsed && <Testing />}
                 </div>
                 {collapsed && <Loggin />}
                 <button className={"navbar-toggler"} type="button" data-bs-toggle="collapse" data-bs-target="#nabvarGeneralOptions"
-                    aria-controls="nabvarGeneralOptions" aria-expanded="false" aria-label="Toggle navigation">
+                    aria-controls="nabvarGeneralOptions" aria-expanded="false" aria-label="Toggle navigation" data-bs-auto-close="true">
                     <FaBars className="navbar-toggler-icon" />
                 </button>
                 <div className="collapse navbar-collapse justify-content-between" id="nabvarGeneralOptions">
@@ -105,7 +113,6 @@ const NavBar = () => {
                             <a className="nav-link" href="#">Link</a>
                         </li>
                         <li className="nav-item dropdown">
-
                             <DropdownList />
                         </li>
                         {!collapsed && <SearchForm />}

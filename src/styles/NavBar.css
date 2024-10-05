@@ -59,3 +59,13 @@ a,
     background-color: var(--main-dvar-bg-color) !important;
     color: var(--main-dvar-text-color) !important;
 }
+
+.dropdown-menu-center {
+    left: 50%;
+    transform: translateX(-49%);
+}
+
+.full-width {
+    width: 95vw; 
+    min-width: 100%; 
+}
