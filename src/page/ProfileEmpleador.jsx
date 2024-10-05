@@ -1,7 +1,9 @@
 import React from 'react'
 
-export const ProfileEmpleador = () => {
+const ProfileEmpleador = () => {
   return (
     <div>ProfileEmpleador</div>
   )
 }
+
+export default ProfileEmpleador
