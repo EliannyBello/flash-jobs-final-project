@@ -20,14 +20,55 @@ const NavBar = () => {
     )
 
     const Loggin = () => (
-        <h5 className="me-1">
-            Log In
-        </h5>
+        <div className="mx-2">
+            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Log In
+            </a>
+            <form className="dropdown-menu dropdown-menu-end p-3 me-1">
+                <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+                    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+                    <input type="password" className="form-control" id="exampleInputPassword1" />
+                </div>
+                <div className="mb-3 form-check">
+                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                    <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
+                </div>
+                <button type="submit" className="btn btn-login">Submit</button>
+            </form>
+        </div>
     )
 
-    //please no delete, used to save temporal changes and tes
+    const DropdownList = () => (
+        <div>
+            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown
+            </a>
+            <ul className="dropdown-menu nb-dropdown-list mt-3">
+                <li><Link className="dropdown-item" href="#">Action</Link></li>
+                <li><Link className="dropdown-item" href="#">Another action</Link></li>
+                <li><hr className="dropdown-divider" /></li>
+                <li><Link className="dropdown-item" href="#">Something else here</Link></li>
+            </ul>
+        </div>
+    )
+
+    //please no delete, used to save temporal changes and testing
     const Testing = () => (
-        <div></div>
+        <div className="btn-group dropend">
+            <button type="button" className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <FaSearch className="search-icon" />
+            </button>
+            <ul className="dropdown-menu">
+                <li><form action="search">
+                    <input className="form-control" type="text" />
+                </form></li>
+            </ul>
+        </div>
     )
 
     const setNavBar = () => {
@@ -47,37 +88,31 @@ const NavBar = () => {
     }, []);
 
     return (
-        <nav className={"navbar navbar-expand-md " + (context.darkMode ? 'navbar-dark-mode' : 'navbar-light-mode')}>
+        <nav className={"navbar navbar-expand-md " + (context.darkMode && 'nb-dark-mode')}>
             <div className="container-fluid d-flex justify-content-between">
-                <Link className="navbar-brand" to='/' >Logo</Link>
-                {collapsed && <SearchForm />}
+                <div className="d-flex justify-content-between w-auto">
+                    <Link className="navbar-brand" to='/' >Logo</Link>
+                    {collapsed && <Testing />}
+                </div>
                 {collapsed && <Loggin />}
-                <button className={"navbar-toggler " + (context.darkMode && 'border-dark-mode')} type="button" data-bs-toggle="collapse" data-bs-target="#nabvarGeneralOptions"
+                <button className={"navbar-toggler"} type="button" data-bs-toggle="collapse" data-bs-target="#nabvarGeneralOptions"
                     aria-controls="nabvarGeneralOptions" aria-expanded="false" aria-label="Toggle navigation">
-                    <FaBars className={"navbar-toggler-icon text-light " + (context.darkMode && 'text-light')} />
+                    <FaBars className="navbar-toggler-icon" />
                 </button>
                 <div className="collapse navbar-collapse justify-content-between" id="nabvarGeneralOptions">
-                    <ul className="navbar-nav mb-2 mb-lg-0">
+                    <ul className="navbar-nav mb-2 mb-lg-0 align-items-start align-items-md-center">
                         <li className="nav-item">
                             <a className="nav-link" href="#">Link</a>
                         </li>
                         <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <ul className="dropdown-menu">
-                                <li><a className="dropdown-item" href="#">Action</a></li>
-                                <li><a className="dropdown-item" href="#">Another action</a></li>
-                                <li><hr className="dropdown-divider" /></li>
-                                <li><a className="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
+
+                            <DropdownList />
                         </li>
                         {!collapsed && <SearchForm />}
                     </ul>
-
                     <div className="d-flex align-items-center">
                         {!collapsed && <Loggin />}
-                        <FaRegQuestionCircle className={"fs-4 " + (context.darkMode && 'text-light')} />
+                        <FaRegQuestionCircle className={"fs-4 help-icon"} />
                     </div>
                 </div>
             </div>

@@ -1,14 +1,31 @@
-.navbar-light-mode {
-    background-color: rgba(131, 115, 115, 1) !important;
+/* default colors */
+:root {
+    /* background color */
+    --main-dvar-bg-color: rgb(131, 115, 115);
+    /* text-color */
+    --main-dvar-text-color: rgb(0, 0, 0);
 }
 
-.navbar-dark-mode {
-    background-color: rgba(0, 0, 0, 1) !important;
+/* colors in dark mode */
+.nb-dark-mode {
+    /* background color */
+    --main-dvar-bg-color: rgb(0, 0, 0);
+    /* text-color */
+    --main-dvar-text-color: rgb(255, 255, 255);
 }
 
-.navbar-dark-mode h5,
-.navbar-dark-mode a {
-    color: white;
+.navbar {
+    background-color: var(--main-dvar-bg-color) !important;
+}
+
+.nb-dropdown-list {
+    background-color: var(--main-dvar-bg-color) !important;
+}
+
+h5,
+a,
+.navbar-toggler-icon {
+    color: var(--main-dvar-text-color) !important;
 }
 
 .btn-search {
@@ -25,11 +42,20 @@
     color: grey;
 }
 
+.help-icon {
+    color: var(--main-dvar-text-color) !important;
+}
+
 .input-search:focus>.btn-search {
     border-style: solid !important;
     border-color: rgba(0, 0, 0, 0.2) !important;
 }
 
-.border-dark-mode{
+.border-dark-mode {
     border-color: grey !important;
+}
+
+.btn-login {
+    background-color: var(--main-dvar-bg-color) !important;
+    color: var(--main-dvar-text-color) !important;
 }
