@@ -88,7 +88,7 @@ const NavBar = () => {
     }, []);
 
     return (
-        <nav className={"navbar navbar-expand-md " + (context.darkMode && 'nb-dark-mode')}>
+        <nav className={"navbar navbar-expand-md " + (context.darkMode && 'nb-dark-mode')}> {/* if dark mode is activated, add the dark mode and trigger the styles changes */}
             <div className="container-fluid d-flex justify-content-between">
                 <div className="d-flex justify-content-between w-auto">
                     <Link className="navbar-brand" to='/' >Logo</Link>

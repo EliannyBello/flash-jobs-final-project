@@ -6,7 +6,7 @@
     --main-dvar-text-color: rgb(0, 0, 0);
 }
 
-/* colors in dark mode */
+/* colors in dark mode, just one element with this class is enough to set these colors */
 .nb-dark-mode {
     /* background color */
     --main-dvar-bg-color: rgb(0, 0, 0);
