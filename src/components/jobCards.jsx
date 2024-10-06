@@ -2,6 +2,8 @@ import React from 'react'
 
 const jobCards = () => {
   return (
+    //margin: 10px; image 150px height x 150px width
+
     <div className="jobCard">
 			<div className="card p-3 mb-3">
 				<div className="d-flex align-items-center">
