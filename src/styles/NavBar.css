@@ -4,6 +4,8 @@
     --main-dvar-bg-color: rgb(131, 115, 115);
     /* text-color */
     --main-dvar-text-color: rgb(0, 0, 0);
+    /* dropdown items color hover*/
+    --main-dvar-dropdown-item-hover: rgb(120, 100, 100);
 }
 
 /* colors in dark mode, just one element with this class is enough to set these colors */
@@ -12,6 +14,8 @@
     --main-dvar-bg-color: rgb(0, 0, 0);
     /* text-color */
     --main-dvar-text-color: rgb(255, 255, 255);
+    /* dropdown items color hover*/
+    --main-dvar-dropdown-item-hover: rgb(50, 50, 50);
 }
 
 .navbar {
@@ -60,12 +64,31 @@ a,
     color: var(--main-dvar-text-color) !important;
 }
 
-.dropdown-menu-center {
-    left: 50%;
-    transform: translateX(-49%);
+.full-width {
+    position: fixed !important;
+    top: 41px !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 98vw !important;
+    margin: 0 1vw !important;
+    z-index: 1050 !important; 
+    padding: 0 10px !important;
+    box-sizing: border-box !important;
 }
 
-.full-width {
-    width: 95vw; 
-    min-width: 100%; 
+.mid-width {
+    width: 40vw;
+    max-width: 350px !important;
+}
+
+.not-arrow::after {
+    border: none !important;
+}
+
+.navbar-noti-custom {
+    margin-top: 11px !important;
+}
+
+.dropdown-item:hover {
+    background-color: var(--main-dvar-dropdown-item-hover) !important;
 }

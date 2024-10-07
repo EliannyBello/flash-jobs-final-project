@@ -1,6 +1,8 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../context/GlobalContext";
+import UserDropDown from "./navbar/UserDropdown";
+import Notifications from "./navbar/Notifications";
 import { FaSearch, FaRegQuestionCircle, FaBars } from "react-icons/fa";
 import '../styles/NavBar.css'
 
@@ -17,39 +19,6 @@ const NavBar = () => {
                 </button>
             </div>
         </form>
-    )
-
-    const Loggin = () => (
-        <div className={"dropdown-center mx-2"}>
-            <a className="nav-link dropdown-toggle me-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Log In
-            </a>
-            <div className={"dropdown-menu mt-4 " + (collapsed ? 'dropdown-menu-center full-width' : 'dropdown-menu-end me-1')}>
-                <form className="px-4 py-3">
-                    <div className="mb-3">
-                        <label htmlFor="exampleDropdownFormEmail1" className="form-label">Email address</label>
-                        <input type="email" className="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com" />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="exampleDropdownFormPassword1" className="form-label">Password</label>
-                        <input type="password" className="form-control" id="exampleDropdownFormPassword1" placeholder="Password" />
-                    </div>
-                    <div className="mb-3">
-                        <div className="form-check">
-                            <input type="checkbox" className="form-check-input" id="dropdownCheck" />
-                            <label className="form-check-label" htmlFor="dropdownCheck">
-                                Remember me
-                            </label>
-                        </div>
-                    </div>
-                    <button type="submit" className="btn btn-primary">Sign in</button>
-                    
-                </form>
-                <div className="dropdown-divider"></div>
-                <Link to="/register" className="dropdown-item" href="#">New around here? Sign up</Link>
-                <a className="dropdown-item" href="#">Forgot password?</a>
-            </div>
-        </div >
     )
 
     const DropdownList = () => (
@@ -80,10 +49,61 @@ const NavBar = () => {
         </div>
     )
 
-    const setNavBar = () => {
-        if (context.logged) return <div></div>
-        else return <LogoutNavbar />
-    }
+    const Logged = () => (
+        <div className="container-fluid d-flex justify-content-between">
+            <div className="d-flex justify-content-between">
+                <Link className="navbar-brand" to='/' >Logo</Link>
+                {collapsed && <Testing />}
+            </div>
+            {collapsed && <UserDropDown collapsed={collapsed} />}
+            <button className={"navbar-toggler"} type="button" data-bs-toggle="collapse" data-bs-target="#nabvarGeneralOptions"
+                aria-controls="nabvarGeneralOptions" aria-expanded="false" aria-label="Toggle navigation" data-bs-auto-close="true">
+                <FaBars className="navbar-toggler-icon" />
+            </button>
+            <div className="collapse navbar-collapse justify-content-between" id="nabvarGeneralOptions">
+                <ul className="navbar-nav mb-2 mb-lg-0 align-items-start align-items-md-center">
+                    <li className="nav-item">
+                        <a className="nav-link" href="#">Link</a>
+                    </li>
+                    <li className="nav-item dropdown">
+                        <DropdownList />
+                    </li>
+                </ul>
+                {!collapsed && <SearchForm />}
+                <div className="d-flex align-items-center">
+                    {!collapsed && <Notifications />}
+                    {!collapsed && <UserDropDown collapsed={collapsed} />}
+                    <FaRegQuestionCircle className={"fs-4 help-icon"} />
+                </div>
+            </div>
+        </div>
+    )
+
+    const UnLogged = () => (
+        <div className="container-fluid d-flex justify-content-between">
+            <div className="d-flex justify-content-between">
+                <Link className="navbar-brand" to='/' >Logo</Link>
+                {collapsed && <Testing />}
+            </div>
+            {collapsed && <UserDropDown collapsed={collapsed} />}
+            <button className={"navbar-toggler"} type="button" data-bs-toggle="collapse" data-bs-target="#nabvarGeneralOptions"
+                aria-controls="nabvarGeneralOptions" aria-expanded="false" aria-label="Toggle navigation" data-bs-auto-close="true">
+                <FaBars className="navbar-toggler-icon" />
+            </button>
+            <div className="collapse navbar-collapse justify-content-between" id="nabvarGeneralOptions">
+                <ul className="navbar-nav mb-2 mb-lg-0 align-items-start align-items-md-center">
+                    <li className="nav-item">
+                        <a className="nav-link" href="#">Link</a>
+                    </li>
+                </ul>
+                {!collapsed && <SearchForm />}
+                <div className="d-flex align-items-center">
+                    {!collapsed && <UserDropDown collapsed={collapsed} />}
+                    <FaRegQuestionCircle className={"fs-4 help-icon"} />
+                </div>
+            </div>
+        </div>
+    )
 
     useEffect(() => {
         const isCollapsed = () => {
@@ -98,32 +118,7 @@ const NavBar = () => {
 
     return (
         <nav className={"navbar navbar-expand-md " + (context.darkMode && 'nb-dark-mode')}> {/* if dark mode is activated, add the dark mode and trigger the styles changes */}
-            <div className="container-fluid d-flex justify-content-between">
-                <div className="d-flex justify-content-between">
-                    <Link className="navbar-brand" to='/' >Logo</Link>
-                    {collapsed && <Testing />}
-                </div>
-                {collapsed && <Loggin />}
-                <button className={"navbar-toggler"} type="button" data-bs-toggle="collapse" data-bs-target="#nabvarGeneralOptions"
-                    aria-controls="nabvarGeneralOptions" aria-expanded="false" aria-label="Toggle navigation" data-bs-auto-close="true">
-                    <FaBars className="navbar-toggler-icon" />
-                </button>
-                <div className="collapse navbar-collapse justify-content-between" id="nabvarGeneralOptions">
-                    <ul className="navbar-nav mb-2 mb-lg-0 align-items-start align-items-md-center">
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Link</a>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <DropdownList />
-                        </li>
-                        {!collapsed && <SearchForm />}
-                    </ul>
-                    <div className="d-flex align-items-center">
-                        {!collapsed && <Loggin />}
-                        <FaRegQuestionCircle className={"fs-4 help-icon"} />
-                    </div>
-                </div>
-            </div>
+            {context.logged ? <Logged /> : <UnLogged />}
         </nav>
     )
 }
