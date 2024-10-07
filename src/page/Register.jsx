@@ -11,8 +11,12 @@ const Register = () => {
                 <form className="w-50 mx-auto my-5 p-4">
                     <div className="mb-3">
                         <label htmlFor="input" className="form-label">Email</label>
-                        <input type="email" className="form-control " />
+                        <input type="email" className="form-control " placeholder="email@example.com" />
                         <small className="invalid-feedback"></small>
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="input" className="form-label">Username</label>
+                        <input type="password" className="form-control" id="password" name="password" placeholder="Username"  />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="input" className="form-label">Password</label>
