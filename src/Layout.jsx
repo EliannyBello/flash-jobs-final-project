@@ -7,6 +7,7 @@ import Home from './page/Home'
 import Register from './page/Register'
 import Profile from './page/Profile'
 import Settings from './page/Settings'
+import Post from './page/Post'
 
 
 
@@ -21,7 +22,7 @@ function Layout() {
         <Route path='/register' element={<Register />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/settings' element={<Settings />} />
-        <Route path='/post/:id' element={<Settings />} />
+        <Route path='/post/:id' element={<Post />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />
