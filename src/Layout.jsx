@@ -21,6 +21,7 @@ function Layout() {
         <Route path='/register' element={<Register />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/settings' element={<Settings />} />
+        <Route path='/post/:id' element={<Settings />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />
