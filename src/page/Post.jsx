@@ -67,7 +67,7 @@ const Post = () => {
     }
 
     return (
-        <div className="container-fluid mt-3 pt-5">
+        <div className="container-fluid mt-5 py-4">
             <div className="row g-3">
                 <div className="col-12 col-lg-4">
                     <div className="card">
