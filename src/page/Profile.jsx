@@ -1,6 +1,10 @@
 import React from 'react'
 import JobCards from '../components/jobCards'
 
+
+
+
+
 const Profile = () => {
   return (
     <div className="container">

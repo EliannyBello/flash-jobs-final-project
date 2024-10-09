@@ -118,7 +118,7 @@ const NavBar = () => {
     }, []);
 
     return (
-        <nav className={"navbar navbar-expand-md " + (context.darkMode && 'nb-dark-mode')}> {/* if dark mode is activated, add the dark mode and trigger the styles changes */}
+        <nav className={"navbar fixed-top navbar-expand-md " + (context.darkMode && 'nb-dark-mode')}> {/* if dark mode is activated, add the dark mode and trigger the styles changes */}
             {context.logged ? <Logged /> : <UnLogged />}
         </nav>
     )
