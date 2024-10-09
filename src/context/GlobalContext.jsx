@@ -1,22 +1,92 @@
 import React, { createContext, useState, useEffect } from "react";
 
+
 export const Context = createContext(null)
+
+
 
 export const AppContext = ({ children }) => {
     const [store, setStore] = useState({
-        apiUrl: '',
+        apiUrl: ' http://127.0.0.1:5000',
         access_token: null,
         user: null,
+        JobCards: []
     });
 
-    const [actions] = useState({
-        checkUser: async () => {
-            return true
-        }
-    })
+
     //estados que estoy usando temporalmente para testear los navbar al estar conectado o modo oscuro-franco
     const [logged, setLogged] = useState(false);
     const [darkMode, setDarkMode] = useState(false);
+
+    const [actions] = useState({
+        checkUser: async () => {
+            if (sessionStorage.getItem('access_token')) {
+                setStore((store) => ({ ...store, access_token: sessionStorage.getItem('access_token') }))
+                setStore((store) => ({ ...store, user: JSON.parse(sessionStorage.getItem('user')) }))
+            }
+        },
+
+        register: async (credentials) => {
+            try {
+                const { apiUrl } = store
+                const response = await fetch(`${apiUrl}/api/register`, {
+                    method: 'POST',
+                    body: JSON.stringify(credentials),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                const datos = await response.json()
+
+                console.log(datos)
+
+
+            }
+            catch (error) {
+                console.log(error.message)
+            }
+        },
+
+        login: async (credentials) => {
+            try {
+                const { apiURL } = store
+                const response = await fetch(`${apiURL}/api/login`, {
+                    method: 'POST',
+                    body: JSON.stringify(credentials),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                const datos = await response.json()
+
+                console.log(datos)
+
+            } catch (error) {
+                console.log(error.message)
+            }
+        },
+        
+        jobposting: async () => {
+            try {
+                const { apiURL } = store
+                const response = await fetch(`${apiURL}/api/login`, {
+                    method: 'POST',
+                    body: JSON.stringify(credentials),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                const datos = await response.json()
+
+                console.log(datos)
+
+            } catch (error) {
+                console.log(error.message)
+            }
+        }
+    }
+    )
+
 
 
     useEffect(() => {
@@ -28,4 +98,5 @@ export const AppContext = ({ children }) => {
             {children}
         </Context.Provider>
     );
+
 }
