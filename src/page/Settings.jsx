@@ -1,15 +1,41 @@
 import React from 'react'
+import { useForm } from "react-hook-form";
+import { Context } from '../context/GlobalContext';
+import { useNavigate, Link } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
 
 const Settings = () => {
+  const navigate = useNavigate()
+  const { store, actions } = useContext(Context)
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+} = useForm()
+
+  const onSubmit = async (data) => {
+    const formData = new FormData()
+
+    formData.append('biography', data.biography)
+    formData.append('github', data.github)
+    formData.append('linkedin', data.linkedin)
+    formData.append('avatar', data.avatar[0])
+
+        await actions.updateProfile(formData, store.access_token)
+    }
+
+    
+
   return (
-    <div className="container">
+    <div className="container mt-5">
       <div className="row">
         <div className="col-md-6">
-          <h4 className=" mt-5">Profile</h4>
-          <form className=" mx-auto my-5 p-4">
+          <h4 className="text-center mt-5">Edit Profile</h4>
+          <form onSubmit={handleSubmit(onSubmit)} className=" mx-auto my-5 p-4">
             <div className="mb-3">
-              <img src="" alt="" className='img-fluid w-50 my-3' />
-              <input type="file" className="form-control " id="avatar" name='avatar' />
+              <img src={store?.user?.profile?.avatar} alt="" className='img-fluid w-50 my-3' />
+              <input type="file" className={"form-control " + (errors.avatar ? 'is-invalid' : '')} id="avatar" name='avatar' {...register('avatar')} />
               <small className="invalid-feedback"></small>
             </div>
             <div className="mb-3">
