@@ -10,7 +10,7 @@ const Profile = () => {
     <div className="container">
       <div className="row">
         <div className="col-md-6">
-          <h4 className=" mt-5">Userame(traer info desde formulario)</h4>
+          <h4 className=" mt-5">Username(traer info desde formulario)</h4>
           <div className="mx-auto my-5 p-4">
             <img src="" alt="" className='img-fluid w-50 my-3' />
           </div>
