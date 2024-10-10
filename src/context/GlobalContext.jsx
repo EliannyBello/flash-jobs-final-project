@@ -59,13 +59,27 @@ export const AppContext = ({ children }) => {
                 })
                 const datos = await response.json()
 
-                console.log(datos)
+                if (response.ok) {
+                    sessionStorage.setItem('access_token', data.access_token);
+                    sessionStorage.setItem('user', JSON.stringify(data.user));
+
+                    setStore((store) => ({
+                        ...store, access_token: data.access_token, user: data.user
+                    }))
+
+                    setLogged(true);
+                    return true;
+                } else {
+                    console.error(data.message);
+                    return false
+                }
 
             } catch (error) {
                 console.log(error.message)
+                return false
             }
         },
-        
+
         jobposting: async () => {
             try {
                 const { apiURL } = store
@@ -119,6 +133,9 @@ export const AppContext = ({ children }) => {
 
     useEffect(() => {
         actions.checkUser()
+        if (sessionStorage.getItem('user')) {
+            setLogged(true)
+        }
     }, [])
 
     return (
