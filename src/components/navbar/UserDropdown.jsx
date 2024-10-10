@@ -23,16 +23,16 @@ const UserDropDown = ({ collapsed }) => {
         }
     };
 
-    if (logged && store.user) {
+    if (logged) {
         return (
             <div className="dropdown">
                 <a className="nav-link dropdown-toggle not-arrow me-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <FaRegUserCircle className="fs-1" />
                 </a>
                 <ul className={"dropdown-menu mt-3 " + (collapsed ? ' full-width' : 'dropdown-menu-end text-end me-1')}>
-                    <li><span className="dropdown-item">Hello, {store.user.username || store.user.email}</span></li>
+                    <li><span className="dropdown-item">Hello, {store?.user?.email}</span></li>
                     <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
-                    <li><Link className="dropdown-item" to="/account-settings">Account Settings</Link></li>
+                    <li><Link className="dropdown-item" to="/settings">Account Settings</Link></li>
                     <li><hr className="dropdown-divider" /></li>
                     <li><Link className="dropdown-item" to="/logout">Log out</Link></li>
                 </ul>

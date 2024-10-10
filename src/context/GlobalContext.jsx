@@ -22,13 +22,13 @@ export const AppContext = ({ children }) => {
 
     const [actions] = useState({
         checkUser: async () => {
-            if (sessionStorage.getItem('access_token')) {
-                setStore((store) => ({ 
-                    ...store, 
-                    access_token: sessionStorage.getItem('access_token'), 
-                    user: JSON.parse(sessionStorage.getItem('user')) 
+            if (sessionStorage.getItem('access_token') == !undefined) {
+                console.log(sessionStorage.getItem('access_token'))
+                setStore((store) => ({
+                    ...store,
+                    access_token: sessionStorage.getItem('access_token'),
+                    user: JSON.parse(sessionStorage.getItem('user'))
                 }))
-               
             }
         },
 
@@ -64,21 +64,20 @@ export const AppContext = ({ children }) => {
                     }
                 })
                 const datos = await response.json()
+                console.log(datos.data)
+                console.log(response.ok)
 
-                if (response.ok) {
-                    sessionStorage.setItem('access_token', data.access_token);
-                    sessionStorage.setItem('user', JSON.stringify(data.user));
 
-                    setStore((store) => ({
-                        ...store, access_token: data.access_token, user: data.user
-                    }))
+                setStore((store) => ({
+                    ...store, access_token: datos.data.access_token, user: datos.data.user
+                }))
+                sessionStorage.setItem('access_token', datos.data.access_token);
+                sessionStorage.setItem('user', JSON.stringify(datos.data.user));
 
-                    setLogged(true);
-                    return true;
-                } else {
-                    console.error(data.message);
-                    return false
-                }
+
+                setLogged(true);
+                return true;
+
 
             } catch (error) {
                 console.log(error.message)
@@ -86,9 +85,9 @@ export const AppContext = ({ children }) => {
             }
         },
 
-        jobposting: async () => {
+        jobposting: async (credentials) => {
             try {
-                const { apiURL } = store
+                const { apiUrl } = store
                 const response = await fetch(`${apiUrl}/api/login`, {
                     method: 'POST',
                     body: JSON.stringify(credentials),
@@ -106,10 +105,10 @@ export const AppContext = ({ children }) => {
         },
         updateProfile: async (formData, access_token) => {
             try {
-                const { apiURL } = store
+                const { apiUrl } = store
                 console.log(access_token)
                 const response = await fetch(`${apiUrl}/api/profile`, {
-                    method: 'PUT',
+                    method: 'PATCH',
                     body: formData,
                     headers: {
                         'Authorization': `Bearer ${access_token}`
@@ -119,12 +118,10 @@ export const AppContext = ({ children }) => {
 
                 console.log(datos)
                 if (datos.status === 'success') {
-                    toast.success(datos.message)
                     setStore((store) => ({ ...store, user: datos.user }))
                     sessionStorage.setItem('user', JSON.stringify(datos?.user))
                     return true
                 } else {
-                    toast.error(datos.message)
                     return false
                 }
 

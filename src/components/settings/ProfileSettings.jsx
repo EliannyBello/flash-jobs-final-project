@@ -43,11 +43,6 @@ const ProfileSettings = () => {
                     <small className="invalid-feedback">{errors?.avatar?.message}</small>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="exampleFormControlInput1" className="form-label">Username</label>
-                    <input type="username" defaultValue="" className={"form-control " + (errors.username ? 'is-invalid' : '')} id="username" name='username' placeholder="Your Username" {...register('username')} />
-                    <small className="invalid-feedback">{errors?.username?.message}</small>
-                </div>
-                <div className="mb-3">
                     <label htmlFor="exampleFormControlInput1" className="form-label">Password</label>
                     <input type="password" className="form-control" id="password" name="password" placeholder="********" {...register('password')} />
                 </div>
