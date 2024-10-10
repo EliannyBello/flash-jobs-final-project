@@ -51,7 +51,7 @@ export const AppContext = ({ children }) => {
 
         login: async (credentials) => {
             try {
-                const { apiURL } = store
+                const { apiUrl } = store
                 const response = await fetch(`${apiUrl}/api/login`, {
                     method: 'POST',
                     body: JSON.stringify(credentials),
