@@ -1,8 +1,14 @@
 import React from 'react'
+import JobCards from '../components/jobCards'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div className="container mt-5 py-3">
+      <h1>Homepage</h1>
+      <p>job offers in cards</p>
+
+      <JobCards/>
+    </div>
   )
 }
 

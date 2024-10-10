@@ -1,19 +1,20 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import '../styles/JobCard.css'
 import { FaTrash } from "react-icons/fa";
 import { FaPencilAlt } from "react-icons/fa";
+import { Context } from '../context/GlobalContext';
 
 const JobCards = () => {
-  return (
-   
+	const navigate = useNavigate()
+	const { store } = useContext(Context)
 
-    <div className="jobCard">
-			<div className="card p-3 mb-3">
-				<div className="d-flex align-items-center">
 
-					<img src="https://picsum.photos/id/67/200" className="img-fluid rounded-circle" alt="..." />
-
+	return (
+		<div className="jobCard w-100">
+			<div className="card p-2 mb-2">
+				<div className="d-flex ">
+					<img src={store?.user?.profile?.avatar} className="img-fluid rounded-circle" alt="..." />
 					<div className="ms-3 w-100">
 						<h5>title</h5>
 						<div className="text-muted">
@@ -40,7 +41,7 @@ const JobCards = () => {
 				</div>
 			</div>
 		</div>
-  )
+	)
 }
 
 export default JobCards
