@@ -28,7 +28,9 @@ const Register = () => {
                         <div className="mb-3">
                             <label htmlFor="input" className="form-label">Email</label>
                             <input type="email" className="form-control " name='email' placeholder="email@example.com" {...register('email', { required: 'Email is required!' })} />
-                            <small className="invalid-feedback"></small>
+                            {errors.email?.type === "required" && (
+                                <p role="alert">{errors.email.message}</p>
+                            )}
                         </div>
                         <div className="mb-3">
                             <label htmlFor="input" className="form-label">Username</label>
@@ -42,7 +44,7 @@ const Register = () => {
                             <label htmlFor="input" className="form-label">Confirm Password</label>
                             <input type="password" className="form-control" id="confirm_password" name='confirm_password' placeholder="******" {...register('confirm_password')} />
                         </div>
-                            <button className="btn btn-primary">Create Account</button>
+                        <button className="btn btn-primary">Create Account</button>
                     </form>
                 </div>
             </div>
