@@ -15,6 +15,7 @@ export const AppContext = ({ children }) => {
 
 
 
+
     //estados que estoy usando temporalmente para testear los navbar al estar conectado o modo oscuro-franco
     const [logged, setLogged] = useState(false);
     const [darkMode, setDarkMode] = useState(false);
@@ -51,7 +52,7 @@ export const AppContext = ({ children }) => {
         login: async (credentials) => {
             try {
                 const { apiURL } = store
-                const response = await fetch(`${apiURL}/api/login`, {
+                const response = await fetch(`${apiUrl}/api/login`, {
                     method: 'POST',
                     body: JSON.stringify(credentials),
                     headers: {
@@ -84,7 +85,7 @@ export const AppContext = ({ children }) => {
         jobposting: async () => {
             try {
                 const { apiURL } = store
-                const response = await fetch(`${apiURL}/api/login`, {
+                const response = await fetch(`${apiUrl}/api/login`, {
                     method: 'POST',
                     body: JSON.stringify(credentials),
                     headers: {
@@ -103,7 +104,7 @@ export const AppContext = ({ children }) => {
             try {
                 const { apiURL } = store
                 console.log(access_token)
-                const response = await fetch(`${apiURL}/api/profile`, {
+                const response = await fetch(`${apiUrl}/api/profile`, {
                     method: 'PUT',
                     body: formData,
                     headers: {
