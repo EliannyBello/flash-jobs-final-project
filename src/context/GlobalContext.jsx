@@ -7,7 +7,7 @@ export const Context = createContext(null)
 
 export const AppContext = ({ children }) => {
     const [store, setStore] = useState({
-        apiUrl: ' http://127.0.0.1:5000',
+        apiUrl: 'http://127.0.0.1:5000',
         access_token: null,
         user: null,
         JobCards: []
@@ -49,8 +49,8 @@ export const AppContext = ({ children }) => {
 
         login: async (credentials) => {
             try {
-                const { apiURL } = store
-                const response = await fetch(`${apiURL}/api/login`, {
+                const { apiUrl } = store
+                const response = await fetch(`${apiUrl}/api/login`, {
                     method: 'POST',
                     body: JSON.stringify(credentials),
                     headers: {
