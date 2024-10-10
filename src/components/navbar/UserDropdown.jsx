@@ -34,7 +34,10 @@ const UserDropDown = ({ collapsed }) => {
                     <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
                     <li><Link className="dropdown-item" to="/settings">Account Settings</Link></li>
                     <li><hr className="dropdown-divider" /></li>
-                    <li><button onClick={() => actions.logout()} className="dropdown-item" to="/logout">Log out</button></li>
+                    <li><button onClick={() => {
+                        actions.logout();
+                        navigate('/');
+                    }} className="dropdown-item" to="/logout">Log out</button></li>
                 </ul>
             </div>
         );
