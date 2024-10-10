@@ -15,9 +15,7 @@ const Register = () => {
     const onSubmit = async (data) => {
         console.log(data)
         const response = await actions.register(data)
-        if (response) {
-            navigate('/')
-        }
+        navigate('/')
     }
     return (
         <div className="container">
