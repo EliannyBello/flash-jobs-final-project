@@ -1,10 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-
-
 export const Context = createContext(null)
-
-
-
 export const AppContext = ({ children }) => {
     const [store, setStore] = useState({
         apiUrl: 'http://127.0.0.1:5000',
@@ -12,14 +7,9 @@ export const AppContext = ({ children }) => {
         user: null,
         JobCards: []
     });
-
-
-
-
     //estados que estoy usando temporalmente para testear los navbar al estar conectado o modo oscuro-franco
     const [logged, setLogged] = useState(false);
     const [darkMode, setDarkMode] = useState(false);
-
     const [actions] = useState({
         checkUser: async () => {
             if (sessionStorage.getItem('access_token') == !undefined) {
@@ -32,7 +22,6 @@ export const AppContext = ({ children }) => {
                 setLogged(true)
             }
         },
-
         register: async (credentials) => {
             try {
                 const { apiUrl } = store
@@ -44,16 +33,12 @@ export const AppContext = ({ children }) => {
                     }
                 })
                 const datos = await response.json()
-
                 console.log(datos)
-
-
             }
             catch (error) {
                 console.log(error.message)
             }
         },
-
         login: async (credentials) => {
             try {
                 const { apiUrl } = store
@@ -79,7 +64,6 @@ export const AppContext = ({ children }) => {
                 return false
             }
         },
-
         jobposting: async (credentials) => {
             try {
                 const { apiUrL } = store
@@ -91,9 +75,7 @@ export const AppContext = ({ children }) => {
                     }
                 })
                 const datos = await response.json()
-
                 console.log(datos)
-
             } catch (error) {
                 console.log(error.message)
             }
@@ -110,7 +92,6 @@ export const AppContext = ({ children }) => {
                     }
                 })
                 const datos = await response.json()
-
                 console.log(datos)
                 if (datos.status === 'success') {
                     setStore((store) => ({ ...store, user: datos.user }))
@@ -119,26 +100,25 @@ export const AppContext = ({ children }) => {
                 } else {
                     return false
                 }
-
             } catch (error) {
                 console.log(error.message)
             }
         },
+        logout: () => {
+            console.log('log out')
+            sessionStorage?.removeItem('access_token');
+            sessionStorage?.removeItem('user');
+            setStore({ user: null, access_token: null })
+            setLogged(false);
+        }
     }
     )
-
-
-
     useEffect(() => {
         actions.checkUser()
-
-    },
-        [])
-
+    }, [])
     return (
         <Context.Provider value={{ store, logged, darkMode, actions }}>
             {children}
         </Context.Provider>
     );
-
 }
