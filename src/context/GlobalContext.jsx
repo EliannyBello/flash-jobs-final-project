@@ -57,7 +57,7 @@ export const AppContext = ({ children }) => {
                         'Content-Type': 'application/json'
                     }
                 })
-                const datos = await response.json()
+                const data = await response.json()
 
                 if (response.ok) {
                     sessionStorage.setItem('access_token', data.access_token);

@@ -52,7 +52,7 @@ const UserDropDown = ({ collapsed }) => {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="input" className="form-label">Password</label>
-                            <input type="password" className="form-control" id="password" name="password" placeholder="******" {...actions.login('password')} />
+                            <input type="password" className="form-control" id="password" name="password" placeholder="******" {...actions.login('password', { required: 'Password is required!' })} />
                         </div>
                         <div className="mb-3">
                             <div className="form-check">

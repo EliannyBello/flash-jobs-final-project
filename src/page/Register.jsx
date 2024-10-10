@@ -1,10 +1,8 @@
-import React from 'react'
 import { useForm } from "react-hook-form";
 import { Context } from '../context/GlobalContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { useContext } from 'react';
 import '../styles/register.css'
-
 const Register = () => {
     const navigate = useNavigate()
     const { store, actions } = useContext(Context)
@@ -14,7 +12,6 @@ const Register = () => {
         watch,
         formState: { errors },
     } = useForm()
-
     const onSubmit = async (data) => {
         console.log(data)
         const response = await actions.register(data)
@@ -22,7 +19,6 @@ const Register = () => {
             navigate('/')
         }
     }
-
     return (
         <div className="container">
             <div className="row">
@@ -44,16 +40,13 @@ const Register = () => {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="input" className="form-label">Confirm Password</label>
-                            <input type="password" className="form-control" id="confirm_password" name='confirm_password' placeholder="******" {...register('confirm_password')} />
+                            <input type="confirm_password" className="form-control" id="confirm_password" name='confirm_password' placeholder="******" {...register('confirm_password')} />
                         </div>
-                        <Link to="/">
                             <button className="btn btn-primary">Create Account</button>
-                        </Link>
                     </form>
                 </div>
             </div>
         </div>
     )
 }
-
 export default Register
