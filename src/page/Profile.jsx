@@ -10,9 +10,9 @@ const Profile = () => {
     <div className="container">
       <div className="row">
         <div className="col-md-6">
-          <h4 className=" mt-5">Username(traer info desde formulario)</h4>
+          <h4 className=" mt-5">{store?.user?.profile?.username || "No username provided"}</h4>
           <div className="mx-auto my-5 p-4">
-            <img src="" alt="" className='img-fluid w-50 my-3' />
+            <img src={store?.user?.profile?.avatar} alt="Profile Avatar" className='img-fluid w-50 my-3' />
           </div>
           <div className="mb-3">
             <h5>correo </h5> 

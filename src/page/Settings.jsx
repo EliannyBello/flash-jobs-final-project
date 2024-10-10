@@ -13,7 +13,7 @@ const Settings = () => {
     handleSubmit,
     watch,
     formState: { errors },
-} = useForm()
+  } = useForm()
 
   const onSubmit = async (data) => {
     const formData = new FormData()
@@ -24,13 +24,13 @@ const Settings = () => {
     formData.append('linkedin', data.linkedin)
     formData.append('avatar', data.avatar[0])
 
-        await actions.updateProfile(formData, store.access_token)
-    }
+    await actions.updateProfile(formData, store.access_token)
+  }
 
-    useEffect(() => {
-      if(store?.access_token == null){
-          navigate('/')
-      }
+  useEffect(() => {
+    if (store?.access_token == null) {
+      navigate('/')
+    }
   }, [])
 
   return (
@@ -45,13 +45,18 @@ const Settings = () => {
               <small className="invalid-feedback">{errors?.avatar?.message}</small>
             </div>
             <div className="mb-3">
+              <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
+              <input type="email" defaultValue={store?.user?.email} className={"form-control " + (errors.email ? 'is-invalid' : '')} id="email" name='email' placeholder="name@example.com" {...register('email')} readOnly disabled />
+              <small className="invalid-feedback">{errors?.email?.message}</small>
+            </div>
+            <div className="mb-3">
               <label htmlFor="exampleFormControlInput1" className="form-label">Username</label>
-              <input type="username" defaultValue="" className={"form-control " + (errors.username ? 'is-invalid' : '')}  id="username" name='username' placeholder="Your Username" {...register('username')}/>
+              <input type="username" defaultValue="" className={"form-control " + (errors.username ? 'is-invalid' : '')} id="username" name='username' placeholder="Your Username" {...register('username')} />
               <small className="invalid-feedback">{errors?.username?.message}</small>
             </div>
             <div className="mb-3">
               <label htmlFor="exampleFormControlInput1" className="form-label">Password</label>
-              <input type="password" className="form-control" id="password" name="password" placeholder="********" {...register('password')}/>
+              <input type="password" className="form-control" id="password" name="password" placeholder="********" {...register('password')} />
             </div>
             <div className="mb-3">
               <label htmlFor="exampleFormControlInput1" className="form-label">Confirm Password</label>
