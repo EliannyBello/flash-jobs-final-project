@@ -10,6 +10,7 @@ const UserDropDown = ({ collapsed }) => {
     const navigate = useNavigate();
 
     const {
+        register,
         handleSubmit,
         watch,
         formState: { errors },
@@ -22,16 +23,16 @@ const UserDropDown = ({ collapsed }) => {
         }
     };
 
-    if (logged && store.user) { 
+    if (logged) {
         return (
             <div className="dropdown">
                 <a className="nav-link dropdown-toggle not-arrow me-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <FaRegUserCircle className="fs-1" />
                 </a>
                 <ul className={"dropdown-menu mt-3 " + (collapsed ? ' full-width' : 'dropdown-menu-end text-end me-1')}>
-                    <li><span className="dropdown-item">Hello, {store.user.username || store.user.email}</span></li>
+                    <li><span className="dropdown-item">Hello, {store?.user?.email}</span></li>
                     <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
-                    <li><Link className="dropdown-item" to="/account-settings">Account Settings</Link></li>
+                    <li><Link className="dropdown-item" to="/settings">Account Settings</Link></li>
                     <li><hr className="dropdown-divider" /></li>
                     <li><Link className="dropdown-item" to="/logout">Log out</Link></li>
                 </ul>
@@ -47,12 +48,12 @@ const UserDropDown = ({ collapsed }) => {
                     <form className="px-4 py-3" onSubmit={handleSubmit(onSubmit)}>
                         <div className="mb-3">
                             <label htmlFor="input" className="form-label">Email</label>
-                            <input type="email" className="form-control " name='email' placeholder="email@example.com" {...actions.login('email', { required: 'Email is required!' })} />
+                            <input type="email" className="form-control " name='email' placeholder="email@example.com" {...register('email', { required: 'Email is required!' })} />
                             <small className="invalid-feedback"></small>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="input" className="form-label">Password</label>
-                            <input type="password" className="form-control" id="password" name="password" placeholder="******" {...actions.login('password', { required: 'Password is required!' })} />
+                            <input type="password" className="form-control" id="password" name="password" placeholder="******" {...register('password', { required: 'Password is required!' })} />
                         </div>
                         <div className="mb-3">
                             <div className="form-check">
@@ -62,9 +63,7 @@ const UserDropDown = ({ collapsed }) => {
                                 </label>
                             </div>
                         </div>
-                        <Link to="/">
-                            <button type="submit" className="btn btn-primary">Sign in</button>
-                        </Link>
+                        <button type="submit" className="btn btn-primary">Sign in</button>
                     </form>
                     <div className="dropdown-divider"></div>
                     <Link to="/register" className="dropdown-item">New around here? Sign up</Link>
