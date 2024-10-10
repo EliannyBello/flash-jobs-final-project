@@ -29,6 +29,7 @@ export const AppContext = ({ children }) => {
                     access_token: sessionStorage.getItem('access_token'),
                     user: JSON.parse(sessionStorage.getItem('user'))
                 }))
+                setLogged(true)
             }
         },
 
@@ -66,19 +67,13 @@ export const AppContext = ({ children }) => {
                 const datos = await response.json()
                 console.log(datos.data)
                 console.log(response.ok)
-
-
                 setStore((store) => ({
                     ...store, access_token: datos.data.access_token, user: datos.data.user
                 }))
                 sessionStorage.setItem('access_token', datos.data.access_token);
                 sessionStorage.setItem('user', JSON.stringify(datos.data.user));
-
-
                 setLogged(true);
                 return true;
-
-
             } catch (error) {
                 console.log(error.message)
                 return false
@@ -87,8 +82,8 @@ export const AppContext = ({ children }) => {
 
         jobposting: async (credentials) => {
             try {
-                const { apiUrl } = store
-                const response = await fetch(`${apiUrl}/api/login`, {
+                const { apiUrL } = store
+                const response = await fetch(`${apiUrL}/api/login`, {
                     method: 'POST',
                     body: JSON.stringify(credentials),
                     headers: {
@@ -105,10 +100,10 @@ export const AppContext = ({ children }) => {
         },
         updateProfile: async (formData, access_token) => {
             try {
-                const { apiUrl } = store
+                const { apiUrL } = store
                 console.log(access_token)
-                const response = await fetch(`${apiUrl}/api/profile`, {
-                    method: 'PATCH',
+                const response = await fetch(`${apiUrL}/api/profile`, {
+                    method: 'PUT',
                     body: formData,
                     headers: {
                         'Authorization': `Bearer ${access_token}`
@@ -136,10 +131,9 @@ export const AppContext = ({ children }) => {
 
     useEffect(() => {
         actions.checkUser()
-        if (sessionStorage.getItem('user')) {
-            setLogged(true)
-        }
-    }, [])
+
+    },
+        [])
 
     return (
         <Context.Provider value={{ store, logged, darkMode, actions }}>
