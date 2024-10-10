@@ -21,10 +21,10 @@ const Register = () => {
     }
     return (
         <div className="container">
-            <div className="row">
-                <div className="col-md-12">
-                    <h4 className="text-center mt-5">Register</h4>
-                    <form onSubmit={handleSubmit(onSubmit)} className="w-50 mx-auto my-5 p-4">
+            <div className="card">
+                <div className="card-body p-3 my-4 justify-content-center">
+                    <h4 className="text-center">Register</h4>
+                    <form onSubmit={handleSubmit(onSubmit)} className="w-50 mx-auto p-2">
                         <div className="mb-3">
                             <label htmlFor="input" className="form-label">Email</label>
                             <input type="email" className="form-control " name='email' placeholder="email@example.com" {...register('email', { required: 'Email is required!' })} />
