@@ -8,13 +8,13 @@ import { Context } from '../context/GlobalContext'
 
 const Profile = () => {
   const navigate = useNavigate()
-  const { store, actions } = useContext(Context)
+  const { store } = useContext(Context)
 
   return (
-    <div className="container">
+    <div className="container mt-5 py-4">
       <div className="row">
         <div className="col-md-6">
-          <h4 className=" mt-5">{store?.user?.profile?.username || "No username provided"}</h4>
+          <h4 className=" mt-5">{store?.user?.username}</h4>
           <div className="mx-auto my-5 p-4">
             <img src={store?.user?.profile?.avatar || imgSrc} alt="Profile Avatar" className='img-fluid w-50 my-3' />
           </div>
