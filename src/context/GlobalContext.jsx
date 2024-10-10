@@ -129,6 +129,13 @@ export const AppContext = ({ children }) => {
                 console.log(error.message)
             }
         },
+        logout: () => {
+            console.log('log out')
+            sessionStorage?.removeItem('access_token');
+            sessionStorage?.removeItem('user');
+            setStore({ user: null, access_token: null })
+            setLogged(false);
+        }
     }
     )
 
