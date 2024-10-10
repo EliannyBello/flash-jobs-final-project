@@ -88,8 +88,8 @@ export const AppContext = ({ children }) => {
 
         jobposting: async () => {
             try {
-                const { apiURL } = store
-                const response = await fetch(`${apiUrl}/api/login`, {
+                const { apiUrL } = store
+                const response = await fetch(`${apiUrL}/api/login`, {
                     method: 'POST',
                     body: JSON.stringify(credentials),
                     headers: {
@@ -106,9 +106,9 @@ export const AppContext = ({ children }) => {
         },
         updateProfile: async (formData, access_token) => {
             try {
-                const { apiURL } = store
+                const { apiUrL } = store
                 console.log(access_token)
-                const response = await fetch(`${apiUrl}/api/profile`, {
+                const response = await fetch(`${apiUrL}/api/profile`, {
                     method: 'PUT',
                     body: formData,
                     headers: {
