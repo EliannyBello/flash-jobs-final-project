@@ -98,7 +98,35 @@ export const AppContext = ({ children }) => {
             } catch (error) {
                 console.log(error.message)
             }
-        }
+        },
+        updateProfile: async (formData, access_token) => {
+            try {
+                const { apiURL } = store
+                console.log(access_token)
+                const response = await fetch(`${apiURL}/api/profile`, {
+                    method: 'PUT',
+                    body: formData,
+                    headers: {
+                        'Authorization': `Bearer ${access_token}`
+                    }
+                })
+                const datos = await response.json()
+
+                console.log(datos)
+                if (datos.status === 'success') {
+                    toast.success(datos.message)
+                    setStore((store) => ({ ...store, user: datos.user }))
+                    sessionStorage.setItem('user', JSON.stringify(datos?.user))
+                    return true
+                } else {
+                    toast.error(datos.message)
+                    return false
+                }
+
+            } catch (error) {
+                console.log(error.message)
+            }
+        },
     }
     )
 

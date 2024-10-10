@@ -7,36 +7,32 @@ import PrivacyAndSecureSettings from '../components/settings/PrivacyAndSecureSet
 import ProfileSettings from '../components/settings/ProfileSettings'
 
 const Settings = () => {
-  const params = useParams();
-  const [collapsed, setCollapsed] = useState();
+  const navigate = useNavigate()
+  const { store, actions } = useContext(Context)
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+} = useForm()
 
-  useEffect(() => {
-    const isCollapsed = () => {
-      setCollapsed(window.innerWidth < 768)
+  const onSubmit = async (data) => {
+    const formData = new FormData()
+
+    formData.append('username', data.username)
+    formData.append('biography', data.biography)
+    formData.append('github', data.github)
+    formData.append('linkedin', data.linkedin)
+    formData.append('avatar', data.avatar[0])
+
+        await actions.updateProfile(formData, store.access_token)
     }
-    window.addEventListener('resize', isCollapsed);
-    isCollapsed();
-    return () => {
-      window.removeEventListener('resize', isCollapsed);
-    };
-  }, []);
 
-  const SettingTab = () => {
-    switch (params.tab) {
-      case 'account':
-        return <AccountSettings />;
-      case 'profile':
-        return <ProfileSettings />;
-      case 'privsec':
-        return <PrivacyAndSecureSettings />;
-      case 'notification':
-        return <NotificationsSettings />;
-    }
-  };
-
-  useEffect(() => {
-    console.log(params.tab)
-  }, [params.tab])
+    useEffect(() => {
+      if(store?.access_token == null){
+          navigate('/')
+      }
+  }, [])
 
   return (
     <div className="container-fluid mt-5 py-4 mb-3">
@@ -58,11 +54,35 @@ const Settings = () => {
                 Notifications
               </Link>
             </div>
-          </div>
-          {!collapsed && <div className='setting-vertical-rule' />}
-        </div>
-        <div className="col-12 col-md-9 col-lg-6 col-xl-5 col-xxl-4">
-          <SettingTab />
+            <div className="mb-3">
+              <label htmlFor="exampleFormControlInput1" className="form-label">Username</label>
+              <input type="username" defaultValue="" className={"form-control " + (errors.username ? 'is-invalid' : '')}  id="username" name='username' placeholder="Your Username" {...register('username')}/>
+              <small className="invalid-feedback">{errors?.username?.message}</small>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="exampleFormControlInput1" className="form-label">Password</label>
+              <input type="password" className="form-control" id="password" name="password" placeholder="********" {...register('password')}/>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="exampleFormControlInput1" className="form-label">Confirm Password</label>
+              <input type="password" className="form-control" id="confirm_password" name='confirm_password' placeholder="********" {...register('confirm_password')} />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="biography" className="form-label">Biography</label>
+              <textarea className="form-control" id="biography" name="biography" rows="3" placeholder='Your biography here' {...register('biography')} defaultValue={store?.user?.profile?.biography}></textarea>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="github" className="form-label">Github</label>
+              <input type="text" className={"form-control"} id="github" name='github' placeholder="Github profile link" {...register('github')} defaultValue={store?.user?.profile?.github} />
+              <small className="invalid-feedback"></small>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="linkedin" className="form-label">Linkedin</label>
+              <input type="text" className={"form-control"} id="linkedin" name='linkedin' placeholder="Linkedin profile link" {...register('linkedin')} defaultValue={store?.user?.profile?.linkedin} />
+              <small className="invalid-feedback"></small>
+            </div>
+            <button className="btn btn-warning btn-sm w-100 py-2">Update</button>
+          </form>
         </div>
       </div>
     </div>
