@@ -10,6 +10,7 @@ const UserDropDown = ({ collapsed }) => {
     const navigate = useNavigate();
 
     const {
+        register,
         handleSubmit,
         watch,
         formState: { errors },
@@ -22,7 +23,7 @@ const UserDropDown = ({ collapsed }) => {
         }
     };
 
-    if (logged && store.user) { 
+    if (logged && store.user) {
         return (
             <div className="dropdown">
                 <a className="nav-link dropdown-toggle not-arrow me-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -47,12 +48,12 @@ const UserDropDown = ({ collapsed }) => {
                     <form className="px-4 py-3" onSubmit={handleSubmit(onSubmit)}>
                         <div className="mb-3">
                             <label htmlFor="input" className="form-label">Email</label>
-                            <input type="email" className="form-control " name='email' placeholder="email@example.com" {...actions.login('email', { required: 'Email is required!' })} />
+                            <input type="email" className="form-control " name='email' placeholder="email@example.com" {...register('email', { required: 'Email is required!' })} />
                             <small className="invalid-feedback"></small>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="input" className="form-label">Password</label>
-                            <input type="password" className="form-control" id="password" name="password" placeholder="******" {...actions.login('password')} />
+                            <input type="password" className="form-control" id="password" name="password" placeholder="******" {...register('password', { required: 'Password is required!' })} />
                         </div>
                         <div className="mb-3">
                             <div className="form-check">
@@ -62,9 +63,7 @@ const UserDropDown = ({ collapsed }) => {
                                 </label>
                             </div>
                         </div>
-                        <Link to="/">
-                            <button type="submit" className="btn btn-primary">Sign in</button>
-                        </Link>
+                        <button type="submit" className="btn btn-primary">Sign in</button>
                     </form>
                     <div className="dropdown-divider"></div>
                     <Link to="/register" className="dropdown-item">New around here? Sign up</Link>
