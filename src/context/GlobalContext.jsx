@@ -14,6 +14,7 @@ export const AppContext = ({ children }) => {
     });
 
 
+
     //estados que estoy usando temporalmente para testear los navbar al estar conectado o modo oscuro-franco
     const [logged, setLogged] = useState(false);
     const [darkMode, setDarkMode] = useState(false);
