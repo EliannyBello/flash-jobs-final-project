@@ -1,46 +1,68 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import '../styles/Settings.css'
+import AccountSettings from '../components/settings/AccountSettings'
+import NotificationsSettings from '../components/settings/NotificationsSettings'
+import PrivacyAndSecureSettings from '../components/settings/PrivacyAndSecureSettings'
+import ProfileSettings from '../components/settings/ProfileSettings'
 
 const Settings = () => {
+  const params = useParams();
+  const [collapsed, setCollapsed] = useState();
+
+  useEffect(() => {
+    const isCollapsed = () => {
+      setCollapsed(window.innerWidth < 768)
+    }
+    window.addEventListener('resize', isCollapsed);
+    isCollapsed();
+    return () => {
+      window.removeEventListener('resize', isCollapsed);
+    };
+  }, []);
+
+  const SettingTab = () => {
+    switch (params.tab) {
+      case 'account':
+        return <AccountSettings />;
+      case 'profile':
+        return <ProfileSettings />;
+      case 'privsec':
+        return <PrivacyAndSecureSettings />;
+      case 'notification':
+        return <NotificationsSettings />;
+    }
+  };
+
+  useEffect(() => {
+    console.log(params.tab)
+  }, [params.tab])
+
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-6">
-          <h4 className=" mt-5">Profile</h4>
-          <form className=" mx-auto my-5 p-4">
-            <div className="mb-3">
-              <img src="" alt="" className='img-fluid w-50 my-3' />
-              <input type="file" className="form-control " id="avatar" name='avatar' />
-              <small className="invalid-feedback"></small>
+    <div className="container-fluid mt-5 py-4 mb-3">
+      <div className="row d-flex justify-content-center">
+        <div className='col-12 col-md-3 col-xl-2 d-flex justify-content-between'>
+          <div className='container'>
+            <div className={'d-flex text-center text-md-start flex-md-column mt-4 justify-content-center ' + (!collapsed && 'sticky-top')}>
+              {!collapsed && <h4>Settings</h4>}
+              <Link to='/settings/account' className="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover mx-1">
+                Account
+              </Link>
+              <Link to='/settings/profile' className="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover mx-1">
+                Profile
+              </Link>
+              <Link to='/settings/privsec' className="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover mx-1">
+                Privacy and Security
+              </Link>
+              <Link to='/settings/notification' className="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover mx-1">
+                Notifications
+              </Link>
             </div>
-            <div className="mb-3">
-              <label htmlFor="exampleFormControlInput1" className="form-label">Username</label>
-              <input type="username" defaultValue="" className="form-control " id="username" name='username' placeholder="Your Username" />
-              <small className="invalid-feedback"></small>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="exampleFormControlInput1" className="form-label">Password</label>
-              <input type="password" className="form-control" id="password" name="password" placeholder="********" />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="exampleFormControlInput1" className="form-label">Confirm Password</label>
-              <input type="password" className="form-control" id="confirm_password" name='confirm_password' placeholder="********" />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="biography" className="form-label">Biography</label>
-              <textarea className="form-control" id="biography" name="biography" rows="3" placeholder='Your biography here' defaultValue=""></textarea>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="github" className="form-label">Github</label>
-              <input type="text" className={"form-control"} id="github" name='github' placeholder="" defaultValue="" />
-              <small className="invalid-feedback"></small>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="linkedin" className="form-label">Linkedin</label>
-              <input type="text" className={"form-control"} id="linkedin" name='linkedin' placeholder="" defaultValue="" />
-              <small className="invalid-feedback"></small>
-            </div>
-            <button className="btn btn-warning btn-sm w-100 py-2">Update</button>
-          </form>
+          </div>
+          {!collapsed && <div className='setting-vertical-rule' />}
+        </div>
+        <div className="col-12 col-md-9 col-lg-6 col-xl-5 col-xxl-4">
+          <SettingTab />
         </div>
       </div>
     </div>

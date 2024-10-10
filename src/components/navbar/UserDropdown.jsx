@@ -14,9 +14,9 @@ const UserDropDown = ({ collapsed }) => {
                 </a>
                 <ul className={"dropdown-menu mt-3 " + (collapsed ? ' full-width' : 'dropdown-menu-end text-end me-1')}>
                     <li><Link className="dropdown-item" href="#">Profile</Link></li>
-                    <li><Link className="dropdown-item" href="#">Account Settings</Link></li>
+                    <li><Link to='/settings' className="dropdown-item">Account Settings</Link></li>
                     <li><hr className="dropdown-divider" /></li>
-                    <li><Link className="dropdown-item" href="#">Log out</Link></li>
+                    <li><Link className="dropdown-item mb-2" href="#">Log out</Link></li>
                 </ul>
             </div>
         );
