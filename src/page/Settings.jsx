@@ -42,7 +42,7 @@ const Settings = () => {
     <div className="container-fluid mt-5 py-4 mb-3">
       <div className="row d-flex justify-content-center">
         <div className='col-12 col-md-3 col-xl-2 d-flex justify-content-between'>
-          <div className='container'>
+          <form className='container'>
             <div className={'d-flex text-center text-md-start flex-md-column mt-4 justify-content-center ' + (!collapsed && 'sticky-top')}>
               {!collapsed && <h4>Settings</h4>}
               <Link to='/settings/account' className="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover mx-1">
