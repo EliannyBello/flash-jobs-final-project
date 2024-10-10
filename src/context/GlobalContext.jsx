@@ -7,7 +7,7 @@ export const Context = createContext(null)
 
 export const AppContext = ({ children }) => {
     const [store, setStore] = useState({
-        apiUrl: ' http://127.0.0.1:5000',
+        apiUrl: 'http://127.0.0.1:5000',
         access_token: null,
         user: null,
         JobCards: []
@@ -23,8 +23,12 @@ export const AppContext = ({ children }) => {
     const [actions] = useState({
         checkUser: async () => {
             if (sessionStorage.getItem('access_token')) {
-                setStore((store) => ({ ...store, access_token: sessionStorage.getItem('access_token') }))
-                setStore((store) => ({ ...store, user: JSON.parse(sessionStorage.getItem('user')) }))
+                setStore((store) => ({ 
+                    ...store, 
+                    access_token: sessionStorage.getItem('access_token'), 
+                    user: JSON.parse(sessionStorage.getItem('user')) 
+                }))
+               
             }
         },
 
