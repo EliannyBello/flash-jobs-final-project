@@ -22,6 +22,7 @@ function Layout() {
         <Route path='/register' element={<Register />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/settings' element={<Settings />} />
+        <Route path='/settings/:tab' element={<Settings />} />
         <Route path='/post/:id' element={<Post />} />
         <Route path='*' element={<NotFound />} />
       </Routes>

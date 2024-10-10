@@ -1,0 +1,13 @@
+.setting-vertical-rule {
+    background-color: rgb(200, 200, 200);
+    height: 98%;
+    width: 1px;
+}
+
+textarea {
+    resize: none !important;
+}
+
+.sticky-top {
+    top: 6em !important;
+}

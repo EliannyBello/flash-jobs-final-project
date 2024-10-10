@@ -1,9 +1,10 @@
-import React from 'react'
-import { useForm } from "react-hook-form";
-import { Context } from '../context/GlobalContext';
-import { useNavigate, Link } from 'react-router-dom';
-import { useContext, useEffect } from 'react';
-import imgSrc from './img/avatarDefault.png'
+import React, { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import '../styles/Settings.css'
+import AccountSettings from '../components/settings/AccountSettings'
+import NotificationsSettings from '../components/settings/NotificationsSettings'
+import PrivacyAndSecureSettings from '../components/settings/PrivacyAndSecureSettings'
+import ProfileSettings from '../components/settings/ProfileSettings'
 
 const Settings = () => {
   const navigate = useNavigate()
@@ -13,7 +14,7 @@ const Settings = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm()
+} = useForm()
 
   const onSubmit = async (data) => {
     const formData = new FormData()
@@ -24,39 +25,43 @@ const Settings = () => {
     formData.append('linkedin', data.linkedin)
     formData.append('avatar', data.avatar[0])
 
-    await actions.updateProfile(formData, store.access_token)
-  }
-
-  useEffect(() => {
-    if (store?.access_token == null) {
-      navigate('/')
+        await actions.updateProfile(formData, store.access_token)
     }
+
+    useEffect(() => {
+      if(store?.access_token == null){
+          navigate('/')
+      }
   }, [])
 
   return (
-    <div className="container mt-5">
-      <div className="row">
-        <div className="col-md-12">
-          <h4 className="text-center mt-5">Edit Profile</h4>
-          <form onSubmit={handleSubmit(onSubmit)} className="w-50 mx-auto my-3 p-4 ">
-            <div className="mb-3 text-center">
-              <img src={store?.user?.profile?.avatar || imgSrc} alt="" className='img-fluid w-50' />
-              <input type="file" className={"form-control " + (errors.avatar ? 'is-invalid' : '')} id="avatar" name='avatar' {...register('avatar')} />
-              <small className="invalid-feedback">{errors?.avatar?.message}</small>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
-              <input type="email" defaultValue={store?.user?.email} className={"form-control " + (errors.email ? 'is-invalid' : '')} id="email" name='email' placeholder="name@example.com" {...register('email')} readOnly disabled />
-              <small className="invalid-feedback">{errors?.email?.message}</small>
+    <div className="container-fluid mt-5 py-4 mb-3">
+      <div className="row d-flex justify-content-center">
+        <div className='col-12 col-md-3 col-xl-2 d-flex justify-content-between'>
+          <div className='container'>
+            <div className={'d-flex text-center text-md-start flex-md-column mt-4 justify-content-center ' + (!collapsed && 'sticky-top')}>
+              {!collapsed && <h4>Settings</h4>}
+              <Link to='/settings/account' className="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover mx-1">
+                Account
+              </Link>
+              <Link to='/settings/profile' className="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover mx-1">
+                Profile
+              </Link>
+              <Link to='/settings/privsec' className="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover mx-1">
+                Privacy and Security
+              </Link>
+              <Link to='/settings/notification' className="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover mx-1">
+                Notifications
+              </Link>
             </div>
             <div className="mb-3">
               <label htmlFor="exampleFormControlInput1" className="form-label">Username</label>
-              <input type="username" defaultValue="" className={"form-control " + (errors.username ? 'is-invalid' : '')} id="username" name='username' placeholder="Your Username" {...register('username')} />
+              <input type="username" defaultValue="" className={"form-control " + (errors.username ? 'is-invalid' : '')}  id="username" name='username' placeholder="Your Username" {...register('username')}/>
               <small className="invalid-feedback">{errors?.username?.message}</small>
             </div>
             <div className="mb-3">
               <label htmlFor="exampleFormControlInput1" className="form-label">Password</label>
-              <input type="password" className="form-control" id="password" name="password" placeholder="********" {...register('password')} />
+              <input type="password" className="form-control" id="password" name="password" placeholder="********" {...register('password')}/>
             </div>
             <div className="mb-3">
               <label htmlFor="exampleFormControlInput1" className="form-label">Confirm Password</label>
