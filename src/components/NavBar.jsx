@@ -64,7 +64,7 @@ const NavBar = () => {
             <div className="collapse navbar-collapse justify-content-between" id="nabvarGeneralOptions">
                 <ul className="navbar-nav mb-2 mb-lg-0 align-items-start align-items-md-center">
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Link</a>
+                        <Link to='/jobform' className="btn btn-success" >Create Post</Link>
                     </li>
                     <li className="nav-item dropdown">
                         <DropdownList />
