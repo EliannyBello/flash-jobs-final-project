@@ -27,14 +27,16 @@ const JobForm = () => {
             <div className="container container-jobform m-auto justify-content-center pt-3">
                 <h3>Post Job</h3>
                 <label htmlFor="rank">Rank</label>
+               
+                <form onSubmit={handleSubmit(onSubmit)} className="row row-jobform my-3">
+
                 <div className="col-mb-6">
-                    <select name="rank" id="rank" className="form-control">
-                        <option value="junior" selected>junior</option>
-                        <option value="semi-senior">Semi Senior</option>
-                        <option value="senior">Senior</option>
+                    <select name="rank" id="rank" className="form-control" {...register('rank', { required: 'Senority is required!' })}>
+                        <option value="1">junior</option>
+                        <option value="2">Semi Senior</option>
+                        <option value="3">Senior</option>
                     </select>
                 </div>
-                <form onSubmit={handleSubmit(onSubmit)} className="row row-jobform my-3">
                     <div className="form-group form-group-jobform">
                         <label htmlFor="postTitle">Title</label>
                         <input type="text" className="form-control" id="title" name="title" placeholder="Title" {...register('title', { required: 'Title is required!' })}
@@ -120,7 +122,7 @@ const JobForm = () => {
                                         type="checkbox"
                                         id="techSQL"
                                         value="SQL"
-                                        {...register('tech_Knowledges', { required: 'Tech Knowledges is required!' })}
+                                        {...register('technologies', { required: 'Tech Knowledges is required!' })}
                                     />
                                     <label htmlFor="techSQL">SQL</label>
                                 </div>
@@ -129,7 +131,7 @@ const JobForm = () => {
                                         type="checkbox"
                                         id="techReact"
                                         value="React"
-                                        {...register('tech_Knowledges', { required: 'Tech Knowledges is required!' })}
+                                        {...register('technologies', { required: 'Tech Knowledges is required!' })}
                                     />
                                     <label htmlFor="techReact">React</label>
                                 </div>
@@ -138,7 +140,7 @@ const JobForm = () => {
                                         type="checkbox"
                                         id="techPython"
                                         value="Python"
-                                        {...register('tech_Knowledges', { required: 'Tech Knowledges is required!' })}
+                                        {...register('technologies', { required: 'Tech Knowledges is required!' })}
                                     />
                                     <label htmlFor="techPython">Python</label>
                                 </div>
@@ -147,7 +149,7 @@ const JobForm = () => {
                                         type="checkbox"
                                         id="techJava"
                                         value="Java"
-                                        {...register('tech_Knowledges', { required: 'Tech Knowledges is required!' })}
+                                        {...register('technologies', { required: 'Tech Knowledges is required!' })}
                                     />
                                     <label htmlFor="techJava">Java</label>
                                 </div>
@@ -156,7 +158,7 @@ const JobForm = () => {
                                         type="checkbox"
                                         id="techJavaScript"
                                         value="JavaScript"
-                                        {...register('tech_Knowledges', { required: 'Tech Knowledges is required!' })}
+                                        {...register('technologies', { required: 'Tech Knowledges is required!' })}
                                     />
                                     <label htmlFor="techJavaScript">JavaScript</label>
                                 </div>
@@ -165,7 +167,7 @@ const JobForm = () => {
                                         type="checkbox"
                                         id="techCSS"
                                         value="CSS"
-                                        {...register('tech_Knowledges', { required: 'Tech Knowledges is required!' })}
+                                        {...register('technologies', { required: 'Tech Knowledges is required!' })}
                                     />
                                     <label htmlFor="techCSS">CSS</label>
                                 </div>
@@ -174,7 +176,7 @@ const JobForm = () => {
                                         type="checkbox"
                                         id="techGo"
                                         value="GO"
-                                        {...register('tech_Knowledges', { required: 'Tech Knowledges is required!' })}
+                                        {...register('technologies', { required: 'Tech Knowledges is required!' })}
                                     />
                                     <label htmlFor="techGo">GO</label>
                                 </div>
@@ -183,7 +185,7 @@ const JobForm = () => {
                                         type="checkbox"
                                         id="techNodeJS"
                                         value="NodeJS"
-                                        {...register('tech_Knowledges', { required: 'Tech Knowledges is required!' })}
+                                        {...register('technologies', { required: 'Tech Knowledges is required!' })}
                                     />
                                     <label htmlFor="techNodeJS">NodeJS</label>
                                 </div>
@@ -192,12 +194,12 @@ const JobForm = () => {
                                         type="checkbox"
                                         id="techBootstrap"
                                         value="Bootstrap"
-                                        {...register('tech_Knowledges', { required: 'Tech Knowledges is required!' })}
+                                        {...register('technologies', { required: 'Tech Knowledges is required!' })}
                                     />
                                     <label htmlFor="techBootstrap">Bootstrap</label>
                                 </div>
                             </div>
-                            {errors.tech_Knowledges && <span>{errors.tech_Knowledges.message}</span>}
+                            {errors.technologies && <span>{errors.technologies.message}</span>}
                         </div>
 
 
