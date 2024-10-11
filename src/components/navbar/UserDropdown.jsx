@@ -30,7 +30,8 @@ const UserDropDown = ({ collapsed }) => {
                     <FaRegUserCircle className="fs-1" />
                 </a>
                 <ul className={"dropdown-menu mt-3 " + (collapsed ? ' full-width' : 'dropdown-menu-end text-end me-1')}>
-                    <li><span className="dropdown-item">Hello, {store?.user?.username}</span></li>
+                    <li><p className="text-center">Hello, {store?.user?.username}</p></li>
+                    <li><hr className="dropdown-divider" /></li>
                     <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
                     <li><Link className="dropdown-item" to="/settings">Account Settings</Link></li>
                     <li><hr className="dropdown-divider" /></li>
