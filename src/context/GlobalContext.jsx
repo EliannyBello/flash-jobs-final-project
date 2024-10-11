@@ -117,14 +117,13 @@ export const AppContext = ({ children }) => {
             setStore(prev => ({ ...prev, user: null, access_token: null }))
             setLogged(false);
         },
-        getJobPost: async (id) => {
+        getJobPost: async (id, access_token) => {
             try {
                 const { apiUrl } = store
-                const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyODU4NjM1MiwianRpIjoiMjM0Mjg0ODYtYTIyOS00YTY5LThjMDItNDgxOTFhMTkwOWZmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNzI4NTg2MzUyLCJjc3JmIjoiNzQ2NWJmNTEtYTAwNy00YmRjLWJkOTgtMDJjMmE1ODIyYWJkIiwiZXhwIjoxNzI5MDE4MzUyfQ.LrLOhsVFQ0PdSFw1JrTyGEmkA0dFao7c_cEj6E62jEU`
                 const response = await fetch(`${apiUrl}/api/job_postings/${id}`, {
                     method: 'GET',
                     headers: {
-                        'Authorization': `Bearer ${token}`,
+                        'Authorization': `Bearer ${access_token}`,
                         'Content-Type': 'application/json'
                     }
                 })
@@ -133,12 +132,9 @@ export const AppContext = ({ children }) => {
                     ...prev,
                     currentJobPost: data.job_posting
                 }))
-
-
             } catch (error) {
                 console.log(error.message)
             }
-
         }
     }
     )
