@@ -1,0 +1,45 @@
+
+.container-jobform {
+    padding: 20px;
+    border-radius: 10px; 
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  
+  .form-group-jobform input, .form-group-jobform textarea, .form-control {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+
+  .tech-knowledges-list, .form-control {
+    display: flex;
+    flex-direction: column;
+  }
+  
+
+  .tech-knowledges-list div, .form-control div {
+    margin-bottom: 10px; 
+  }
+  
+  span {
+    color: red;
+    font-size: 12px;
+  }

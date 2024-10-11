@@ -66,22 +66,26 @@ export const AppContext = ({ children }) => {
                 return false
             }
         },
-        jobposting: async (credentials) => {
+
+        jobposting: async (data) => {
             try {
                 const { apiUrl } = store
-                const response = await fetch(`${apiUrl}/api/login`, {
+                const response = await fetch(`${apiUrl}/api/job_postings`, {
                     method: 'POST',
-                    body: JSON.stringify(credentials),
+                    body: JSON.stringify(data),
                     headers: {
+                        'Authorization': `Bearer ${sessionStorage.access_token}`,
                         'Content-Type': 'application/json'
                     }
                 })
                 const datos = await response.json()
                 console.log(datos)
+                return datos
             } catch (error) {
                 console.log(error.message)
             }
         },
+
         updateProfile: async (formData, access_token) => {
             try {
                 const { apiUrl } = store

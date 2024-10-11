@@ -18,9 +18,9 @@ const Register = () => {
         navigate('/')
     }
     return (
-        <div className="container">
-            <div className="card">
-                <div className="card-body p-3 my-4 justify-content-center">
+        <div className="container container-register">
+            <div className="card card-register">
+                <div className="card-body-register p-3 my-4 justify-content-center">
                     <h4 className="text-center">Register</h4>
                     <form onSubmit={handleSubmit(onSubmit)} className="w-50 mx-auto p-2">
                         <div className="mb-3">

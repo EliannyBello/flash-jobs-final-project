@@ -8,6 +8,7 @@ import Register from './page/Register'
 import Profile from './page/Profile'
 import Settings from './page/Settings'
 import Post from './page/Post'
+import JobForm from './page/JobForm'
 
 
 
@@ -24,6 +25,7 @@ function Layout() {
         <Route path='/settings' element={<Settings />} />
         <Route path='/settings/:tab' element={<Settings />} />
         <Route path='/post/:id' element={<Post />} />
+        <Route path='/JobForm' element={<JobForm/>} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />
