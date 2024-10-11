@@ -11,7 +11,7 @@ const JobCards = () => {
 
 
 	return (
-		<div className="jobCard w-100">
+		<div className="jobCard">
 			<div className="card p-2 mb-2">
 				<div className="d-flex ">
 					<img src={store?.user?.profile?.avatar} className="img-fluid rounded-circle" alt="..." />
