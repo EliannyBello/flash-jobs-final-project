@@ -36,20 +36,21 @@ const Profile = () => {
         <div className="col-md-7 ">
 
           <div className="row mt-5">
-           
-              <button
-                className="btn btn-warning"
-                data-bs-toggle="collapse"
-                href="#multiCollapseExample1"
-                role="button"
-                aria-expanded="false"
-                aria-controls="multiCollapseExample1"
-              > Your offers</button>
-            
+
+            <button
+              className="btn btn-warning"
+              data-bs-toggle="collapse"
+              href="#multiCollapseExample1"
+              role="button"
+              aria-expanded="false"
+              aria-controls="multiCollapseExample1"
+            > Your offers</button>
+
 
 
             <div className="collapse multi-collapse" id="multiCollapseExample1">
-              <div className="card card-body">
+              <div className="">
+                <JobCards />
                 <JobCards />
               </div>
             </div>
@@ -67,10 +68,8 @@ const Profile = () => {
               Your applications
             </button>
             <div className="collapse multi-collapse" id="multiCollapseExample2">
-              <div className="card card-body">
-                Some placeholder content for the second collapse component of this
-                multi-collapse example. This panel is hidden by default but revealed
-                when the user activates the relevant trigger.
+              <div className="">
+                <JobCards />
               </div>
             </div>
           </div>
