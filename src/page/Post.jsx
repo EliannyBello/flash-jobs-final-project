@@ -5,7 +5,6 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 
 const Post = () => {
     const { actions, store } = useContext(Context);
-    const [post, setPost] = useState({})
     const params = useParams();
 
     //tests
@@ -65,6 +64,12 @@ const Post = () => {
         return toString;
     }
 
+    const dateConverter = (stringDate) => {
+        const date = new Date(stringDate);
+        const formated = date.toLocaleDateString();
+        return formated;
+    }
+
     const UserCard = () => (
         <div className="col-12 col-lg-4">
             <div className="card">
@@ -84,18 +89,18 @@ const Post = () => {
         <div className="col-12 col-lg-8">
             <div className="card" >
                 <div className="card-header">
-                    <h5 className="card-title">{testPost.title}</h5>
-                    <h6 className="card-subtitle mb-2 text-body-secondary">{testPost.date}</h6>
+                    <h5 className="card-title">{store.currentJobPost.title}</h5>
+                    <h6 className="card-subtitle mb-2 text-body-secondary">{dateConverter(store.currentJobPost.date)}</h6>
                     <h6 className="card-subtitle mb-2 text-body-secondary"><b>{displayApplications(testPost.applications)}</b></h6>
                 </div>
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item"><b>Tech Knowledges:</b>{listInformation(testPost.tech_knowledges)}</li>
                     <li className="list-group-item"><b>Languages:</b>{listInformation(testPost.post_languages)}</li>
-                    <li className="list-group-item"><b>Required Time: </b>{testPost.requiredTime} days</li>
-                    <li className="list-group-item"><b>Payment: </b>${testPost.payment}</li>
+                    <li className="list-group-item"><b>Required Time: </b>{store.currentJobPost.required_time} days</li>
+                    <li className="list-group-item"><b>Payment: </b>${store.currentJobPost.payment}</li>
                 </ul>
                 <div className="card-body">
-                    <p className="card-text">{testPost.description}</p>
+                    <p className="card-text">{store.currentJobPost.description}</p>
                     <Link to="/post/1/apply" className="btn btn-primary text-white">Apply</Link>
                 </div>
             </div>
@@ -104,9 +109,6 @@ const Post = () => {
 
     useEffect(() => {
         actions.getJobPost(params.id, sessionStorage.access_token)
-        if (store.currentJobPost) {
-            setPost(() => store.currentJobPost)
-        };
     }, [])
 
     return (
