@@ -1,18 +1,20 @@
 import React, { createContext, useState, useEffect } from "react";
+import { get } from "react-hook-form";
 export const Context = createContext(null)
 export const AppContext = ({ children }) => {
     const [store, setStore] = useState({
         apiUrl: 'http://127.0.0.1:5000',
         access_token: null,
         user: null,
-        JobCards: []
+        JobCards: [],
+        currentJobPost: {}
     });
     //estados que estoy usando temporalmente para testear los navbar al estar conectado o modo oscuro-franco
     const [logged, setLogged] = useState(false);
     const [darkMode, setDarkMode] = useState(false);
     const [actions] = useState({
         checkUser: async () => {
-            if (sessionStorage.getItem('access_token') == !undefined) {
+            if (sessionStorage.getItem('access_token')) {
                 console.log(sessionStorage.getItem('access_token'))
                 setStore((store) => ({
                     ...store,
@@ -108,8 +110,31 @@ export const AppContext = ({ children }) => {
             console.log('log out')
             sessionStorage?.removeItem('access_token');
             sessionStorage?.removeItem('user');
-            setStore({ user: null, access_token: null })
+            setStore(prev => ({ ...prev, user: null, access_token: null }))
             setLogged(false);
+        },
+        getJobPost: async (id) => {
+            try {
+                const { apiUrl } = store
+                const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyODU4NjM1MiwianRpIjoiMjM0Mjg0ODYtYTIyOS00YTY5LThjMDItNDgxOTFhMTkwOWZmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNzI4NTg2MzUyLCJjc3JmIjoiNzQ2NWJmNTEtYTAwNy00YmRjLWJkOTgtMDJjMmE1ODIyYWJkIiwiZXhwIjoxNzI5MDE4MzUyfQ.LrLOhsVFQ0PdSFw1JrTyGEmkA0dFao7c_cEj6E62jEU`
+                const response = await fetch(`${apiUrl}/api/job_postings/${id}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                })
+                const data = await response.json()
+                setStore(prev => ({
+                    ...prev,
+                    currentJobPost: data.job_posting
+                }))
+
+
+            } catch (error) {
+                console.log(error.message)
+            }
+
         }
     }
     )

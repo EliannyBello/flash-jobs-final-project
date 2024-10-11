@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../context/GlobalContext";
 import { FaRegStar, FaStar } from "react-icons/fa";
 
 const Post = () => {
-    const context = useContext(Context);
+    const { actions, store } = useContext(Context);
+    const [currentPost, setCurrentPost] = useState({})
     const params = useParams();
 
     //tests
@@ -100,6 +101,11 @@ const Post = () => {
             </div>
         </div>
     )
+
+    useEffect(() => {
+        actions.getJobPost(params.id)
+        if (store.currentJobPost) setCurrentPost(() => store.currentJobPost);
+    }, [])
 
     return (
         <div className="container-fluid mt-5 py-4">
