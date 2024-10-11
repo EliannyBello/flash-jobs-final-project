@@ -26,6 +26,14 @@ const JobForm = () => {
         <div className="container-fluid pt-3 mt-5">
             <div className="container container-jobform m-auto justify-content-center pt-3">
                 <h3>Post Job</h3>
+                <label htmlFor="rank">Rank</label>
+                <div className="col-mb-6">
+                    <select name="rank" id="rank" className="form-control">
+                        <option value="junior" selected>junior</option>
+                        <option value="semi-senior">Semi Senior</option>
+                        <option value="senior">Senior</option>
+                    </select>
+                </div>
                 <form onSubmit={handleSubmit(onSubmit)} className="row row-jobform my-3">
                     <div className="form-group form-group-jobform">
                         <label htmlFor="postTitle">Title</label>
@@ -52,8 +60,6 @@ const JobForm = () => {
                         />
                         {errors.Payment && <span>{errors.Payment.message}</span>}
                     </div>
-
-
 
                     <div className="row row-jobform">
                         <div className="col-mb-6">
