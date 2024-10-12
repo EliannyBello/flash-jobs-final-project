@@ -32,7 +32,7 @@ const JobForm = () => {
 
                 <div className="col-mb-6">
                     <select name="rank" id="rank" className="form-control" {...register('rank', { required: 'Senority is required!' })}>
-                        <option value="1">junior</option>
+                        <option value="1">Junior</option>
                         <option value="2">Semi Senior</option>
                         <option value="3">Senior</option>
                     </select>
@@ -157,7 +157,7 @@ const JobForm = () => {
                                     <input
                                         type="checkbox"
                                         id="techJavaScript"
-                                        value="JavaScript"
+                                        value="Javascript"
                                         {...register('technologies', { required: 'Tech Knowledges is required!' })}
                                     />
                                     <label htmlFor="techJavaScript">JavaScript</label>
