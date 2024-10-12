@@ -118,7 +118,7 @@ const Post = () => {
                     <li className="list-group-item"><b>Tech Knowledges:</b>{listInformation(post.technologies)}</li>
                     <li className="list-group-item"><b>Languages:</b>{listInformation(post.languages)}</li>
                     <li className="list-group-item"><b>Required Time: </b>{post.required_time} days</li>
-                    <li className="list-group-item"><b>Required Time: </b>{dateConverter(post.expiration_date)}</li>
+                    <li className="list-group-item"><b>Expiration Date: </b>{dateConverter(post.expiration_date)}</li>
                     <li className="list-group-item"><b>Payment: </b>${post.payment}</li>
                 </ul>
                 <div className="card-body">
