@@ -11,18 +11,7 @@ const Post = () => {
     const date = new Date();
     const localDate = date.toLocaleDateString();
     const testPost = {
-        title: 'Post Title',
-        description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate,
-        ullam est? Ratione fugiat ipsa rerum consequuntur sapiente doloribus minus non,
-        iusto odit assumenda enim ad totam, dolorem consequatur dolor laboriosam.`,
-        payment: 100,
-        date: localDate,
-        requiredTime: 3,
-        expirationDate: null,
-        user: 'username',
         applications: ['user 1', 'user 2', 'user 3', 'user 4', 'user 5', 'user 6', 'user7'],
-        post_languages: ['English', 'Spanish', 'Korean'],
-        tech_knowledges: ['SQL', 'React', 'Python'],
     };
 
     const user = {
@@ -94,8 +83,8 @@ const Post = () => {
                     <h6 className="card-subtitle mb-2 text-body-secondary"><b>{displayApplications(testPost.applications)}</b></h6>
                 </div>
                 <ul className="list-group list-group-flush">
-                    <li className="list-group-item"><b>Tech Knowledges:</b>{listInformation(testPost.tech_knowledges)}</li>
-                    <li className="list-group-item"><b>Languages:</b>{listInformation(testPost.post_languages)}</li>
+                    <li className="list-group-item"><b>Tech Knowledges:</b>{listInformation(store.currentJobPost.technologies)}</li>
+                    <li className="list-group-item"><b>Languages:</b>{listInformation(store.currentJobPost.languages)}</li>
                     <li className="list-group-item"><b>Required Time: </b>{store.currentJobPost.required_time} days</li>
                     <li className="list-group-item"><b>Payment: </b>${store.currentJobPost.payment}</li>
                 </ul>

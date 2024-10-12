@@ -118,8 +118,8 @@ export const AppContext = ({ children }) => {
             setLogged(false);
         },
         getJobPost: async (id, access_token) => {
+            const { apiUrl } = store
             try {
-                const { apiUrl } = store
                 const response = await fetch(`${apiUrl}/api/job_postings/${id}`, {
                     method: 'GET',
                     headers: {
@@ -135,6 +135,7 @@ export const AppContext = ({ children }) => {
             } catch (error) {
                 console.log(error.message)
             }
+
         }
     }
     )
