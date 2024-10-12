@@ -118,8 +118,8 @@ export const AppContext = ({ children }) => {
             setLogged(false);
         },
         getJobPost: async (id, access_token) => {
+            const { apiUrl } = store
             try {
-                const { apiUrl } = store
                 const response = await fetch(`${apiUrl}/api/job_postings/${id}`, {
                     method: 'GET',
                     headers: {
@@ -135,6 +135,7 @@ export const AppContext = ({ children }) => {
             } catch (error) {
                 console.log(error.message)
             }
+<<<<<<< HEAD
         },
         jobApplication: async (access_token, job_posting_id) => {
             try {
@@ -161,6 +162,10 @@ export const AppContext = ({ children }) => {
                 console.log(error.message)
             }
         },
+=======
+
+        }
+>>>>>>> 12b30dd4447621fe846eb40eea090c72ff1148cb
     }
     )
     useEffect(() => {
