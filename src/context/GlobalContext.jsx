@@ -135,7 +135,32 @@ export const AppContext = ({ children }) => {
             } catch (error) {
                 console.log(error.message)
             }
-        }
+        },
+        jobApplication: async (access_token, job_posting_id) => {
+            try {
+                const { apiUrl } = store
+                const body = JSON.stringify({job_posting_id: job_posting_id})
+                const response = await fetch(`${apiUrl}/api/applications`, {
+                    method: 'POST',
+                    body: body,
+                    headers: {
+                        'Authorization': `Bearer ${access_token}`,
+                        'Content-Type': 'application/json'
+                    }
+                })
+                const datos = await response.json()
+                console.log(datos)
+                if (datos.status === 'success') {
+                    setStore((store) => ({ ...store, user: datos.user }))
+                    sessionStorage.setItem('user', JSON.stringify(datos?.user))
+                    return true
+                } else {
+                    return false
+                }
+            } catch (error) {
+                console.log(error.message)
+            }
+        },
     }
     )
     useEffect(() => {
