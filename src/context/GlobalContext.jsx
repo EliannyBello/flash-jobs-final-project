@@ -7,7 +7,6 @@ export const AppContext = ({ children }) => {
         access_token: null,
         user: null,
         JobCards: [],
-        currentJobPost: {}
     });
     //estados que estoy usando temporalmente para testear los navbar al estar conectado o modo oscuro-franco
     const [logged, setLogged] = useState(false);
@@ -118,7 +117,7 @@ export const AppContext = ({ children }) => {
             setLogged(false);
         },
         getJobPost: async (id, access_token) => {
-            const { apiUrl } = store
+            const { apiUrl, currentJobPost } = store
             try {
                 const response = await fetch(`${apiUrl}/api/job_postings/${id}`, {
                     method: 'GET',
@@ -128,14 +127,26 @@ export const AppContext = ({ children }) => {
                     }
                 })
                 const data = await response.json()
-                setStore(prev => ({
-                    ...prev,
-                    currentJobPost: data.job_posting
-                }))
+                return data.job_posting;
             } catch (error) {
                 console.log(error.message)
             }
-
+        },
+        getUserByid: async (id, access_token) => {
+            const { apiUrl } = store
+            try {
+                const response = await fetch(`${apiUrl}/api/profile/${id}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${access_token}`,
+                        'Content-Type': 'application/json'
+                    }
+                })
+                const data = await response.json()
+                return data.user;
+            } catch (error) {
+                console.log(error.message)
+            }
         }
     }
     )
@@ -143,7 +154,7 @@ export const AppContext = ({ children }) => {
         actions.checkUser()
     }, [])
     return (
-        <Context.Provider value={{ store, logged, darkMode, actions }}>
+        <Context.Provider value={{ store, logged, darkMode, actions, setStore }}>
             {children}
         </Context.Provider>
     );
