@@ -59,6 +59,15 @@ const Post = () => {
         return formated;
     }
 
+    const applyToJob = async () => {
+        const success = await actions.jobApplication(sessionStorage.access_token, params.id);
+        if (success) {
+            alert("You have successfully applied to this job!");
+        } else {
+            alert("Error applying to the job. You may have already applied.");
+        }
+    };
+
     const UserCard = () => (
         <div className="col-12 col-lg-4">
             <div className="card">
@@ -90,7 +99,7 @@ const Post = () => {
                 </ul>
                 <div className="card-body">
                     <p className="card-text">{store.currentJobPost.description}</p>
-                    <Link to="/post/1/apply" className="btn btn-primary text-white">Apply</Link>
+                    <button onClick={applyToJob} className="btn btn-primary text-white">Apply</button>
                 </div>
             </div>
         </div>
