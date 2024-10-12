@@ -7,6 +7,8 @@ const Post = () => {
     const { actions, store } = useContext(Context);
     const params = useParams();
 
+    const [isCreator, setIsCreator] = useState(false);
+
     //tests
     const date = new Date();
     const localDate = date.toLocaleDateString();
@@ -68,6 +70,15 @@ const Post = () => {
         }
     };
 
+    useEffect(() => {
+        actions.getJobPost(params.id, sessionStorage.access_token).then(() => {
+            // Verificar si el usuario actual es el creador de la oferta de trabajo
+            if (store.currentJobPost.user_id === store.user.id) {
+                setIsCreator(true); // Si el usuario es el creador, activar el estado
+            }
+        });
+    }, []);
+
     const UserCard = () => (
         <div className="col-12 col-lg-4">
             <div className="card">
@@ -99,15 +110,17 @@ const Post = () => {
                 </ul>
                 <div className="card-body">
                     <p className="card-text">{store.currentJobPost.description}</p>
-                    <button onClick={applyToJob} className="btn btn-primary text-white">Apply</button>
+                    {isCreator ? (
+                        <button className="btn btn-secondary" disabled>You cannot apply to your own job</button>  
+                    ) : (
+                        <button onClick={applyToJob} className="btn btn-primary text-white">Apply</button>
+                    )}
                 </div>
             </div>
         </div>
     )
 
-    useEffect(() => {
-        actions.getJobPost(params.id, sessionStorage.access_token)
-    }, [])
+  
 
     return (
         <div className="container-fluid mt-5 py-4">
