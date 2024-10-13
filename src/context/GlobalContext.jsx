@@ -1,5 +1,4 @@
 import React, { createContext, useState, useEffect } from "react";
-import { get } from "react-hook-form";
 export const Context = createContext(null)
 export const AppContext = ({ children }) => {
     const [store, setStore] = useState({
@@ -79,6 +78,29 @@ export const AppContext = ({ children }) => {
                     }
                 })
                 const datos = await response.json()
+                console.log(datos)
+               
+            } catch (error) {
+                console.log(error.message)
+            }
+        },
+
+        getjobposting: async (id) => {
+            try {
+                const { apiUrl } = store
+                
+                const response = await fetch(`${apiUrl}/api/job_postings/user/${id}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${sessionStorage.access_token}`,
+                        'Content-Type': 'application/json'
+                    }
+                })
+                const datos = await response.json()
+                console.log(datos)
+                setStore({
+                    ...store, user: { ...store.user, JobCards: [...(store.user.JobCards), datos] }
+                });
                 console.log(datos)
                 return datos
             } catch (error) {

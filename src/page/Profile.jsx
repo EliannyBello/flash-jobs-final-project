@@ -1,14 +1,21 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import JobCards from '../components/jobCards'
 import imgSrc from './img/avatarDefault.png'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Context } from '../context/GlobalContext'
 
 
 
 const Profile = () => {
-  const navigate = useNavigate()
-  const { store } = useContext(Context)
+
+  const { store, actions } = useContext(Context)
+ 
+  const userId = JSON.parse(sessionStorage.user)
+
+  useEffect(() => {
+    
+    actions.getjobposting(userId.id)
+  }, [])
 
   return (
     <div className="container mt-5 py-3">
@@ -51,7 +58,6 @@ const Profile = () => {
             <div className="collapse multi-collapse" id="multiCollapseExample1">
               <div className="">
                 <JobCards />
-                <JobCards />
               </div>
             </div>
           </div>
@@ -82,5 +88,6 @@ const Profile = () => {
     </div>
   )
 }
+
 
 export default Profile
