@@ -6,7 +6,6 @@ export const AppContext = ({ children }) => {
         access_token: null,
         user: null,
         JobCards: [],
-        currentJobPost: {}
     });
     //estados que estoy usando temporalmente para testear los navbar al estar conectado o modo oscuro-franco
     const [logged, setLogged] = useState(false);
@@ -140,8 +139,8 @@ export const AppContext = ({ children }) => {
             setLogged(false);
         },
         getJobPost: async (id, access_token) => {
+            const { apiUrl, currentJobPost } = store
             try {
-                const { apiUrl } = store
                 const response = await fetch(`${apiUrl}/api/job_postings/${id}`, {
                     method: 'GET',
                     headers: {
@@ -150,21 +149,61 @@ export const AppContext = ({ children }) => {
                     }
                 })
                 const data = await response.json()
-                setStore(prev => ({
-                    ...prev,
-                    currentJobPost: data.job_posting
-                }))
+                //modificado para retornar los datos
+                return data.job_posting;
             } catch (error) {
                 console.log(error.message)
             }
-        }
+        },
+        getUserByid: async (id, access_token) => {
+            const { apiUrl } = store
+            try {
+                const response = await fetch(`${apiUrl}/api/profile/${id}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${access_token}`,
+                        'Content-Type': 'application/json'
+                    }
+                })
+                const data = await response.json()
+                //modificado para retornar los datos
+                return data.user;
+            } catch (error) {
+                console.log(error.message)
+            }
+        },
+        jobApplication: async (access_token, job_posting_id) => {
+            try {
+                const { apiUrl } = store
+                const body = JSON.stringify({ job_posting_id: job_posting_id })
+                const response = await fetch(`${apiUrl}/api/applications`, {
+                    method: 'POST',
+                    body: body,
+                    headers: {
+                        'Authorization': `Bearer ${access_token}`,
+                        'Content-Type': 'application/json'
+                    }
+                })
+                const datos = await response.json()
+                console.log(datos)
+                if (datos.status === 'success') {
+                    setStore((store) => ({ ...store, user: datos.user }))
+                    sessionStorage.setItem('user', JSON.stringify(datos?.user))
+                    return true
+                } else {
+                    return false
+                }
+            } catch (error) {
+                console.log(error.message)
+            }
+        },
     }
     )
     useEffect(() => {
         actions.checkUser()
     }, [])
     return (
-        <Context.Provider value={{ store, logged, darkMode, actions }}>
+        <Context.Provider value={{ store, logged, darkMode, actions, setStore }}>
             {children}
         </Context.Provider>
     );
