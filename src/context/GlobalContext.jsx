@@ -78,7 +78,7 @@ export const AppContext = ({ children }) => {
                 })
                 const datos = await response.json()
                 console.log(datos)
-               
+
             } catch (error) {
                 console.log(error.message)
             }
@@ -87,7 +87,7 @@ export const AppContext = ({ children }) => {
         getjobposting: async (id) => {
             try {
                 const { apiUrl } = store
-                
+
                 const response = await fetch(`${apiUrl}/api/job_postings/user/${id}`, {
                     method: 'GET',
                     headers: {
@@ -196,6 +196,21 @@ export const AppContext = ({ children }) => {
                 console.log(error.message)
             }
         },
+        getAllJobPosting: async () => {
+            const { apiUrl } = store
+            try {
+                const response = await fetch(`${apiUrl}/api/job_postings`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                const data = await response.json()
+                return data.job_postings;
+            } catch (error) {
+                console.log(error.message)
+            }
+        }
     }
     )
     useEffect(() => {
