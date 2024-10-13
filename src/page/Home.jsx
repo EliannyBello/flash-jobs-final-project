@@ -7,7 +7,7 @@ const Home = () => {
       <h1>Homepage</h1>
       <p>job offers in cards</p>
 
-      <JobCards/>
+
     </div>
   )
 }
