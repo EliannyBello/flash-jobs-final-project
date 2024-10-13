@@ -20,9 +20,7 @@ const Profile = () => {
   }
 
   useEffect(() => {
-
     cardsJob()
-   
   }, [])
 
   return (
