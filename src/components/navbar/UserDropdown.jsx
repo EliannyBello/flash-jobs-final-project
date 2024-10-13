@@ -3,6 +3,8 @@ import { Context } from "../../context/GlobalContext";
 import { FaRegUserCircle } from "react-icons/fa";
 import { useNavigate, Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import imgSrc from '../../page/img/avatarDefault.png'
+
 
 const UserDropDown = ({ collapsed }) => {
 
