@@ -97,9 +97,9 @@ export const AppContext = ({ children }) => {
                 })
                 const datos = await response.json()
                 console.log(datos)
-                setStore({
-                    ...store, user: { ...store.user, JobCards: [...(store.user.JobCards), datos] }
-                });
+                // setStore({
+                //     ...store, user: { ...store.user, JobCards: [...(store.user.JobCards), datos] }
+                // });
                 console.log(datos)
                 return datos
             } catch (error) {

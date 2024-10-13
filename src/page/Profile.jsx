@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import JobCards from '../components/jobCards'
 import imgSrc from './img/avatarDefault.png'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -9,12 +9,20 @@ import { Context } from '../context/GlobalContext'
 const Profile = () => {
 
   const { store, actions } = useContext(Context)
- 
+  const [data, setData] = useState([])
   const userId = JSON.parse(sessionStorage.user)
 
+
+  const cardsJob = async ()  => {
+    const datos = await actions.getjobposting(userId.id)
+    console.log(datos.job_posting)
+    setData(datos.job_posting)
+  }
+
   useEffect(() => {
-    
-    actions.getjobposting(userId.id)
+
+    cardsJob()
+   
   }, [])
 
   return (
@@ -57,7 +65,7 @@ const Profile = () => {
 
             <div className="collapse multi-collapse" id="multiCollapseExample1">
               <div className="">
-                <JobCards />
+                <JobCards data={data}/>
               </div>
             </div>
           </div>
@@ -75,7 +83,7 @@ const Profile = () => {
             </button>
             <div className="collapse multi-collapse" id="multiCollapseExample2">
               <div className="">
-                <JobCards />
+               
               </div>
             </div>
           </div>

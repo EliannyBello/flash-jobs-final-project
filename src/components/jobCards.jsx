@@ -5,13 +5,13 @@ import { FaTrash } from "react-icons/fa";
 import { FaPencilAlt } from "react-icons/fa";
 import { Context } from '../context/GlobalContext';
 
-const JobCards = () => {
+const JobCards = ({data}) => {
 	const { store } = useContext(Context)
 
 
 	return (
 		<div className="jobCard">
-			{store?.user?.JobCards?.map((datos, index) => (
+			{data.map((datos, index) => (
 				<div key={index} className="card p-2 mb-2">
 					<div className="d-flex ">
 						<img src={store?.user?.profile?.avatar} className="img-fluid rounded-circle" alt="avatar" />
