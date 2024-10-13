@@ -100,7 +100,7 @@ const Post = () => {
                     <p className="card-text"><b>Rating: </b>{[...new Array(5)].map((_, i) => displayRating(defaultUser.rating, i))}</p>
                 </div>
                 <ul className="list-group list-group-flush">
-                    <li className="list-group-item"><b>Published Jobs: </b>{defaultUser.jobs_posted}</li>
+                    <li className="list-group-item"><b>Published Jobs: </b>{user.job_postings.length}</li>
                 </ul>
             </div>
         </div>
