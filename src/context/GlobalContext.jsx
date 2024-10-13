@@ -132,7 +132,6 @@ export const AppContext = ({ children }) => {
             }
         },
         logout: () => {
-            console.log('log out')
             sessionStorage?.removeItem('access_token');
             sessionStorage?.removeItem('user');
             setStore(prev => ({ ...prev, user: null, access_token: null }))

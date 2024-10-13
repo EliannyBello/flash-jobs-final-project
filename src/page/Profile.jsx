@@ -3,6 +3,7 @@ import JobCards from '../components/jobCards'
 import imgSrc from './img/avatarDefault.png'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Context } from '../context/GlobalContext'
+import '../styles/Profile.css'
 
 
 
@@ -29,7 +30,7 @@ const Profile = () => {
         <div className="col-md-5">
           <h4 className=" mt-5">{store?.user?.username}</h4>
           <div className="mx-auto my-5 p-4">
-            <img src={store?.user?.profile?.avatar || imgSrc} alt="Profile Avatar" className='img-fluid w-50 my-3' />
+            <img src={store?.user?.profile?.avatar || imgSrc} alt="Profile Avatar" className='img-fluid w-50 my-3 profile-avatar rounded-circle' />
           </div>
           <div className="mb-3">
             <h5>{store?.user?.email}</h5>

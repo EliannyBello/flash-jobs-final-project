@@ -56,7 +56,6 @@ const NavBar = () => {
                 {collapsed && <Testing />}
             </div>
             {collapsed && <UserDropDown collapsed={collapsed} />}
-            {collapsed && <Notifications collapsed={collapsed} />}
             <button className={"navbar-toggler"} type="button" data-bs-toggle="collapse" data-bs-target="#nabvarGeneralOptions"
                 aria-controls="nabvarGeneralOptions" aria-expanded="false" aria-label="Toggle navigation" data-bs-auto-close="true">
                 <FaBars className="navbar-toggler-icon" />
@@ -72,7 +71,6 @@ const NavBar = () => {
                 </ul>
                 {!collapsed && <SearchForm />}
                 <div className="d-flex align-items-center">
-                    {!collapsed && <Notifications collapsed={collapsed}/>}
                     {!collapsed && <UserDropDown collapsed={collapsed} />}
                     <FaRegQuestionCircle className={"fs-4 help-icon"} />
                 </div>

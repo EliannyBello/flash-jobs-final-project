@@ -27,7 +27,7 @@ const UserDropDown = ({ collapsed }) => {
         return (
             <div className="dropdown">
                 <a className="nav-link dropdown-toggle not-arrow me-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <FaRegUserCircle className="fs-1" />
+                    <img src={store?.user?.profile?.avatar || imgSrc} alt="Profile Avatar" className='img-fluid user-avatar rounded-circle' />
                 </a>
                 <ul className={"dropdown-menu mt-3 " + (collapsed ? ' full-width' : 'dropdown-menu-end text-end me-1')}>
                     <li><p className="text-center">Hello, {store?.user?.username}</p></li>

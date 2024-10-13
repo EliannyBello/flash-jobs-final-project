@@ -92,3 +92,9 @@ a,
 .dropdown-item:hover {
     background-color: var(--main-dvar-dropdown-item-hover) !important;
 }
+
+img.user-avatar{
+    height: calc(1.375rem + 1.5vw) !important;
+    width: calc(1.375rem + 1.5vw) !important;
+    object-fit: cover;
+}
