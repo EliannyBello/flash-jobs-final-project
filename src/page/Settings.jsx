@@ -51,12 +51,6 @@ const Settings = () => {
               <Link to='/settings/profile' className="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover mx-1">
                 Profile
               </Link>
-              <Link to='/settings/privsec' className="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover mx-1">
-                Privacy and Security
-              </Link>
-              <Link to='/settings/notification' className="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover mx-1">
-                Notifications
-              </Link>
             </div>
           </div>
           {!collapsed && <div className='setting-vertical-rule' />}
