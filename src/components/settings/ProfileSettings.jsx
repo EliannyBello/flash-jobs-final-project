@@ -34,9 +34,9 @@ const ProfileSettings = () => {
     }, [])
 
     return (
-        <div className='mx-2'>
+        <div className='container-fluid mx-2'>
             <h4 className="text-center mt-5">Edit Profile</h4>
-            <form onSubmit={handleSubmit(onSubmit)} className="w-50 mx-auto my-3 p-4 ">
+            <form onSubmit={handleSubmit(onSubmit)} className="my-3 p-4 ">
                 <div className="mb-3 text-center">
                     <img src={store?.user?.profile?.avatar || imgSrc} alt="" className='img-fluid w-50' />
                     <input type="file" accept='.png,.jpg,.jpeg' className={"form-control " + (errors.avatar ? 'is-invalid' : '')} id="avatar" name='avatar' {...register('avatar')} />
