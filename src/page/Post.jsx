@@ -4,9 +4,8 @@ import { Context } from "../context/GlobalContext";
 import { FaRegStar, FaStar } from "react-icons/fa";
 
 const Post = () => {
-    const { actions, store } = useContext(Context);
+    const { actions, logged } = useContext(Context);
     const [loading, setLoading] = useState(true);
-    // esta información la guardaré aquí porque solo es accesible desde esta vista, no necesita estar en el store global
     const [post, setPost] = useState({})
     const [user, setUser] = useState({})
     const params = useParams();
@@ -88,7 +87,7 @@ const Post = () => {
     };
 
     useEffect(() => {
-        getPostInfo()
+        logged && getPostInfo()
     }, []);
 
     const UserCard = () => (
@@ -139,14 +138,14 @@ const Post = () => {
 
     return (
         <div className="container-fluid mt-5 py-4">
-            {loading ? (
+            {logged ? (loading ? (
                 <div>Loading...</div>
             ) : (
                 <div className="row g-3">
                     {<UserCard />}
                     {<PostCard />}
                 </div>
-            )}
+            )) : <h1 className="text center"> You must log in to see this</h1>}
         </div>
     );
 }
