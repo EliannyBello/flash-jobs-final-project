@@ -4,12 +4,14 @@ import { Context } from '../../context/GlobalContext';
 import { useContext, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
-
+// falta solicitar contraseña actual para el cambio y quizas un alert de succesful
+//cuando intentamos logear con datos incorrectos que envie error(actualmente se bugea)
 const AccountSettings = () => {
     const navigate = useNavigate()
     const { store, actions } = useContext(Context)
     const {
         register,
+        
         handleSubmit,
         watch,
         formState: { errors },
@@ -27,7 +29,7 @@ const AccountSettings = () => {
             return;
         }
     
-        actions.updateProfile(formData, store.access_token);
+        await actions.updateProfile(formData, store.access_token)
     };
 
     useEffect(() => {
@@ -47,7 +49,7 @@ const AccountSettings = () => {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleFormControlInput1" className="form-label">Username</label>
-                    <input type="text" defaultValue={store?.user?.username} className="form-control" name='email' placeholder="Username" readOnly disabled />
+                    <input type="text" defaultValue={store?.user?.username} className="form-control" name='username' placeholder="Username" readOnly disabled />
 
                 </div>
                 <div className="mb-3">
