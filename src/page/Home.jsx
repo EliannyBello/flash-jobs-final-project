@@ -29,12 +29,17 @@ const Home = () => {
       <Carrusel />
 
       <br />
+
       <div className='container-fluid d-flex justify-content-center'>
-        <div className='row col-md-10 col-12'>
-          <JobCards data={data} />
-        </div>
+        <div className='container-fluid'>
+
+            <JobCards data={data} />
+          </div>
+       
       </div>
     </div>
+
+
   )
 }
 
