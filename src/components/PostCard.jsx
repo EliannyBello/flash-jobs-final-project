@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { Context } from "../context/GlobalContext";
 import { FaTrash, FaPencilAlt } from "react-icons/fa";
+import imgPrf from'../page/img/avatarDefault.png'
 
 
 const PostCard = ({ datos, data }) => {
@@ -33,7 +34,7 @@ const PostCard = ({ datos, data }) => {
         <div className={(location.pathname == "/") ? "col-12 col-md-6" : "container-fluid"}>
             <div className="card p-2 mb-2">
                 <div className="d-flex ">
-                    <img src={user?.profile?.avatar} className="rounded-circle profile-avatar" alt="avatar" />
+                    <img src={user?.profile?.avatar || imgPrf } className="rounded-circle profile-avatar" alt="avatar" />
                     <div className="ms-3 w-100">
                         <Link className='link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover' to={`/post/${datos.id}`}>{datos.title}</Link>
                         <div className="text-muted">

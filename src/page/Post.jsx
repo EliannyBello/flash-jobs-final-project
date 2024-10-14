@@ -91,7 +91,7 @@ const Post = () => {
     }, []);
 
     const UserCard = () => (
-        <div className="col-12 col-lg-4">
+        <div className="col-12 col-lg-4 col-xxl-3">
             <div className="card">
                 <div className="d-flex justify-content-center">
                     <img src={user.profile.avatar} className="profile-avatar rounded-circle" alt="user avatar" />
