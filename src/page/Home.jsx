@@ -35,8 +35,8 @@ const Home = () => {
 
             <JobCards data={data} />
           </div>
-       
       </div>
+    
     </div>
 
 
