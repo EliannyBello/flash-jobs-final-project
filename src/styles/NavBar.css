@@ -26,8 +26,7 @@
     background-color: var(--main-dvar-bg-color) !important;
 }
 
-h5,
-a,
+.nb-item,
 .navbar-toggler-icon {
     color: var(--main-dvar-text-color) !important;
     font-weight: bold;
@@ -72,7 +71,7 @@ a,
     right: 0 !important;
     width: 98vw !important;
     margin: 0 1vw !important;
-    z-index: 1050 !important; 
+    z-index: 1050 !important;
     padding: 0 10px !important;
     box-sizing: border-box !important;
 }
@@ -101,8 +100,8 @@ img.user-avatar{
 }
 
 .user-item {  
-      background-color: rgb(0, 0, 0) !important; 
-      color: rgb(255, 255, 255) !important;   
+      background-color: rgb(0, 0, 0) !important;
+      color: rgb(255, 255, 255) !important;
 }
 
 .user-item:hover {  

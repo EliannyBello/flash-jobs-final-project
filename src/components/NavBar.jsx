@@ -23,8 +23,8 @@ const NavBar = () => {
 
     const DropdownList = () => (
         <div>
-            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Notification
+            <a className="nav-link dropdown-toggle nb-item" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown
             </a>
             <ul className="dropdown-menu nb-dropdown-list mt-3">
                 <li><Link className="dropdown-item" href="#">Action</Link></li>
@@ -52,7 +52,7 @@ const NavBar = () => {
     const Logged = () => (
         <div className="container-fluid d-flex justify-content-between">
             <div className="d-flex justify-content-between">
-                <Link className="navbar-brand" to='/' >Home</Link>
+                <Link className="navbar-brand nb-item" to='/' >Home</Link>
                 {collapsed && <Testing />}
             </div>
             {collapsed && <UserDropDown collapsed={collapsed} />}
@@ -63,7 +63,7 @@ const NavBar = () => {
             <div className="UserDropDown collapse navbar-collapse justify-content-between" id="nabvarGeneralOptions">
                 <ul className="navbar-nav mb-2 mb-lg-0 align-items-start align-items-md-center">
                     <li className="nav-item">
-                        <Link to='/jobform' className="btn " >Create Post</Link>
+                        <Link to='/jobform' className="btn nb-item" >CREATE POST</Link>
                     </li>
                     <li className="nav-item dropdown">
                         <DropdownList />
@@ -81,7 +81,7 @@ const NavBar = () => {
     const UnLogged = () => (
         <div className="container-fluid d-flex justify-content-between">
             <div className="d-flex justify-content-between">
-                <Link className="navbar-brand" to='/' >Home</Link>
+                <Link className="navbar-brand nb-item" to='/' >Home</Link>
                 {collapsed && <Testing />}
             </div>
             {collapsed && <UserDropDown collapsed={collapsed} />}
@@ -92,13 +92,13 @@ const NavBar = () => {
             <div className="collapse navbar-collapse justify-content-between" id="nabvarGeneralOptions">
                 <ul className="navbar-nav mb-2 mb-lg-0 align-items-start align-items-md-center">
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Link</a>
+                        <a className="nav-link nb-item" href="#">Link</a>
                     </li>
                 </ul>
                 {!collapsed && <SearchForm />}
                 <div className="d-flex align-items-center">
                     {!collapsed && <UserDropDown collapsed={collapsed} />}
-                    <FaRegQuestionCircle className={"fs-4 help-icon"} />
+                    <FaRegQuestionCircle className={"fs-4 help-icon nb-item"} />
                 </div>
             </div>
         </div>
