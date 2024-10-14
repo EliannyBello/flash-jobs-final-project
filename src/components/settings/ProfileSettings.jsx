@@ -42,7 +42,6 @@ const ProfileSettings = () => {
                     <input type="file" accept='.png,.jpg,.jpeg' className={"form-control " + (errors.avatar ? 'is-invalid' : '')} id="avatar" name='avatar' {...register('avatar')} />
                     <small className="invalid-feedback">{errors?.avatar?.message}</small>
                 </div>
-                
                 <div className="mb-3">
                     <label htmlFor="biography" className="form-label">Biography</label>
                     <textarea className="form-control" id="biography" name="biography" rows="3" placeholder='Your biography here' {...register('biography')} defaultValue={store?.user?.profile?.biography}></textarea>
