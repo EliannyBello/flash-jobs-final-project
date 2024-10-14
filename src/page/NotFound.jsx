@@ -5,7 +5,7 @@ const NotFound = () => {
   return (
     <div id="wrapper">
             
-            <div id="info" className="text-center mt-5" >
+            <div id="info" className="text-center mt-5 p-5" >
                 <h3>This page could not be found</h3>
                 <img src={Notfound} />
             </div>
