@@ -16,9 +16,9 @@ const JobForm = () => {
 
     const onSubmit = async (data) => {
         console.log(data);
-        const response = await actions.jobposting(data);
+        const response = actions.jobposting(data);
         if (response) {
-            navigate('/profile');
+            navigate('/');
         }
     };
 

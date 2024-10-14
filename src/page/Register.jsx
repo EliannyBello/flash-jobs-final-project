@@ -19,9 +19,9 @@ const Register = () => {
     }
     return (
         <div className="container container-register">
-            <div className="card card-register">
-                <div className="card-body-register p-3 my-4 justify-content-center">
-                    <h4 className="text-center">Register</h4>
+            <div className="card card-register p-3">
+                <div className="card-body-register p-3 my-5 justify-content-center">
+                    <h3 className="text-center">Register</h3>
                     <form onSubmit={handleSubmit(onSubmit)} className="w-50 mx-auto p-2">
                         <div className="mb-3">
                             <label htmlFor="input" className="form-label">Email</label>
