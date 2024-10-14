@@ -90,7 +90,7 @@
 }
 
 .dropdown-item:hover {
-    background-color: var(--main-dvar-dropdown-item-hover) !important;
+   background-color: rgb(177, 177, 177) !important; 
 }
 
 img.user-avatar{
@@ -105,10 +105,18 @@ img.user-avatar{
 }
 
 .user-item:hover {  
-   background-color: rgb(50, 50, 50) !important;
+   background-color: rgb(117, 115, 115) !important; 
 }
 
 .user-list {    
-    background-color: rgb(0, 0, 0) !important;
-    color: rgb(255, 255, 255) !important;
+    background-color: rgb(0, 0, 0) !important; 
+    color: rgb(255, 255, 255) !important;   
+
+   
 }
+
+.sing-item {
+    color: rgb(0, 107, 247) !important;
+  
+}
+
