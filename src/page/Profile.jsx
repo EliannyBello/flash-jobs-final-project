@@ -26,10 +26,10 @@ const Profile = () => {
 
   return (
     <div className="container mt-5 py-3">
-      <div className="row">
+      <div className="row text-center">
         <div className="col-md-5">
-          <h4 className=" mt-5">{store?.user?.username}</h4>
-          <div className="mx-auto my-5 p-4">
+          <h2 className=" mt-5">{store?.user?.username}</h2>
+          <div className="mx-auto my-1 p-2">
             <img src={store?.user?.profile?.avatar || imgSrc} alt="Profile Avatar" className='img-fluid w-50 my-3 profile-avatar rounded-circle' />
           </div>
           <div className="mb-3">
