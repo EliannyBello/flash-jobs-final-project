@@ -63,7 +63,7 @@ const NavBar = () => {
             <div className="UserDropDown collapse navbar-collapse justify-content-between" id="nabvarGeneralOptions">
                 <ul className="navbar-nav mb-2 mb-lg-0 align-items-start align-items-md-center">
                     <li className="nav-item">
-                        <Link to='/jobform' className="btn nb-item" >CREATE POST</Link>
+                        <Link to='/jobform' className="btn nb-item" >Create Post</Link>
                     </li>
                 </ul>
                 {!collapsed && <SearchForm />}
