@@ -145,7 +145,11 @@ const Post = () => {
                     {<UserCard />}
                     {<PostCard />}
                 </div>
-            )) : <h1 className="text center"> You must log in to see this</h1>}
+            )) : (
+                <div className="alert alert-danger" role="alert">
+                   You Must Log In to See This
+                </div>
+            )}
         </div>
     );
 }
