@@ -55,6 +55,7 @@ export const AppContext = ({ children }) => {
                 setStore((store) => ({
                     ...store, access_token: datos.data.access_token, user: datos.data.user
                 }))
+                console.log(datos.data.user)
                 sessionStorage.setItem('access_token', datos.data.access_token);
                 sessionStorage.setItem('user', JSON.stringify(datos.data.user));
                 setLogged(true);
@@ -180,8 +181,6 @@ export const AppContext = ({ children }) => {
                 const datos = await response.json()
                 console.log(datos)
                 if (datos.status === 'success') {
-                    setStore((store) => ({ ...store, user: datos.user }))
-                    sessionStorage.setItem('user', JSON.stringify(datos?.user))
                     return true
                 } else {
                     return false
