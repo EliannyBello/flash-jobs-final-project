@@ -80,8 +80,8 @@ const UserDropDown = ({ collapsed }) => {
                         <button type="submit" className="btn btn-primary">Sign in</button>
                     </form>
                     <div className="dropdown-divider"></div>
-                    <Link to="/register" className="dropdown-item">New around here? Sign up</Link>
-                    <a className="dropdown-item" href="#">Forgot password?</a>
+                    <Link to="/register" className="sing-item dropdown-item">New around here? Sign up</Link>
+                    <a className="sing-item dropdown-item" href="#">Forgot password?</a>
                 </div>
             </div >
         );
