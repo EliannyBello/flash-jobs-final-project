@@ -23,7 +23,7 @@ const JobCards = ({ data }) => {
 			{data.map((datos, index) => (
 				<div key={index} className="card p-2 mb-2">
 					<div className="d-flex ">
-						<img src={store?.user?.profile?.avatar} className="img-fluid rounded-circle profile-avatar" alt="avatar" />
+						<img src={store?.user?.profile?.avatar} className="rounded-circle profile-avatar" alt="avatar" />
 						<div className="ms-3 w-100">
 							<Link className='link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover' to={`/post/${datos.id}`}>{datos.title}</Link>
 							<div className="text-muted">
