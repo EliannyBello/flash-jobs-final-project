@@ -16,14 +16,19 @@ const AccountSettings = () => {
     } = useForm()
 
     const onSubmit = async (data) => {
-        const formData = new FormData()
-
-        formData.append('username', data.username)
-
-
-
-        await actions.updateProfile(formData, store.access_token)
-    }
+        
+        const formData = new FormData();
+        
+        formData.append('password', data.password);
+    
+        // Check if password and confirm_password match
+        if (data.password !== data.confirm_password) {
+            alert("Passwords do not match");
+            return;
+        }
+    
+        actions.updateProfile(formData, store.access_token);
+    };
 
     useEffect(() => {
         if (store?.access_token == null) {
