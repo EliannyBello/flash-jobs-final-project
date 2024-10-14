@@ -65,9 +65,6 @@ const NavBar = () => {
                     <li className="nav-item">
                         <Link to='/jobform' className="btn nb-item" >CREATE POST</Link>
                     </li>
-                    <li className="nav-item dropdown">
-                        <DropdownList />
-                    </li>
                 </ul>
                 {!collapsed && <SearchForm />}
                 <div className="userDropDown d-flex align-items-center">
