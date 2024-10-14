@@ -6,7 +6,7 @@ body {
 .container-register {
     justify-content: center;
     margin: auto;
-    padding: 1rem;
+    padding: 2rem;
    
 }
 
@@ -31,6 +31,6 @@ body {
     justify-content: center;
     align-items: center;
 }
-.card-body-register h4 {
+.card-body-register h3 {
     font-weight: bold;
 }

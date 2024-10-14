@@ -94,7 +94,9 @@ const Post = () => {
     const UserCard = () => (
         <div className="col-12 col-lg-4">
             <div className="card">
-                <img src="..." className="card-img-top" alt="user avatar" />
+                <div className="d-flex justify-content-center">
+                    <img src={user.profile.avatar} className="profile-avatar rounded-circle" alt="user avatar" />
+                </div>
                 <div className="card-body">
                     <h5 className="card-title">{user.username}</h5>
                     <p className="card-text"><b>Rating: </b>{[...new Array(5)].map((_, i) => displayRating(defaultUser.rating, i))}</p>

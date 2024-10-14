@@ -154,16 +154,10 @@ export const AppContext = ({ children }) => {
                 console.log(error.message)
             }
         },
-        getUserByid: async (id, access_token) => {
+        getUserByid: async (id) => {
             const { apiUrl } = store
             try {
-                const response = await fetch(`${apiUrl}/api/profile/${id}`, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${access_token}`,
-                        'Content-Type': 'application/json'
-                    }
-                })
+                const response = await fetch(`${apiUrl}/api/profile/${id}`)
                 const data = await response.json()
                 //modificado para retornar los datos
                 return data.user;
@@ -210,6 +204,9 @@ export const AppContext = ({ children }) => {
             } catch (error) {
                 console.log(error.message)
             }
+        },
+        getProfile: async () => {
+
         }
     }
     )
