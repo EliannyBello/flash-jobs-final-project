@@ -1,0 +1,58 @@
+.carrusel {
+    width: 100%;
+    height: 50%;
+    position: absolute;
+
+    
+  }
+  
+  .carousel-inner {
+    height: 50%;
+    width: 100%;
+    max-width: 100%; 
+    object-fit: cover;
+  
+
+  }
+  
+  .carousel-item {
+    height: 60%;
+    width: 100%;
+    object-fit: cover;
+  
+
+  }
+  
+  .img-carrusel {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    object-position: top;
+
+  }
+  
+  .text-overlay {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: white; 
+    z-index: 10; 
+  }
+  
+  h1, h4 {
+    font-size: 3rem; 
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 1, 1); 
+  }
+  
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+    h4 {
+      font-size: 1.5rem;
+    }
+  }
+  

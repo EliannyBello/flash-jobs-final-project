@@ -24,7 +24,7 @@ const NavBar = () => {
     const DropdownList = () => (
         <div>
             <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
+                Notification
             </a>
             <ul className="dropdown-menu nb-dropdown-list mt-3">
                 <li><Link className="dropdown-item" href="#">Action</Link></li>
@@ -63,7 +63,7 @@ const NavBar = () => {
             <div className="UserDropDown collapse navbar-collapse justify-content-between" id="nabvarGeneralOptions">
                 <ul className="navbar-nav mb-2 mb-lg-0 align-items-start align-items-md-center">
                     <li className="nav-item">
-                        <Link to='/jobform' className="btn " >CREATE POST</Link>
+                        <Link to='/jobform' className="btn " >Create Post</Link>
                     </li>
                     <li className="nav-item dropdown">
                         <DropdownList />
