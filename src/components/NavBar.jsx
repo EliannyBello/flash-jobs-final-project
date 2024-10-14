@@ -52,7 +52,7 @@ const NavBar = () => {
     const Logged = () => (
         <div className="container-fluid d-flex justify-content-between">
             <div className="d-flex justify-content-between">
-                <Link className="navbar-brand" to='/' >Logo</Link>
+                <Link className="navbar-brand" to='/' >Home</Link>
                 {collapsed && <Testing />}
             </div>
             {collapsed && <UserDropDown collapsed={collapsed} />}
@@ -60,17 +60,17 @@ const NavBar = () => {
                 aria-controls="nabvarGeneralOptions" aria-expanded="false" aria-label="Toggle navigation" data-bs-auto-close="true">
                 <FaBars className="navbar-toggler-icon" />
             </button>
-            <div className="collapse navbar-collapse justify-content-between" id="nabvarGeneralOptions">
+            <div className="UserDropDown collapse navbar-collapse justify-content-between" id="nabvarGeneralOptions">
                 <ul className="navbar-nav mb-2 mb-lg-0 align-items-start align-items-md-center">
                     <li className="nav-item">
-                        <Link to='/jobform' className="btn btn-success" >Create Post</Link>
+                        <Link to='/jobform' className="btn " >CREATE POST</Link>
                     </li>
                     <li className="nav-item dropdown">
                         <DropdownList />
                     </li>
                 </ul>
                 {!collapsed && <SearchForm />}
-                <div className="d-flex align-items-center">
+                <div className="userDropDown d-flex align-items-center">
                     {!collapsed && <UserDropDown collapsed={collapsed} />}
                     <FaRegQuestionCircle className={"fs-4 help-icon"} />
                 </div>
@@ -81,7 +81,7 @@ const NavBar = () => {
     const UnLogged = () => (
         <div className="container-fluid d-flex justify-content-between">
             <div className="d-flex justify-content-between">
-                <Link className="navbar-brand" to='/' >Logo</Link>
+                <Link className="navbar-brand" to='/' >Home</Link>
                 {collapsed && <Testing />}
             </div>
             {collapsed && <UserDropDown collapsed={collapsed} />}
