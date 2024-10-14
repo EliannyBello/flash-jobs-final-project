@@ -20,7 +20,7 @@ const JobCards = ({ data }) => {
 
 	return (
 		<div className="jobCard">
-			{data.map((datos, index) => (
+			{data?.map((datos, index) => (
 				<div key={index} className="card p-2 mb-2">
 					<div className="d-flex ">
 						<img src={store?.user?.profile?.avatar} className="rounded-circle profile-avatar" alt="avatar" />
