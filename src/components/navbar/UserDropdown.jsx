@@ -51,7 +51,7 @@ const UserDropDown = ({ collapsed }) => {
         return (
             <div className={"dropdown mx-2"}>
                 <a className="nav-link dropdown-toggle not-arrow me-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <FaRegUserCircle className="fs-1" />
+                    <FaRegUserCircle className="fs-1 nb-item" />
                 </a>
                 <div className={"dropdown-menu mt-3 " + (collapsed ? ' full-width' : 'dropdown-menu-end me-1 mid-width')}>
                     <form className="px-4 py-3" onSubmit={handleSubmit(onSubmit)}>
