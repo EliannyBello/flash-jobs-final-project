@@ -1,0 +1,11 @@
+.btn-hover:hover {
+    cursor: pointer;
+}
+
+.reject:active{
+    background:red;
+}
+
+.check:active{
+    background:rgb(16, 175, 16);
+}

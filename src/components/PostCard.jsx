@@ -51,7 +51,7 @@ const PostCard = ({ datos, data }) => {
                     </div>
                     {location.pathname != '/' && <EditsIcon datos={data} />}
                 </div>
-               {(location.pathname != "/") &&  <button type="button" className="btn btn-dark m-1">Ver applicantes</button>}
+               {(location.pathname != "/") &&  <Link to={`/applicants/${datos.id}`} className="btn btn-dark m-1">Ver applicantes</Link>}
             </div>
         </div>
     )

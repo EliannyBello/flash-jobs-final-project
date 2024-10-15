@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import ApplicantItem from "../components/ApplicantItem";
 import { Context } from "../context/GlobalContext";
 import { useParams } from "react-router-dom";
+import '../styles/application.css'
 
 const ApplicantsList = () => {
     const [apList, setApList] = useState([])
@@ -37,8 +38,10 @@ const ApplicantsList = () => {
     }, [])
 
     return (
-        <div className="container-fluid py-5 mt-3">
-            <Container />
+        <div className="container-fluid py-5 mt-5 d-flex justify-content-center">
+            <div className="col-12 col-md-8">
+                <Container />
+            </div>
         </div>
     )
 }
