@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../context/GlobalContext";
 import { FaRegStar, FaStar } from "react-icons/fa";
+import imgPrf from'../page/img/avatarDefault.png'
+
 
 const Post = () => {
     const { actions, logged } = useContext(Context);
@@ -94,7 +96,7 @@ const Post = () => {
         <div className="col-12 col-lg-4 col-xxl-3">
             <div className="card">
                 <div className="d-flex justify-content-center">
-                    <img src={user.profile.avatar} className="profile-avatar rounded-circle" alt="user avatar" />
+                    <img src={user?.profile?.avatar || imgPrf} className="profile-avatar rounded-circle" alt="user avatar" />
                 </div>
                 <div className="card-body">
                     <h5 className="card-title">{user.username}</h5>
@@ -125,7 +127,7 @@ const Post = () => {
                 <div className="card-body">
                     <p className="card-text">{post.description}</p>
                     {isCreator ? (
-                        <button className="btn btn-secondary" disabled>You cannot apply to your own job</button>
+                        <button className="btn btn-success">Go to se yout post's applications</button>
                     ) : (
                         <button onClick={applyToJob} className="btn btn-primary text-white">Apply</button>
                     )}

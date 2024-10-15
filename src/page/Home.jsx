@@ -7,14 +7,21 @@ import '../styles/home.css'
 const Home = () => {
   const { actions } = useContext(Context)
   const [data, setData] = useState([])
+  const [loaded, setLoaded] = useState(false)
 
   const getJobPosting = async () => {
     const response = await actions.getAllJobPosting()
     setData(response)
+    console.log(response)
+    setLoaded(true)
   }
 
   useEffect(() => {
-    getJobPosting()
+    setLoaded(false)
+    const waitToFetch = setTimeout(() => {
+      getJobPosting()
+    }, 2000)
+    return () => clearTimeout(waitToFetch)
   }, [])
 
   return (
@@ -24,19 +31,14 @@ const Home = () => {
         <h1>Welcome to job offers!</h1>
         <h4>A new opportunity is waiting for you</h4>
       </div>
-
-
       <Carrusel />
-
       <br />
-
       <div className='container-fluid d-flex justify-content-center'>
         <div className='container-fluid'>
-
-            <JobCards data={data} />
-          </div>
+          {loaded ? (<JobCards data={data} />) : (<h1>Loading...</h1>)}
+        </div>
       </div>
-    
+
     </div>
 
 

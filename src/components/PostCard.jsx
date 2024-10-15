@@ -23,7 +23,6 @@ const PostCard = ({ datos, data }) => {
     async function getPostInfo() {
         const user = await actions.getUserByid(datos.employer)
         setUser(user)
-        console.log(user)
     }
 
     useEffect(() => {
@@ -56,7 +55,7 @@ const PostCard = ({ datos, data }) => {
                     </div>
                     {location.pathname != '/' && <EditsIcon datos={data} />}
                 </div>
-               {(location.pathname != "/") &&  <button type="button" class="btn btn-dark m-1">Ver applicantes</button>}
+               {(location.pathname != "/") &&  <button type="button" className="btn btn-dark m-1">Ver applicantes</button>}
             </div>
         </div>
     )
