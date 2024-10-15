@@ -10,7 +10,7 @@ import Settings from './page/Settings'
 import Post from './page/Post'
 import JobForm from './page/JobForm'
 import ApplicantsList from './page/ApplicantsList'
-import updateCard from './page/updateCard'
+import UpdateCard from './page/updateCard'
 
 
 
@@ -29,7 +29,7 @@ function Layout() {
         <Route path='/post/:id' element={<Post />} />
         <Route path='/jobform' element={<JobForm/>} />
         <Route path='/applicants/:id' element={<ApplicantsList/>} />
-        <Route path='/post/:id/edit' element={<updateCard/>} />
+        <Route path='/post/:id/edit' element={<UpdateCard/>} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />

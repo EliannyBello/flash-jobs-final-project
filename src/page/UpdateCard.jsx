@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateCard = () => {
     const navigate = useNavigate()
+    const params = useParams()
     const { store, actions } = useContext(Context);
 
    
@@ -19,7 +20,7 @@ const UpdateCard = () => {
 
 
     const fetchJobPost = async () => {
-        const data = await actions.getJobPost(job_posting_id, store.access_token);
+        const data = await actions.getJobPost(params.id, store.access_token);
         if (data) {
             setJobPost(data);
             setValue('title', data.title);
@@ -30,11 +31,11 @@ const UpdateCard = () => {
    
     useEffect(() => {  
         fetchJobPost();
-    }, [job_posting_id, actions, store.access_token, setValue]);
+    }, [params, actions, store.access_token, setValue]);
 
     const onSubmit = async (data) => {
         console.log(data);
-        const response = actions.updateJobCards(data);
+        const response = actions.updateJobCards(params.id, data, sessionStorage.access_token);
         if (response) {
             navigate('/profile');
         }

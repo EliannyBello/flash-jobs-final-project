@@ -222,10 +222,10 @@ export const AppContext = ({ children }) => {
                 return false
             }
         },
-        updateJobCards: async (job_posting_id) => {
+        updateJobCards: async (id, job_posting, token,) => {
             try {
                 const { apiUrl } = store
-                const response = await fetch(`${apiUrl}/job_postings/${job_posting_id}`, {
+                const response = await fetch(`${apiUrl}/job_postings/${id}`, {
                     method: 'PATCH',
                     body: JSON.stringify(job_posting),
                     headers: {
