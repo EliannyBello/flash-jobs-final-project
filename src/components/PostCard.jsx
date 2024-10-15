@@ -8,12 +8,13 @@ import imgPrf from'../page/img/avatarDefault.png'
 const PostCard = ({ datos, data }) => {
     const { store, actions } = useContext(Context)
     const [user, setUser] = useState({})
+   
 
     const location = useLocation()
 
-    const EditsIcon = ({ datos }) => (
+    const EditsIcon = ({ id }) => (
         <div className="ms-auto">
-            <Link to={`/jobform/${datos.id}`}>
+            <Link to={`/post/${id}/edit`}>
                 <FaPencilAlt className="me-3" />
             </Link>
             <FaTrash />
@@ -24,6 +25,7 @@ const PostCard = ({ datos, data }) => {
         const user = await actions.getUserByid(datos.employer)
         setUser(user)
     }
+
 
     useEffect(() => {
         getPostInfo()
@@ -49,9 +51,9 @@ const PostCard = ({ datos, data }) => {
                             {datos.technologies.join(", ")}
                         </div>
                     </div>
-                    {location.pathname != '/' && <EditsIcon datos={data} />}
+                    {location.pathname != '/' && <EditsIcon id={datos.id} />}
                 </div>
-               {(location.pathname != "/") &&  <Link to={`/applicants/${datos.id}`} className="btn btn-dark m-1">Applicants</Link>}
+               {(location.pathname != "/") &&  <Link to={`/applicants/${data.id}`} className="btn btn-dark m-1">Applicants</Link>}
             </div>
         </div>
     )
