@@ -3,6 +3,7 @@ import ApplicantItem from "../components/ApplicantItem";
 import { Context } from "../context/GlobalContext";
 import { useParams } from "react-router-dom";
 import '../styles/application.css'
+import { RiEmotionSadLine } from "react-icons/ri";
 
 const ApplicantsList = () => {
     const [apList, setApList] = useState([])
@@ -17,10 +18,14 @@ const ApplicantsList = () => {
     }
 
     const Container = () => (
-        <ul className="list-group">
-            {apList.map((item, index) => <ApplicantItem item={item} key={index} />)}
-        </ul>
-    )
+        apList.length > 0 ? (
+            <ul className="list-group">
+                {apList.map((item, index) => <ApplicantItem item={item} key={index} />)}
+            </ul>
+        ) : (
+            <p className="text-info fs-1">You have no applicants at the moment. <RiEmotionSadLine /></p>
+        )
+    );
 
     useEffect(() => {
         getList()
