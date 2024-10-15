@@ -184,11 +184,8 @@ export const AppContext = ({ children }) => {
                 })
                 const datos = await response.json()
                 console.log(datos)
-                if (datos.status === 'success') {
-                    return true
-                } else {
-                    return false
-                }
+                return datos
+
             } catch (error) {
                 console.log(error.message)
             }

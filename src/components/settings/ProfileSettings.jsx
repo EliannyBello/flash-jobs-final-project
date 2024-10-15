@@ -27,7 +27,7 @@ const ProfileSettings = () => {
 
         const response = await actions.updateProfile(formData, store.access_token)
         Swal.fire({
-            position: "top-end",
+            position: "center",
             icon: "success",
             title: response.message,
             showConfirmButton: false,
