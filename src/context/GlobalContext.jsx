@@ -34,6 +34,7 @@ export const AppContext = ({ children }) => {
                 })
                 const datos = await response.json()
                 console.log(datos)
+                return datos
             }
             catch (error) {
                 console.log(error.message)
@@ -127,7 +128,7 @@ export const AppContext = ({ children }) => {
                 if (datos.status === 'success') {
                     setStore((store) => ({ ...store, user: datos.user }))
                     sessionStorage.setItem('user', JSON.stringify(datos?.user))
-                    return true
+                    return datos;
                 } else {
                     return false
                 }
