@@ -27,20 +27,22 @@ const JobForm = () => {
             <div className="container container-jobform m-auto justify-content-center pt-3">
                 <h3>Post Job</h3>
                 <label htmlFor="rank">Rank</label>
-               
+
                 <form onSubmit={handleSubmit(onSubmit)} className="row row-jobform my-3">
 
-                <div className="col-mb-6">
-                    <select name="rank" id="rank" className="form-control" {...register('rank', { required: 'Senority is required!' })}>
-                        <option value="1">Junior</option>
-                        <option value="2">Semi Senior</option>
-                        <option value="3">Senior</option>
-                    </select>
-                </div>
+                    <div className="col-mb-6">
+                        <select name="rank" id="rank" className="form-control" {...register('rank', { required: 'Senority is required!' })}>
+                            <option value="1">Junior</option>
+                            <option value="2">Semi Senior</option>
+                            <option value="3">Senior</option>
+                        </select>
+                    </div>
                     <div className="form-group form-group-jobform">
                         <label htmlFor="postTitle">Title</label>
                         <input type="text" className="form-control" id="title" name="title" placeholder="Title" {...register('title', { required: 'Title is required!' })}
-                        /> {errors.Title && <span>{errors.Title.message}</span>}
+                        /> {errors.title?.type === "required" && (
+                            <p className="text-danger p-1 m-1" role="alert">{errors.title.message}</p>
+                        )}
                     </div>
 
                     <div className="form-group form-group-jobform">
@@ -52,15 +54,19 @@ const JobForm = () => {
                             placeholder="Enter job description"
                             {...register('description', { required: 'Description is required!' })}
                         ></textarea>
-                        {errors.Description && <span>{errors.Description.message}</span>}
+                        {errors.description?.type === "required" && (
+                            <p className="text-danger p-1 m-1" role="alert">{errors.description.message}</p>
+                        )}
                     </div>
 
 
                     <div className="col-mb-6">
-                        <label htmlFor="payment">Payment</label>
+                        <label htmlFor="payment">Budget USD</label>
                         <input type="number" className="form-control" id="payment" {...register('payment', { required: 'Payment is required!' })}
                         />
-                        {errors.Payment && <span>{errors.Payment.message}</span>}
+                        {errors.payment?.type === "required" && (
+                            <p className="text-danger p-1 m-1" role="alert">{errors.payment.message}</p>
+                        )}
                     </div>
 
                     <div className="row row-jobform">
@@ -68,14 +74,18 @@ const JobForm = () => {
                             <label htmlFor="requiredTime">Required Time</label>
                             <input type="number" className="form-control" id="requiredTime" defaultValue={3}{...register('required_time', { required: 'Required time is required!' })}
                             />
-                            {errors.RequiredTime && <span>{errors.RequiredTime.message}</span>}
+                            {errors.required_time?.type === "required" && (
+                                <p className="text-danger p-1 m-1" role="alert">{errors.required_time.message}</p>
+                            )}
                         </div>
 
                         <div className="col-mb-6">
                             <label htmlFor="expirationDate">Expiration Date</label>
                             <input type="date" className="form-control" id="expirationDate" {...register('expiration_date', { required: 'Expiration date is required!' })}
                             />
-                            {errors.ExpirationDate && <span>{errors.ExpirationDate.message}</span>}
+                            {/* {errors.expiration_date?.type === "required" && (
+                                <p className="text-danger p-1 m-1" role="alert">{errors.expiration_date.message}</p>
+                            )} */}
                         </div>
                     </div>
 
@@ -111,7 +121,7 @@ const JobForm = () => {
                                     <label htmlFor="languageKorean">Korean</label>
                                 </div>
                             </div>
-                            {errors.languages && <span>{errors.languages.message}</span>}
+                            {errors.languages && <p className="text-danger p-1 m-1">{errors.languages.message}</p>}
                         </div>
 
                         <div className="col-mb-6">
@@ -199,7 +209,7 @@ const JobForm = () => {
                                     <label htmlFor="techBootstrap">Bootstrap</label>
                                 </div>
                             </div>
-                            {errors.technologies && <span>{errors.technologies.message}</span>}
+                            {errors.technologies && <p className="text-danger p-1 m-1">{errors.technologies.message}</p>}
                         </div>
 
 

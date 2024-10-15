@@ -61,14 +61,14 @@ const UserDropDown = ({ collapsed }) => {
                             <label htmlFor="input" className="form-label">Email</label>
                             <input type="email" className="form-control " name='email' placeholder="email@example.com" {...register('email', { required: 'Email is required!' })} />
                             {errors.email?.type === "required" && (
-                                <p role="alert">{errors.email.message}</p>
+                                <p className="text-danger p-1 m-1" role="alert">{errors.email.message}</p>
                             )}
                         </div>
                         <div className="mb-3">
                             <label htmlFor="input" className="form-label">Password</label>
                             <input type="password" className="form-control" id="password" name="password" placeholder="******" {...register('password', { required: 'Password is required!' })} />
                             {errors.password?.type === "required" && (
-                                <p role="alert">{errors.password.message}</p>
+                                <p className="text-danger p-1 m-1" role="alert">{errors.password.message}</p>
                             )}
                         </div>
                         <div className="mb-3">

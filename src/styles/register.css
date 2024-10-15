@@ -3,15 +3,9 @@ body {
     align-items: center;
   }
 
-.container-register {
-    justify-content: center;
-    margin: auto;
-    padding: 2rem;
-   
-}
-
 
 .card-register {
+  justify-content: center;
   width: 30rem;
   border-style: groove;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);

@@ -19,34 +19,42 @@ const Register = () => {
     }
     return (
         <div className="container container-register">
-            <div className="card card-register p-3">
-                <div className="card-body-register p-3 my-5 justify-content-center">
+            <div className="card card-register">
                     <h3 className="text-center">Register</h3>
-                    <form onSubmit={handleSubmit(onSubmit)} className="w-50 mx-auto p-2">
-                        <div className="mb-3">
+                    <form onSubmit={handleSubmit(onSubmit)} className="w-50 mx-auto">
+                        <div className="mb-1">
                             <label htmlFor="input" className="form-label">Email</label>
                             <input type="email" className="form-control " name='email' placeholder="email@example.com" {...register('email', { required: 'Email is required!' })} />
                             {errors.email?.type === "required" && (
-                                <p role="alert">{errors.email.message}</p>
+                                <p className="text-danger p-1 m-1" role="alert">{errors.email.message}</p>
                             )}
                         </div>
-                        <div className="mb-3">
+                        <div className="mb-1">
                             <label htmlFor="input" className="form-label">Username</label>
                             <input type="text" className="form-control" id="username" name="username" placeholder="Username" {...register('username', { required: 'Username is required!' })} />
+                            {errors.username?.type === "required" && (
+                                <p className="text-danger p-1 m-1" role="alert">{errors.username.message}</p>
+                            )}
                         </div>
-                        <div className="mb-3">
+                        <div className="mb-1">
                             <label htmlFor="input" className="form-label">Password</label>
-                            <input type="password" className="form-control" id="password" name="password" placeholder="******"  {...register('password')} />
+                            <input type="password" className="form-control" id="password" name="password" placeholder="******"  {...register('password', { required: 'Password is required!' })} />
+                            {errors.password?.type === "required" && (
+                                <p className="text-danger p-1 m-1" role="alert">{errors.password.message}</p>
+                            )}
                         </div>
-                        <div className="mb-3">
+                        <div className="mb-1">
                             <label htmlFor="input" className="form-label">Confirm Password</label>
-                            <input type="password" className="form-control" id="confirm_password" name='confirm_password' placeholder="******" {...register('confirm_password')} />
+                            <input type="password" className="form-control" id="confirm_password" name='confirm_password' placeholder="******" {...register('confirm_password', { required: 'Confirm password is required!' })} />
+                            {errors.confirm_password?.type === "required" && (
+                                <p className="text-danger p-1 m-1" role="alert">{errors.confirm_password.message}</p>
+                            )}
                         </div>
                         <button className="btn btn-primary">Create Account</button>
                     </form>
                 </div>
             </div>
-        </div>
+     
     )
 }
 export default Register
