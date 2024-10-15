@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../context/GlobalContext";
 import { FaRegStar, FaStar } from "react-icons/fa";
-import imgPrf from'../page/img/avatarDefault.png'
+import imgPrf from '../page/img/avatarDefault.png'
 
 
 const Post = () => {
@@ -22,9 +22,7 @@ const Post = () => {
     };
 
     const defaultUser = {
-        username: 'John Doe',
-        rating: 4,
-        jobs_posted: 10
+        rating: 4
     }
 
     const listInformation = (list) => {
@@ -67,12 +65,15 @@ const Post = () => {
     }
 
     async function getPostInfo() { //función asicrona
+        console.log('consultando')
         //guardo el resultado del GET en una variable interna (deben modificar los actions que necesiten utilizar de igual forma para que retornen los datos que necesiten)
         const post = await actions.getJobPost(params.id, sessionStorage.access_token)
         //realizo la segunda consulta que solo se hará al completar la anterior, entonces así me aseguro que tiene los datos que le pasaré como parámetro, en este caso el user_id
         const user = await actions.getUserByid(post.employer, sessionStorage.access_token)
         const sessionUser = await JSON.parse(sessionStorage.user)
         //esto se ejecutará solo si se terminaron los await de arriba
+        console.log(user)
+        console.log(post)
         setPost(post)
         setUser(user)
         setIsCreator(sessionUser.id === post.employer)
@@ -127,7 +128,7 @@ const Post = () => {
                 <div className="card-body">
                     <p className="card-text">{post.description}</p>
                     {isCreator ? (
-                        <button className="btn btn-success">Go to se yout post's applications</button>
+                        <Link to={`/applicants/${post.id}`} className="btn btn-success">Go to se your post's applications</Link>
                     ) : (
                         <button onClick={applyToJob} className="btn btn-primary text-white">Apply</button>
                     )}
@@ -149,7 +150,7 @@ const Post = () => {
                 </div>
             )) : (
                 <div className="alert alert-danger" role="alert">
-                   You Must Log In to See This
+                    You Must Log In to See This
                 </div>
             )}
         </div>

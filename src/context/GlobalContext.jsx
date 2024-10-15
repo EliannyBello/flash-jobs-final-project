@@ -50,16 +50,19 @@ export const AppContext = ({ children }) => {
                     }
                 })
                 const datos = await response.json()
-                console.log(datos.data)
+                console.log(datos)
                 console.log(response.ok)
-                setStore((store) => ({
-                    ...store, access_token: datos.data.access_token, user: datos.data.user
-                }))
-                console.log(datos.data.user)
-                sessionStorage.setItem('access_token', datos.data.access_token);
-                sessionStorage.setItem('user', JSON.stringify(datos.data.user));
-                setLogged(true);
-                return true;
+                if (response.ok) {
+                    setStore((store) => ({
+                        ...store, access_token: datos.data.access_token, user: datos.data.user
+                    }))
+                    console.log(datos.data.user)
+                    sessionStorage.setItem('access_token', datos.data.access_token);
+                    sessionStorage.setItem('user', JSON.stringify(datos.data.user));
+                    setLogged(true);
+                    return true;
+                }
+                return false
             } catch (error) {
                 console.log(error.message)
                 return false
@@ -204,9 +207,24 @@ export const AppContext = ({ children }) => {
                 console.log(error.message)
             }
         },
-        getProfile: async () => {
-
+        getApplications: async (id, token) => {
+            const { apiUrl } = store
+            try {
+                const response = await fetch(`${apiUrl}/api/applications/post/${id}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                })
+                const data = await response.json()
+                return data.applications
+            } catch (error) {
+                console.log(error.message)
+                return false
+            }
         }
+
     }
     )
     useEffect(() => {

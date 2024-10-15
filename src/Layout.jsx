@@ -9,6 +9,7 @@ import Profile from './page/Profile'
 import Settings from './page/Settings'
 import Post from './page/Post'
 import JobForm from './page/JobForm'
+import ApplicantsList from './page/ApplicantsList'
 
 
 
@@ -26,6 +27,7 @@ function Layout() {
         <Route path='/settings/:tab' element={<Settings />} />
         <Route path='/post/:id' element={<Post />} />
         <Route path='/jobform' element={<JobForm/>} />
+        <Route path='/applicants/:id' element={<ApplicantsList/>} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />

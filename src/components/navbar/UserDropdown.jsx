@@ -23,6 +23,8 @@ const UserDropDown = ({ collapsed }) => {
         const response = await actions.login(data);
         if (response) {
             navigate('/');
+        } else{
+            alert('Incorrect credentials')
         }
     };
 

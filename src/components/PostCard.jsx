@@ -37,19 +37,15 @@ const PostCard = ({ datos, data }) => {
                     <div className="ms-3 w-100">
                         <Link className='link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover' to={`/post/${datos.id}`}>{datos.title}</Link>
                         <div className="text-muted">
-                            <i className="fas fa-map-marker-alt me-2"></i>
                             {datos.description}
                         </div>
                         <div className="text-muted">
-                            <i className="fas fa-phone me-2"></i>
-                            {datos.payment}
+                            {`$ ${datos.payment}`}
                         </div>
                         <div className="text ">
-                            <i className="fas fa-envelope me-2"></i>
                             {datos.languages.join(", ")}
                         </div>
                         <div className="text-muted">
-                            <i className="fas fa-laptop-code me-2"></i>
                             {datos.technologies.join(", ")}
                         </div>
                     </div>
