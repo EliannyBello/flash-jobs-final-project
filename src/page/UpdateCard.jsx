@@ -8,17 +8,17 @@ const UpdateCard = () => {
     const params = useParams()
     const { store, actions } = useContext(Context);
 
-   
+
     const [jobPost, setJobPost] = useState([]);
-    
+
     const {
         register,
         handleSubmit,
-        setValue, 
+        setValue,
         formState: { errors },
     } = useForm();
 
-
+  
     const fetchJobPost = async () => {
         const data = await actions.getJobPost(params.id, store.access_token);
         if (data) {
@@ -26,10 +26,12 @@ const UpdateCard = () => {
             setValue('title', data.title);
             setValue('description', data.description);
             setValue('payment', data.payment);
+            setValue('required_time', data.required_time);
+            setValue('expiration_date', data.expiration_date);
         }
     };
-   
-    useEffect(() => {  
+
+    useEffect(() => {
         fetchJobPost();
     }, [params, actions, store.access_token, setValue]);
 
@@ -40,8 +42,8 @@ const UpdateCard = () => {
             navigate('/profile');
         }
     };
- 
-    
+
+
 
     return (
         <div className="container-fluid pt-3 mt-5">
@@ -98,13 +100,31 @@ const UpdateCard = () => {
                                 </p>
                             )}
                         </div>
+                        <div className="row row-jobform">
+                            <div className="col-mb-6">
+                                <label htmlFor="requiredTime">Required Time</label>
+                                <input type="number" className="form-control" id="requiredTime" defaultValue={3}{...register('required_time', { required: 'Required time is required!' })}
+                                />
+                                {errors.required_time?.type === "required" && (
+                                    <p className="text-danger p-1 m-1" role="alert">{errors.required_time.message}</p>
+                                )}
+                            </div>
+
+                            <div className="col-mb-6">
+                                <label htmlFor="expirationDate">Expiration Date</label>
+                                <input type="date" className="form-control" id="expirationDate" {...register('expiration_date', { required: 'Expiration date is required!' })}
+                                />
+
+                            </div>
+                        </div>
+
 
                         <button type="submit" className="btn btn-primary">
                             Submit
                         </button>
                     </form>
                 ) : (
-                    <p>Loading...</p> 
+                    <p>Loading...</p>
                 )}
             </div>
         </div>

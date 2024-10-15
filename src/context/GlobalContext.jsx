@@ -225,11 +225,11 @@ export const AppContext = ({ children }) => {
         updateJobCards: async (id, job_posting, token,) => {
             try {
                 const { apiUrl } = store
-                const response = await fetch(`${apiUrl}/job_postings/${id}`, {
+                const response = await fetch(`${apiUrl}/api/job_postings/${id}`, {
                     method: 'PATCH',
                     body: JSON.stringify(job_posting),
                     headers: {
-                        'Authorization': `Bearer ${access_token}`,
+                        'Authorization': `Bearer ${token}`,
                         'content-Type': 'application/json'
                     }
                 })
