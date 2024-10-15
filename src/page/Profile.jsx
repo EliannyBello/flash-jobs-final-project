@@ -13,20 +13,30 @@ const Profile = () => {
   const [data, setData] = useState([])
   const userId = JSON.parse(sessionStorage.user)
 
+  const [loaded, setLoaded] = useState(false)
+
 
   const cardsJob = async ()  => {
     const datos = await actions.getjobposting(userId.id)
     console.log(datos.job_posting)
     setData(datos.job_posting)
+    setLoaded(true)
   }
 
   useEffect(() => {
-    cardsJob()
+    setLoaded(false)
+        const waitToFetch = setTimeout(() => {
+          cardsJob()
+        }, 2000)
+        return () => clearTimeout(waitToFetch)
+   
   }, [])
 
   return (
     <div className="container mt-5 py-3">
-      <div className="row text-center">
+      {!loaded ? (
+        <div><h1>Loading...</h1></div>
+      ) : (<div className="row text-center">
         <div className="col-md-5">
           <h2 className=" mt-5">{store?.user?.username}</h2>
           <div className="mx-auto my-1 p-2">
@@ -91,7 +101,7 @@ const Profile = () => {
 
 
         </div>
-      </div>
+      </div>)}
     </div>
   )
 }
