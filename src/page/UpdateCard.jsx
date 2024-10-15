@@ -19,8 +19,8 @@ const UpdateCard = () => {
     } = useForm();
 
   
-    const fetchJobPost = async () => {
-        const data = await actions.getJobPost(params.id, store.access_token);
+    const fetchJobPost = () => {
+        const data = actions.getJobPost(params.id, store.access_token);
         if (data) {
             setJobPost(data);
             setValue('title', data.title);
