@@ -8,15 +8,15 @@ import imgPrf from '../page/img/avatarDefault.png'
 const Post = () => {
     const { actions, logged } = useContext(Context);
     const [loading, setLoading] = useState(true);
+    const [apList, setApList] = useState([])
     const [post, setPost] = useState({})
     const [user, setUser] = useState({})
+    const [users, setUsers] = useState({})
     const params = useParams();
 
     const [isCreator, setIsCreator] = useState(false);
 
     //tests
-    const date = new Date();
-    const localDate = date.toLocaleDateString();
     const defaultPost = {
         applications: ['user 1', 'user 2', 'user 3', 'user 4', 'user 5', 'user 6', 'user7'],
     };
@@ -64,6 +64,14 @@ const Post = () => {
         return formated;
     }
 
+    const getList = async () => {
+        const response = await actions.getApplications(params.id, sessionStorage.access_token)
+        const data = await response
+        data && setApList(data)
+        console.log(data)
+
+    }
+
     async function getPostInfo() { //función asicrona
         console.log('consultando')
         //guardo el resultado del GET en una variable interna (deben modificar los actions que necesiten utilizar de igual forma para que retornen los datos que necesiten)
@@ -89,8 +97,11 @@ const Post = () => {
         }
     };
 
+
+
     useEffect(() => {
         logged && getPostInfo()
+        logged && getList()
     }, []);
 
     const UserCard = () => (
@@ -116,7 +127,7 @@ const Post = () => {
                 <div className="card-header">
                     <h5 className="card-title">{post.title}</h5>
                     <h6 className="card-subtitle mb-2 text-body-secondary">{dateConverter(post.date)}</h6>
-                    <h6 className="card-subtitle mb-2 text-body-secondary"><b>{displayApplications(defaultPost.applications)}</b></h6>
+                    <h6 className="card-subtitle mb-2 text-body-secondary"><b>{displayApplications(post.applications)}</b></h6>
                 </div>
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item"><b>Tech Knowledges:</b>{listInformation(post.technologies)}</li>

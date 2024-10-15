@@ -9,17 +9,6 @@ const ApplicantsList = () => {
     const { actions } = useContext(Context);
     const params = useParams()
 
-    const list = [
-        { 'name': 'item 1' },
-        { 'name': 'item 2' },
-        { 'name': 'item 3' },
-        { 'name': 'item 4' },
-        { 'name': 'item 5' },
-        { 'name': 'item 6' },
-        { 'name': 'item 7' },
-        { 'name': 'item 8' }
-    ]
-
     const getList = async () => {
         const response = await actions.getApplications(params.id, sessionStorage.access_token)
         const data = await response

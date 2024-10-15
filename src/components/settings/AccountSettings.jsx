@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { Context } from '../../context/GlobalContext';
 import { useContext, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
+
 
 // falta solicitar contraseña actual para el cambio y quizas un alert de succesful
 //cuando intentamos logear con datos incorrectos que envie error(actualmente se bugea)
@@ -25,11 +27,25 @@ const AccountSettings = () => {
     
         // Check if password and confirm_password match
         if (data.password !== data.confirm_password) {
-            alert("Passwords do not match");
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "Passwords don't match",
+                showConfirmButton: false,
+                timer: 1500
+              });
             return;
         }
-    
-        await actions.updateProfile(formData, store.access_token)
+        
+        const response = await actions.updateProfile(formData, store.access_token)
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: response.message,
+            showConfirmButton: false,
+            timer: 1500
+          });
+
     };
 
     useEffect(() => {

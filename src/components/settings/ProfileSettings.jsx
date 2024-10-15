@@ -4,6 +4,7 @@ import { Context } from '../../context/GlobalContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import imgSrc from '../../page/img/avatarDefault.png'
+import Swal from 'sweetalert2'
 
 const ProfileSettings = () => {
     const navigate = useNavigate()
@@ -24,7 +25,14 @@ const ProfileSettings = () => {
         formData.append('linkedin', data.linkedin)
         formData.append('avatar', data.avatar[0])
 
-        await actions.updateProfile(formData, store.access_token)
+        const response = await actions.updateProfile(formData, store.access_token)
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: response.message,
+            showConfirmButton: false,
+            timer: 1500
+          });
     }
 
     useEffect(() => {
