@@ -223,7 +223,25 @@ export const AppContext = ({ children }) => {
                 console.log(error.message)
                 return false
             }
-        }
+        },
+        updateJobCards: async (job_posting_id) => {
+            try {
+                const { apiUrl } = store
+                const response = await fetch(`${apiUrl}/job_postings/${job_posting_id}`, {
+                    method: 'PATCH',
+                    body: JSON.stringify(job_posting),
+                    headers: {
+                        'Authorization': `Bearer ${access_token}`,
+                        'content-Type': 'application/json'
+                    }
+                })
+                const datos = await response.json();
+                console.log(datos);
+               
+            } catch (error) {
+                console.log(error.message);
+            }
+        },
 
     }
     )
