@@ -28,7 +28,7 @@ const AccountSettings = () => {
         // Check if password and confirm_password match
         if (data.password !== data.confirm_password) {
             Swal.fire({
-                position: "top-end",
+                position: "center",
                 icon: "error",
                 title: "Passwords don't match",
                 showConfirmButton: false,
@@ -39,7 +39,7 @@ const AccountSettings = () => {
         
         const response = await actions.updateProfile(formData, store.access_token)
         Swal.fire({
-            position: "top-end",
+            position: "center",
             icon: "success",
             title: response.message,
             showConfirmButton: false,

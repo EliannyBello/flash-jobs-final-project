@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import { Context } from "../context/GlobalContext";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import imgPrf from '../page/img/avatarDefault.png'
+import Swal from 'sweetalert2'
+
 
 
 const Post = () => {
@@ -90,10 +92,23 @@ const Post = () => {
 
     const applyToJob = async () => {
         const success = await actions.jobApplication(sessionStorage.access_token, params.id);
-        if (success) {
-            alert("You have successfully applied to this job!");
+        console.log(success)
+        if (success.status == 'success') {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: success.message,
+                showConfirmButton: false,
+                timer: 1500
+            });
         } else {
-            alert("Error applying to the job. You may have already applied.");
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: success.message,
+                showConfirmButton: false,
+                timer: 1500
+            });
         }
     };
 
