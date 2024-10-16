@@ -4,6 +4,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { useNavigate, Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import imgSrc from '../../page/img/avatarDefault.png'
+import Swal from "sweetalert2";
 
 
 
@@ -24,7 +25,13 @@ const UserDropDown = ({ collapsed }) => {
         if (response) {
             navigate('/');
         } else{
-            alert('Incorrect credentials')
+            Swal.fire({
+                title: 'Incorrect credentials',
+                timer: 2000,
+                icon: 'error',
+                position: 'center'
+
+            })
         }
     };
 

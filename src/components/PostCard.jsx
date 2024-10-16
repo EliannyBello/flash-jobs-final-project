@@ -33,7 +33,7 @@ const PostCard = ({ datos, data }) => {
 
     return (
         <div className={(location.pathname == "/") ? "col-12 col-md-6" : "container-fluid"}>
-            <div className="card p-2 mb-2">
+            <div className="card p-2 mb-2 h-100">
                 <div className="d-flex ">
                     <img src={user?.profile?.avatar || imgPrf } className="rounded-circle profile-avatar" alt="avatar" />
                     <div className="ms-3 w-100">
