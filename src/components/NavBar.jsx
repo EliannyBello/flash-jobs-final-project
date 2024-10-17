@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../context/GlobalContext";
 import UserDropDown from "./navbar/UserDropdown";
+
 import Notifications from "./navbar/Notifications";
 import { FaSearch, FaRegQuestionCircle, FaBars } from "react-icons/fa";
 import '../styles/NavBar.css'
@@ -11,7 +12,7 @@ const NavBar = () => {
     const [collapsed, setCollapsed] = useState()
 
     const SearchForm = () => (
-        <form className="d-flex" role="search">
+        <form className="d-flex mx-3" role="search">
             <div className="input-group">
                 <input type="text" className="form-control input-search" placeholder="Search..." aria-label="Recipient's username" aria-describedby="button-addon2" />
                 <button className="btn btn-search" type="button" id="btn-search">
@@ -52,7 +53,11 @@ const NavBar = () => {
     const Logged = () => (
         <div className="container-fluid d-flex justify-content-between">
             <div className="d-flex justify-content-between">
-                <Link className="navbar-brand nb-item" to='/' >Home</Link>
+                <p className="navbar-brand nb-item m-0" >Flash Jobs</p>
+                {collapsed && <Testing />}
+            </div>
+            <div className="d-flex justify-content-between">
+                <Link className="navbar-brand nb-item mx-5" to='/' >Home</Link>
                 {collapsed && <Testing />}
             </div>
             {collapsed && <UserDropDown collapsed={collapsed} />}
@@ -60,7 +65,7 @@ const NavBar = () => {
                 aria-controls="nabvarGeneralOptions" aria-expanded="false" aria-label="Toggle navigation" data-bs-auto-close="true">
                 <FaBars className="navbar-toggler-icon" />
             </button>
-            <div className="UserDropDown collapse navbar-collapse justify-content-between" id="nabvarGeneralOptions">
+            <div className="UserDropDown collapse navbar-collapse justify-content-end me-3" id="nabvarGeneralOptions">
                 <ul className="navbar-nav mb-2 mb-lg-0 align-items-start align-items-md-center">
                     <li className="nav-item">
                         <Link to='/jobform' className="btn nb-item" >Create Post</Link>
@@ -69,7 +74,9 @@ const NavBar = () => {
                 {!collapsed && <SearchForm />}
                 <div className="userDropDown d-flex align-items-center">
                     {!collapsed && <UserDropDown collapsed={collapsed} />}
-                    <FaRegQuestionCircle className={"fs-4 help-icon"} />
+                    <Link className="navbar-brand nb-item mx-5" to='/Help' >
+                    <FaRegQuestionCircle className={"fs-4 help-icon nb-item"} />
+                    </Link>
                 </div>
             </div>
         </div>
@@ -78,7 +85,11 @@ const NavBar = () => {
     const UnLogged = () => (
         <div className="container-fluid d-flex justify-content-between">
             <div className="d-flex justify-content-between">
-                <Link className="navbar-brand nb-item" to='/' >Home</Link>
+                <p className="navbar-brand nb-item m-0" >Flash Jobs</p>
+                {collapsed && <Testing />}
+            </div>
+            <div className="d-flex justify-content-between">
+                <Link className="navbar-brand nb-item mx-5" to='/' >Home</Link>
                 {collapsed && <Testing />}
             </div>
             {collapsed && <UserDropDown collapsed={collapsed} />}
@@ -86,16 +97,14 @@ const NavBar = () => {
                 aria-controls="nabvarGeneralOptions" aria-expanded="false" aria-label="Toggle navigation" data-bs-auto-close="true">
                 <FaBars className="navbar-toggler-icon" />
             </button>
-            <div className="collapse navbar-collapse justify-content-between" id="nabvarGeneralOptions">
-                <ul className="navbar-nav mb-2 mb-lg-0 align-items-start align-items-md-center">
-                    <li className="nav-item">
-                        <a className="nav-link nb-item" href="#">Link</a>
-                    </li>
-                </ul>
+            <div className="collapse navbar-collapse justify-content-end me-3" id="nabvarGeneralOptions">
                 {!collapsed && <SearchForm />}
                 <div className="d-flex align-items-center">
                     {!collapsed && <UserDropDown collapsed={collapsed} />}
+                    <Link className="navbar-brand nb-item mx-5" to='/Help' >
                     <FaRegQuestionCircle className={"fs-4 help-icon nb-item"} />
+                    </Link>
+
                 </div>
             </div>
         </div>

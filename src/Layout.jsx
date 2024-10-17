@@ -11,6 +11,7 @@ import Post from './page/Post'
 import JobForm from './page/JobForm'
 import ApplicantsList from './page/ApplicantsList'
 import UpdateCard from './page/updateCard'
+import Help from './page/Help'
 
 
 
@@ -28,6 +29,7 @@ function Layout() {
         <Route path='/settings/:tab' element={<Settings />} />
         <Route path='/post/:id' element={<Post />} />
         <Route path='/jobform' element={<JobForm/>} />
+        <Route path='/help' element={<Help/>} />
         <Route path='/applicants/:id' element={<ApplicantsList/>} />
         <Route path='/post/:id/edit' element={<UpdateCard/>} />
         <Route path='*' element={<NotFound />} />
