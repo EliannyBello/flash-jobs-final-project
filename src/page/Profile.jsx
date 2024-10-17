@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import JobCards from '../components/jobCards'
 import imgSrc from './img/avatarDefault.png'
+import { FaGithub, FaLinkedin, FaBookOpen, FaEnvelope } from "react-icons/fa6";
 import { useNavigate, useParams } from 'react-router-dom'
 import { Context } from '../context/GlobalContext'
 import '../styles/Profile.css'
@@ -16,7 +17,7 @@ const Profile = () => {
   const [loaded, setLoaded] = useState(false)
 
 
-  const cardsJob = async ()  => {
+  const cardsJob = async () => {
     const datos = await actions.getjobposting(userId.id)
     console.log(datos.job_posting)
     setData(datos.job_posting)
@@ -25,11 +26,11 @@ const Profile = () => {
 
   useEffect(() => {
     setLoaded(false)
-        const waitToFetch = setTimeout(() => {
-          cardsJob()
-        }, 2000)
-        return () => clearTimeout(waitToFetch)
-   
+    const waitToFetch = setTimeout(() => {
+      cardsJob()
+    }, 2000)
+    return () => clearTimeout(waitToFetch)
+
   }, [])
 
   return (
@@ -42,16 +43,20 @@ const Profile = () => {
           <div className="mx-auto my-1 p-2">
             <img src={store?.user?.profile?.avatar || imgSrc} alt="Profile Avatar" className='img-fluid w-50 my-3 profile-avatar rounded-circle' />
           </div>
-          <div className="mb-3">
+          <div className="d-flex justify-content-center align-itmes-center mb-3">
+            <FaEnvelope className='fs-4 me-1' />
             <h5>{store?.user?.email}</h5>
           </div>
-          <div className="mb-3">
+          <div className="d-flex justify-content-center align-itmes-center mb-3">
+            <FaBookOpen className='fs-4 me-1' />
             <h5>{store?.user?.profile?.biography || "No biography"} </h5>
           </div>
-          <div className="mb-3">
-            <h5>{store?.user?.profile?.github || "No Github link"} </h5>
+          <div className="d-flex justify-content-center align-itmes-center mb-3">
+            <FaGithub className='fs-4 me-1' />
+            <h5 > {store?.user?.profile?.github || "No Github link"} </h5>
           </div>
-          <div className="mb-3">
+          <div className="d-flex justify-content-center align-itmes-center mb-3">
+            <FaLinkedin className='fs-4 me-1' />
             <h5>{store?.user?.profile?.linkedin || "No LinkedIn link"}</h5>
           </div>
 
@@ -74,7 +79,7 @@ const Profile = () => {
 
             <div className="collapse multi-collapse" id="multiCollapseExample1">
               <div className="">
-                <JobCards data={data}/>
+                <JobCards data={data} />
               </div>
             </div>
           </div>
@@ -92,7 +97,7 @@ const Profile = () => {
             </button>
             <div className="collapse multi-collapse" id="multiCollapseExample2">
               <div className="">
-               
+
               </div>
             </div>
           </div>
