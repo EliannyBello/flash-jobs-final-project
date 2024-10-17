@@ -10,18 +10,12 @@ import Swal from 'sweetalert2'
 const Post = () => {
     const { actions, logged } = useContext(Context);
     const [loading, setLoading] = useState(true);
-    const [apList, setApList] = useState([])
     const [post, setPost] = useState({})
     const [user, setUser] = useState({})
     const [users, setUsers] = useState({})
     const params = useParams();
 
     const [isCreator, setIsCreator] = useState(false);
-
-    //tests
-    const defaultPost = {
-        applications: ['user 1', 'user 2', 'user 3', 'user 4', 'user 5', 'user 6', 'user7'],
-    };
 
     const defaultUser = {
         rating: 4
@@ -45,16 +39,21 @@ const Post = () => {
 
     const displayApplications = (list) => {
         let toString = '';
-        for (let i in list) {
-            if (list.length == 0) {
-                toString += 'No one has applied for this offer'
-            } else if (list.length == 1) {
-                toString += `Just ${list[i]} has applied for this offer`;
-            } else if (i > 2) {
-                toString += `and ${list.length - i} more have applied for this offer`;
-                break;
-            } else {
-                toString += `${list[i]}, `;
+        console.log(list.length)
+        if (list.length == 0) {
+            toString += 'No one has applied for this offer'
+        } else if (list.length == 1) {
+            toString += `Just ${list[0]} has applied for this offer`;
+        } else if (list.length == 2) {
+            toString += `${list[0]} and ${list[1]} has applied for this offer`
+        } else {
+            for (let i in list) {
+                if (i > 2) {
+                    toString += `and ${list.length - i} more have applied for this offer`;
+                    break;
+                } else {
+                    toString += `${list[i]}, `;
+                }
             }
         }
         return toString;
@@ -64,14 +63,6 @@ const Post = () => {
         const date = new Date(stringDate);
         const formated = date.toLocaleDateString();
         return formated;
-    }
-
-    const getList = async () => {
-        const response = await actions.getApplications(params.id, sessionStorage.access_token)
-        const data = await response
-        data && setApList(data)
-        console.log(data)
-
     }
 
     async function getPostInfo() { //función asicrona
@@ -116,7 +107,6 @@ const Post = () => {
 
     useEffect(() => {
         getPostInfo()
-        getList()
     }, [loading]);
 
     const UserCard = () => (
