@@ -52,12 +52,9 @@ const NavBar = () => {
 
     const Logged = () => (
         <div className="container-fluid d-flex justify-content-between">
+            
             <div className="d-flex justify-content-between">
-                <p className="navbar-brand nb-item m-0" >Flash Jobs</p>
-                {collapsed && <Testing />}
-            </div>
-            <div className="d-flex justify-content-between">
-                <Link className="navbar-brand nb-item mx-5" to='/' >Home</Link>
+                <Link className="navbar-brand nb-item mx-5" to='/' >Flash Jobs</Link>
                 {collapsed && <Testing />}
             </div>
             {collapsed && <UserDropDown collapsed={collapsed} />}
@@ -84,12 +81,9 @@ const NavBar = () => {
 
     const UnLogged = () => (
         <div className="container-fluid d-flex justify-content-between">
+            
             <div className="d-flex justify-content-between">
-                <p className="navbar-brand nb-item m-0" >Flash Jobs</p>
-                {collapsed && <Testing />}
-            </div>
-            <div className="d-flex justify-content-between">
-                <Link className="navbar-brand nb-item mx-5" to='/' >Home</Link>
+                <Link className="navbar-brand nb-item mx-5" to='/' >Flash Jobs</Link>
                 {collapsed && <Testing />}
             </div>
             {collapsed && <UserDropDown collapsed={collapsed} />}
