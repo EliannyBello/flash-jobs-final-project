@@ -18,6 +18,11 @@ const UpdateCard = () => {
         formState: { errors },
     } = useForm();
 
+    const dateConverter = (stringDate) => {
+        const date = new Date(stringDate);
+        const newDate = date.toISOString().substring(0,10)
+        return newDate;
+    }
 
     const fetchJobPost = async () => {
         const data = await actions.getJobPost(params.id, store.access_token);
@@ -27,9 +32,8 @@ const UpdateCard = () => {
             setValue('description', data.description);
             setValue('payment', data.payment);
             setValue('required_time', data.required_time);
-            setValue('expiration_date', data.expiration_date);
+            setValue('expiration_date', dateConverter(data.expiration_date));
         }
-        setLoaded(true)
     };
 
     useEffect(() => {

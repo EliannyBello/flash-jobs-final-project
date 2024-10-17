@@ -115,9 +115,9 @@ const Post = () => {
 
 
     useEffect(() => {
-        logged && getPostInfo()
-        logged && getList()
-    }, []);
+        getPostInfo()
+        getList()
+    }, [loading]);
 
     const UserCard = () => (
         <div className="col-12 col-lg-4 col-xxl-3">
