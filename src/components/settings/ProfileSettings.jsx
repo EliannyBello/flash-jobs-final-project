@@ -25,14 +25,37 @@ const ProfileSettings = () => {
         formData.append('linkedin', data.linkedin)
         formData.append('avatar', data.avatar[0])
 
-        const response = await actions.updateProfile(formData, store.access_token)
-        Swal.fire({
-            position: "center",
-            icon: "success",
-            title: response.message,
-            showConfirmButton: false,
-            timer: 1500
-          });
+        const avatarFile = data.avatar[0]
+        const avatarSize = (avatarFile.size / 1024)
+        console.log(avatarSize)
+
+        if (!avatarFile) {
+            const response = await actions.updateProfile(formData, store.access_token)
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: response.message,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        } else if (avatarSize > 500) {
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: 'The file size is too big: max. 500kb',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        } else {
+            const response = await actions.updateProfile(formData, store.access_token)
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: response.message,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
     }
 
     useEffect(() => {
