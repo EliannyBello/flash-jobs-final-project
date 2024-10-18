@@ -241,21 +241,23 @@ export const AppContext = ({ children }) => {
                 console.log(error.message);
             }
         },
-        getStatus: async (id, token) => {
-            const { apiUrl } = store
+        status: async (job_posting, token,) => {
             try {
+                const { apiUrl } = store
                 const response = await fetch(`${apiUrl}/api/status`, {
-                    method: 'GET',
+                    method: 'POST',
+                    body: JSON.stringify(job_posting),
                     headers: {
                         'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
+                        'content-Type': 'application/json'
                     }
                 })
-                const data = await response.json()
-                return data.status
+                const datos = await response.json();
+                console.log(datos);
+                return datos
+
             } catch (error) {
-                console.log(error.message)
-                return false
+                console.log(error.message);
             }
         },
 

@@ -29,6 +29,7 @@ const PostCard = ({ datos, data }) => {
         setUser(user)
     }
 
+
     const {
         register,
         handleSubmit,
@@ -38,12 +39,14 @@ const PostCard = ({ datos, data }) => {
     const onSubmit = async (data) => {
         console.log(data);
         const response = actions.jobposting(data);
-    
+
     };
 
 
     useEffect(() => {
         getPostInfo()
+    
+
     }, [])
 
     return (
@@ -51,28 +54,28 @@ const PostCard = ({ datos, data }) => {
             <div className="card p-2 mb-2 h-100">
                 <div className="d-flex ">
                     {/* <img src={user?.profile?.avatar || imgPrf } className="rounded-circle profile-avatar" alt="avatar" /> */}
-                    <PostIcons list={datos.technologies}/>
+                    <PostIcons list={datos.technologies} />
                     <div className="ms-3 w-100">
-                   <form onChange={handleSubmit(onSubmit)} className="row row-jobform my-3">
+                        <form onChange={handleSubmit(onSubmit)} className="row row-jobform my-3">
                             <select name="status" id="status" className="form-control" {...register('status', { required: 'Status is required!' })}>
                                 <option value="1">Public</option>
                                 <option value="2">Completed</option>
                                 <option value="3">In Process</option>
                             </select>
-                   </form>
-                            <Link className='link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover' to={`/post/${datos.id}`}>{datos.title}</Link>
-                            <div className="text-muted">
-                                {datos.description}
-                            </div>
-                            <div className="text-muted">
-                                {`$ ${datos.payment}`}
-                            </div>
-                            <div className="text ">
-                                {datos.languages.join(", ")}
-                            </div>
-                            <div className="text-muted">
-                                {datos.technologies.join(", ")}
-                            </div>
+                        </form>
+                        <Link className='link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover' to={`/post/${datos.id}`}>{datos.title}</Link>
+                        <div className="text-muted">
+                            {datos.description}
+                        </div>
+                        <div className="text-muted">
+                            {`$ ${datos.payment}`}
+                        </div>
+                        <div className="text ">
+                            {datos.languages.join(", ")}
+                        </div>
+                        <div className="text-muted">
+                            {datos.technologies.join(", ")}
+                        </div>
                         <Link className='link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover' to={`/post/${datos.id}`}>{datos.title}</Link>
                         <div className="">
                             {datos.rank}
