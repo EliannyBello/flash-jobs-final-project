@@ -26,10 +26,10 @@ const JobForm = () => {
         <div className="container-fluid pt-3 mt-5">
             <div className="container container-jobform m-auto justify-content-center pt-3">
                 <h3>Post Job</h3>
-                <label htmlFor="rank">Rank</label>
+                
 
                 <form onSubmit={handleSubmit(onSubmit)} className="row row-jobform my-3">
-
+                <label htmlFor="rank">Rank</label>
                     <div className="col-mb-6">
                         <select name="rank" id="rank" className="form-control" {...register('rank', { required: 'Senority is required!' })}>
                             <option value="1">Junior</option>

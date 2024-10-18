@@ -38,6 +38,9 @@ const PostCard = ({ datos, data }) => {
                     <img src={user?.profile?.avatar || imgPrf } className="rounded-circle profile-avatar" alt="avatar" />
                     <div className="ms-3 w-100">
                         <Link className='link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover' to={`/post/${datos.id}`}>{datos.title}</Link>
+                        <div className="">
+                            {datos.rank}
+                        </div>
                         <div className="text-muted">
                             {datos.description}
                         </div>
