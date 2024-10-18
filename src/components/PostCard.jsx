@@ -70,7 +70,7 @@ const PostCard = ({ datos, data }) => {
             <div className={"card p-2 mb-2 "+(!collapsed && "h-100")}>
                 <div className="d-flex flex-column flex-md-row">
                     {/* <img src={user?.profile?.avatar || imgPrf } className="rounded-circle profile-avatar" alt="avatar" /> */}
-                    <PostIcons list={datos.technologies} />
+                    <PostIcons list={datos.technologies} len={datos.technologies.length} collapsed={collapsed} />
                     <div className="ms-3 w-100">
                         {location.pathname == "/profile" && <Getstatus  id={datos.id}/>}
                         <Link className='link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover' to={`/post/${datos.id}`}>{datos.title}</Link>
