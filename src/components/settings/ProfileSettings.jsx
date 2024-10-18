@@ -17,6 +17,7 @@ const ProfileSettings = () => {
     } = useForm()
 
     const onSubmit = async (data) => {
+        console.log(data)
         const formData = new FormData()
 
         formData.append('username', data.username)
@@ -81,13 +82,13 @@ const ProfileSettings = () => {
                     <textarea className="form-control" id="biography" name="biography" rows="3" placeholder='Your biography here' {...register('biography')} defaultValue={store?.user?.profile?.biography}></textarea>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="github" className="form-label">Phone Number</label>
-                    <input type="text" className={"form-control"} id="github" name='github' placeholder="Github profile link" {...register('github')} defaultValue={store?.user?.profile?.github} />
+                    <label htmlFor="phone" className="form-label">Phone Number</label>
+                    <input type="text" className={"form-control"} id="phone" name='phone' placeholder="(+12)34567890 " {...register('phone')} defaultValue={store?.user?.profile?.phone} />
                     <small className="invalid-feedback"></small>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="github" className="form-label">Country of residence</label>
-                    <input type="text" className={"form-control"} id="github" name='github' placeholder="Github profile link" {...register('github')} defaultValue={store?.user?.profile?.github} />
+                    <label htmlFor="country" className="form-label">Country of residence</label>
+                    <input type="text" className={"form-control"} id="country" name='country' placeholder="Country" {...register('country')} defaultValue={store?.user?.profile?.country} />
                     <small className="invalid-feedback"></small>
                 </div>
                 <div className="mb-3">

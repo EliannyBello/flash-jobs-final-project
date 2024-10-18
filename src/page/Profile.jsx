@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import JobCards from '../components/jobCards'
 import imgSrc from './img/avatarDefault.png'
-import { FaGithub, FaLinkedin, FaBookOpen, FaEnvelope } from "react-icons/fa6";
+import { FaGithub, FaLinkedin, FaBookOpen, FaEnvelope, FaPhone, FaLocationDot } from "react-icons/fa6";
 import { useNavigate, useParams } from 'react-router-dom'
 import { Context } from '../context/GlobalContext'
 import '../styles/Profile.css'
@@ -50,6 +50,14 @@ const Profile = () => {
           <div className="d-flex justify-content-center align-itmes-center mb-3">
             <FaBookOpen className='fs-4 me-1' />
             <h5>{store?.user?.profile?.biography || "No biography"} </h5>
+          </div>
+          <div className="d-flex justify-content-center align-itmes-center mb-3">
+            <FaPhone className='fs-4 me-1' />
+            <h5>{store?.user?.profile?.phone || "No phone number"} </h5>
+          </div>
+          <div className="d-flex justify-content-center align-itmes-center mb-3">
+            <FaLocationDot className='fs-4 me-1' />
+            <h5>{store?.user?.profile?.country || "No country added"} </h5>
           </div>
           <div className="d-flex justify-content-center align-itmes-center mb-3">
             <FaGithub className='fs-4 me-1' />
