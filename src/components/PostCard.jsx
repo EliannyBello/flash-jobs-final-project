@@ -3,7 +3,6 @@ import { useLocation, Link, Form } from "react-router-dom";
 import { Context } from "../context/GlobalContext";
 import { FaTrash, FaPencilAlt } from "react-icons/fa";
 import PostIcons from "./PostIcons";
-import '../styles/PostCard.css'
 import imgPrf from '../page/img/avatarDefault.png'
 import { useForm } from "react-hook-form";
 
