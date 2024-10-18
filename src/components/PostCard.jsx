@@ -70,6 +70,22 @@ const PostCard = ({ datos, data }) => {
                             <div className="text-muted">
                                 {datos.technologies.join(", ")}
                             </div>
+                        <Link className='link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover' to={`/post/${datos.id}`}>{datos.title}</Link>
+                        <div className="">
+                            {datos.rank}
+                        </div>
+                        <div className="text-muted">
+                            {datos.description}
+                        </div>
+                        <div className="text-muted">
+                            {`$ ${datos.payment}`}
+                        </div>
+                        <div className="text ">
+                            {datos.languages.join(", ")}
+                        </div>
+                        <div className="text-muted">
+                            {datos.technologies.join(", ")}
+                        </div>
                     </div>
                     {location.pathname != '/' && <EditsIcon id={datos.id} />}
                 </div>

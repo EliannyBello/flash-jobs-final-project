@@ -135,6 +135,7 @@ const Post = () => {
                     <h6 className="card-subtitle mb-2 text-body-secondary"><b>{displayApplications(post.applications)}</b></h6>
                 </div>
                 <ul className="list-group list-group-flush">
+                    <li className="list-group-item"><b>Rank: </b>{(post.rank)}</li>
                     <li className="list-group-item"><b>Tech Knowledges:</b>{listInformation(post.technologies)}</li>
                     <li className="list-group-item"><b>Languages:</b>{listInformation(post.languages)}</li>
                     <li className="list-group-item"><b>Required Time: </b>{post.required_time} days</li>
