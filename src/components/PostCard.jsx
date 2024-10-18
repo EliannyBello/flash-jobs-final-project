@@ -30,6 +30,7 @@ const PostCard = ({ datos, data }) => {
         setUser(user)
     }
 
+
     const {
         register,
         handleSubmit,
@@ -37,11 +38,20 @@ const PostCard = ({ datos, data }) => {
     } = useForm();
 
     const onSubmit = async (data) => {
-        console.log(data);
-        const response = actions.jobposting(data);
+        const response = actions.updateJobCards(datos.id, data, sessionStorage.access_token);
 
     };
-
+    const Getstatus = () => {
+        return (
+            <form onChange={handleSubmit(onSubmit)} className="row row-jobform my-3">
+                <select name="status" id="status" className="form-control" {...register('status_id', { required: 'Status is required!' })}>
+                    <option value="1">Public</option>
+                    <option value="2">Completed</option>
+                    <option value="3">In Process</option>
+                </select>
+            </form>
+        )
+    }
 
     useEffect(() => {
         getPostInfo()
@@ -61,31 +71,23 @@ const PostCard = ({ datos, data }) => {
                 <div className="d-flex flex-column flex-md-row">
                     {/* <img src={user?.profile?.avatar || imgPrf } className="rounded-circle profile-avatar" alt="avatar" /> */}
                     <PostIcons list={datos.technologies} />
-                    <div>
-                        <div className="ms-3 w-100">
-                            <form onChange={handleSubmit(onSubmit)} className="row row-jobform my-3">
-                                <select name="status" id="status" className="form-control" {...register('status', { required: 'Status is required!' })}>
-                                    <option value="1">Public</option>
-                                    <option value="2">Completed</option>
-                                    <option value="3">In Process</option>
-                                </select>
-                            </form>
-                            <Link className='link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover' to={`/post/${datos.id}`}>{datos.title}</Link>
-                            <div className="">
-                                {datos.rank}
-                            </div>
-                            <div className="">
-                                {datos.description}
-                            </div>
-                            <div className="">
-                                {`$ ${datos.payment}`}
-                            </div>
-                            <div className="">
-                                {datos.languages.join(", ")}
-                            </div>
-                            <div className="">
-                                {datos.technologies.join(", ")}
-                            </div>
+                    <div className="ms-3 w-100">
+                        {location.pathname == "/profile" && <Getstatus  id={datos.id}/>}
+                        <Link className='link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover' to={`/post/${datos.id}`}>{datos.title}</Link>
+                        <div className="">
+                            {datos.rank}
+                        </div>
+                        <div className="text-muted">
+                            {datos.description}
+                        </div>
+                        <div className="text-muted">
+                            {`$ ${datos.payment}`}
+                        </div>
+                        <div className="text ">
+                            {datos.languages.join(", ")}
+                        </div>
+                        <div className="text-muted">
+                            {datos.technologies.join(", ")}
                         </div>
                         {location.pathname != '/' && <EditsIcon id={datos.id} />}
                     </div>

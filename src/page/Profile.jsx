@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import JobCards from '../components/jobCards'
 import imgSrc from './img/avatarDefault.png'
-import { FaGithub, FaLinkedin, FaBookOpen, FaEnvelope } from "react-icons/fa6";
+import { FaGithub, FaLinkedin, FaBookOpen, FaEnvelope, FaPhone, FaLocationDot } from "react-icons/fa6";
 import { useNavigate, useParams } from 'react-router-dom'
 import { Context } from '../context/GlobalContext'
 import '../styles/Profile.css'
@@ -25,7 +25,6 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    setLoaded(false)
     const waitToFetch = setTimeout(() => {
       cardsJob()
     }, 2000)
@@ -37,26 +36,34 @@ const Profile = () => {
     <div className="container mt-5 py-3">
       {!loaded ? (
         <div><h1>Loading...</h1></div>
-      ) : (<div className="row text-center">
+      ) : (<div className="row ">
         <div className="col-md-5">
-          <h2 className=" mt-5">{store?.user?.username}</h2>
+          <h2 className=" mt-5 ms-5">{store?.user?.username}</h2>
           <div className="mx-auto my-1 p-2">
             <img src={store?.user?.profile?.avatar || imgSrc} alt="Profile Avatar" className='img-fluid w-50 my-3 profile-avatar rounded-circle' />
           </div>
-          <div className="d-flex justify-content-center align-itmes-center mb-3">
-            <FaEnvelope className='fs-4 me-1' />
+          <div className="d-flex justify-content-start mb-3">
+            <FaEnvelope className='fs-4 mx-4' />
             <h5>{store?.user?.email}</h5>
           </div>
-          <div className="d-flex justify-content-center align-itmes-center mb-3">
-            <FaBookOpen className='fs-4 me-1' />
+          <div className="d-flex justify-content-start  mb-3">
+            <FaBookOpen className='fs-4 mx-4' />
             <h5>{store?.user?.profile?.biography || "No biography"} </h5>
           </div>
-          <div className="d-flex justify-content-center align-itmes-center mb-3">
-            <FaGithub className='fs-4 me-1' />
+          <div className="d-flex justify-content-start  mb-3">
+            <FaPhone className='fs-4 mx-4' />
+            <h5>{store?.user?.profile?.phone || "No phone number"} </h5>
+          </div>
+          <div className="d-flex justify-content-start  mb-3">
+            <FaLocationDot className='fs-4 mx-4' />
+            <h5>{store?.user?.profile?.country || "No country added"} </h5>
+          </div>
+          <div className="d-flex justify-content-start  mb-3">
+            <FaGithub className='fs-4 mx-4' />
             <h5 > {store?.user?.profile?.github || "No Github link"} </h5>
           </div>
-          <div className="d-flex justify-content-center align-itmes-center mb-3">
-            <FaLinkedin className='fs-4 me-1' />
+          <div className="d-flex justify-content-start  mb-3">
+            <FaLinkedin className='fs-4 mx-4' />
             <h5>{store?.user?.profile?.linkedin || "No LinkedIn link"}</h5>
           </div>
 
