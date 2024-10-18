@@ -25,7 +25,6 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    setLoaded(false)
     const waitToFetch = setTimeout(() => {
       cardsJob()
     }, 2000)
