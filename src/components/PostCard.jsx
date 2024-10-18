@@ -37,16 +37,23 @@ const PostCard = ({ datos, data }) => {
     } = useForm();
 
     const onSubmit = async (data) => {
-        console.log(data);
-        const response = actions.jobposting(data);
+        const response = actions.updateJobCards(datos.id, data, sessionStorage.access_token);
 
     };
-
+    const Getstatus = () => {
+        return (
+            <form onChange={handleSubmit(onSubmit)} className="row row-jobform my-3">
+                <select name="status" id="status" className="form-control" {...register('status_id', { required: 'Status is required!' })}>
+                    <option value="1">Public</option>
+                    <option value="2">Completed</option>
+                    <option value="3">In Process</option>
+                </select>
+            </form>
+        )
+    }
 
     useEffect(() => {
         getPostInfo()
-    
-
     }, [])
 
     return (
@@ -56,13 +63,8 @@ const PostCard = ({ datos, data }) => {
                     {/* <img src={user?.profile?.avatar || imgPrf } className="rounded-circle profile-avatar" alt="avatar" /> */}
                     <PostIcons list={datos.technologies} />
                     <div className="ms-3 w-100">
-                        <form onChange={handleSubmit(onSubmit)} className="row row-jobform my-3">
-                            <select name="status" id="status" className="form-control" {...register('status', { required: 'Status is required!' })}>
-                                <option value="1">Public</option>
-                                <option value="2">Completed</option>
-                                <option value="3">In Process</option>
-                            </select>
-                        </form>
+                        {location.pathname == "/profile" && <Getstatus  id={datos.id}/>}
+                    
                         <Link className='link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover' to={`/post/${datos.id}`}>{datos.title}</Link>
                         <div className="text-muted">
                             {datos.description}
