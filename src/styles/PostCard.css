@@ -1,0 +1,32 @@
+.circle-container {
+    position: relative !important;
+    border-radius: 50% !important;
+}
+
+.circle-container .icon {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform-origin: center !important;
+    transform: translate(-50%, -50%) !important;
+}
+
+.circle-container .icon:nth-child(1) {
+    transform: translate(-50%, -50%) rotate(72deg) translate(120px) rotate(-72deg) !important;
+}
+
+.circle-container .icon:nth-child(2) {
+    transform: translate(-50%, -50%) rotate(144deg) translate(120px) rotate(-144deg) !important;
+}
+
+.circle-container .icon:nth-child(3) {
+    transform: translate(-50%, -50%) rotate(216deg) translate(120px) rotate(-216deg) !important;
+}
+
+.circle-container .icon:nth-child(4) {
+    transform: translate(-50%, -50%) rotate(288deg) translate(120px) rotate(-288deg) !important;
+}
+
+.circle-container .icon:nth-child(5) {
+    transform: translate(-50%, -50%) rotate(360deg) translate(120px) rotate(-360deg) !important;
+}
