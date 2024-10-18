@@ -236,9 +236,26 @@ export const AppContext = ({ children }) => {
                 const datos = await response.json();
                 console.log(datos);
                 return datos
-               
+
             } catch (error) {
                 console.log(error.message);
+            }
+        },
+        getStatus: async (id, token) => {
+            const { apiUrl } = store
+            try {
+                const response = await fetch(`${apiUrl}/api/status`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                })
+                const data = await response.json()
+                return data.status
+            } catch (error) {
+                console.log(error.message)
+                return false
             }
         },
 

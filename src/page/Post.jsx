@@ -12,7 +12,6 @@ const Post = () => {
     const [loading, setLoading] = useState(true);
     const [post, setPost] = useState({})
     const [user, setUser] = useState({})
-    const [users, setUsers] = useState({})
     const params = useParams();
 
     const [isCreator, setIsCreator] = useState(false);
