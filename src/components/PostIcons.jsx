@@ -30,8 +30,8 @@ const Icon = ({ icon, len }) => {
 const PostIcons = ({ list, len, collapsed }) => {
     console.log(len)
     return (
-        <div className="col-3 h-100 ">
-            <div className={"d-flex g-3 justify-content-evenly align-items-center h-100 row-cols-2 " + (((len >= 3) || collapsed) ? "flex-row" : "flex-column")}>
+        <div className={"col-3 h-100 " + ((collapsed) && "w-100")}>
+            <div className={"d-flex align-items-center h-100 " + (((len >= 3) || collapsed) ? "row flex-row row-cols-5 row-cols-sm-6 row-cols-md-1 row-cols-lg-2" : "flex-column")}>
                 {list.map((item, index) => <Icon icon={item} key={index} len={len} />)}
             </div>
         </div>
