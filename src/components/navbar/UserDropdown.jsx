@@ -45,13 +45,13 @@ const UserDropDown = ({ collapsed }) => {
                     <ul className={"dropdown-menu user-list custom-opacity mt-3 " + (collapsed ? ' full-width' : 'dropdown-menu-end text-end me-1')}>
                         <li><p className="user-list text-center">Hello, {store?.user?.username}</p></li>
                         <li><hr className="dropdown-divider" /></li>
-                        <li><Link className="user-item dropdown-item" to="/profile">Profile</Link></li>
-                        <li><Link className="user-item dropdown-item" to="/settings">Account Settings</Link></li>
+                        <li><Link className="user-item dropdown-item  text-center" to="/profile">Profile</Link></li>
+                        <li><Link className="user-item dropdown-item  text-center" to="/settings">Account Settings</Link></li>
                         <li><hr className="dropdown-divider" /></li>
                         <li><button onClick={() => {
                             actions.logout();
                             navigate('/');
-                        }} className="user-item dropdown-item" to="/logout">Log out</button></li>
+                        }} className="user-item dropdown-item  text-center" to="/logout">Log out</button></li>
                     </ul>
                 </div>
             </div>
