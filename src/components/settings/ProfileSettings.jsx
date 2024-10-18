@@ -24,6 +24,9 @@ const ProfileSettings = () => {
         formData.append('github', data.github)
         formData.append('linkedin', data.linkedin)
         formData.append('avatar', data.avatar[0])
+        formData.append('resume', data.resume)
+        formData.append('phone', data.phone)
+        formData.append('country', data.country)
 
         const avatarFile = data.avatar[0]
         const avatarSize = (avatarFile.size / 1024)
@@ -76,6 +79,16 @@ const ProfileSettings = () => {
                 <div className="mb-3">
                     <label htmlFor="biography" className="form-label">Biography</label>
                     <textarea className="form-control" id="biography" name="biography" rows="3" placeholder='Your biography here' {...register('biography')} defaultValue={store?.user?.profile?.biography}></textarea>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="github" className="form-label">Phone Number</label>
+                    <input type="text" className={"form-control"} id="github" name='github' placeholder="Github profile link" {...register('github')} defaultValue={store?.user?.profile?.github} />
+                    <small className="invalid-feedback"></small>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="github" className="form-label">Country of residence</label>
+                    <input type="text" className={"form-control"} id="github" name='github' placeholder="Github profile link" {...register('github')} defaultValue={store?.user?.profile?.github} />
+                    <small className="invalid-feedback"></small>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="github" className="form-label">Github</label>

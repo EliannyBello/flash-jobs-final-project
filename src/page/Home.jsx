@@ -28,8 +28,9 @@ const Home = () => {
     <div className="container-fluid mt-5 py-3 ">
 
       <div className="text-overlay">
-        <h1>Welcome to job offers!</h1>
-        <h4>A new opportunity is waiting for you</h4>
+        <h1>Welcome to Flash Jobs!</h1>
+        <h3>Work from anywhere in the world with only remote offers</h3>
+        <h4>A new opportunity is waiting for you!</h4>
       </div>
       <Carrusel />
       <br />
