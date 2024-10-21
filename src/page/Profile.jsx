@@ -2,10 +2,9 @@ import React, { useContext, useEffect, useState } from 'react'
 import JobCards from '../components/jobCards'
 import imgSrc from './img/avatarDefault.png'
 import { FaGithub, FaLinkedin, FaBookOpen, FaEnvelope, FaPhone, FaLocationDot } from "react-icons/fa6";
-import { useNavigate, useParams } from 'react-router-dom'
 import { Context } from '../context/GlobalContext'
 import '../styles/Profile.css'
-
+import { TbBriefcase2Filled } from "react-icons/tb";
 
 
 const Profile = () => {
@@ -65,6 +64,31 @@ const Profile = () => {
           <div className="d-flex justify-content-start  mb-3">
             <FaLinkedin className='fs-4 mx-4' />
             <h5>{store?.user?.profile?.linkedin || "No LinkedIn link"}</h5>
+          </div>
+
+          <div className="d-flex justify-content-start mb-3">
+            {store?.user?.profile?.resume ? (
+              <div className="d-flex flex-column">
+                <div className="d-flex justify-content-start mb-3">
+{/* esto va para el perfil publico */}
+                  <TbBriefcase2Filled className="fs-4 mx-4" />
+                  <h5 className='me-1'>Resume:</h5>
+                  <a href={store?.user?.profile?.resume} target='_blank' className='link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover h5'>See more</a>
+                </div>
+                <div>
+
+                  <embed
+                    src={store?.user?.profile?.resume}
+                    type="application/pdf"
+                    width="600"
+                    height="800"
+                  />
+                </div>
+
+              </div>
+            ) : (
+              <h5>No Resume</h5>
+            )}
           </div>
 
         </div>

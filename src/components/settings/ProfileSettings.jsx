@@ -5,6 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import imgSrc from '../../page/img/avatarDefault.png'
 import Swal from 'sweetalert2'
+import { BiUnderline } from 'react-icons/bi';
 
 const ProfileSettings = () => {
     const navigate = useNavigate()
@@ -25,15 +26,30 @@ const ProfileSettings = () => {
         formData.append('github', data.github)
         formData.append('linkedin', data.linkedin)
         formData.append('avatar', data.avatar[0])
-        formData.append('resume', data.resume)
+        formData.append('resume', data.resume[0])
         formData.append('phone', data.phone)
         formData.append('country', data.country)
 
-        const avatarFile = data.avatar[0]
-        const avatarSize = (avatarFile.size / 1024)
-        console.log(avatarSize)
+        let avatarFile = null
+        let avatarSize = null
+        let resumeFile = null
+        let resumeSize = null
 
-        if (!avatarFile) {
+        if (data.avatar.length > 0) {
+            avatarFile = data.avatar[0]
+            avatarSize = (avatarFile.size / 1024)
+            console.log(avatarSize)
+        }
+
+        if (data.resume.length > 0 ) {
+            resumeFile = data.resume[0]
+            resumeSize = (resumeFile.size / 1024)
+            console.log(resumeSize)
+        }
+
+
+
+        if (!avatarFile && !resumeFile) {
             const response = await actions.updateProfile(formData, store.access_token)
             Swal.fire({
                 position: "center",
@@ -42,7 +58,7 @@ const ProfileSettings = () => {
                 showConfirmButton: false,
                 timer: 1500
             });
-        } else if (avatarSize > 500) {
+        } else if (avatarSize > 500 || resumeSize > 500) {
             Swal.fire({
                 position: "center",
                 icon: "error",
@@ -100,6 +116,11 @@ const ProfileSettings = () => {
                     <label htmlFor="linkedin" className="form-label">Linkedin</label>
                     <input type="text" className={"form-control"} id="linkedin" name='linkedin' placeholder="Linkedin profile link" {...register('linkedin')} defaultValue={store?.user?.profile?.linkedin} />
                     <small className="invalid-feedback"></small>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="resume" className="form-label">Resume</label>
+                    <input type="file" accept='.pdf' className={"form-control" + (errors.resume ? 'is-invalid' : '')} id="resume" name='resume' {...register('resume')} />
+                    <small className="invalid-feedback">{errors?.resume?.message}</small>
                 </div>
                 <button className="btn btn-warning btn-sm w-100 py-2">Update</button>
             </form>
