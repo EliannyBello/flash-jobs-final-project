@@ -1,11 +1,13 @@
 import { useForm } from "react-hook-form";
 import { Context } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import '../styles/JobForm.css';
 
 const JobForm = () => {
+    const [minDate, setMinDate] = useState('')
     const navigate = useNavigate();
+    const daysRef = useRef(null);
     const { store, actions } = useContext(Context);
     const {
         register,
@@ -13,6 +15,13 @@ const JobForm = () => {
         formState: { errors },
     } = useForm();
 
+
+    const onChange = (num) => {
+        const today = new Date();
+        const toAdd = (typeof num === 'string') ? parseInt(num, 10) : num;
+        const newDate = new Date(today.setDate(today.getDate() + ((toAdd <= 0 || isNaN(toAdd)) ? 1 : toAdd)));
+        setMinDate(newDate.toISOString().substring(0, 10));
+    }
 
     const onSubmit = async (data) => {
         console.log(data);
@@ -22,13 +31,17 @@ const JobForm = () => {
         }
     };
 
+    useEffect(() => {
+        onChange(3)
+    }, [])
+
     return (
         <div className="container-fluid pt-3 mt-5">
             <div className="container container-jobform m-auto justify-content-center pt-3">
                 <h3>Post Job</h3>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="row row-jobform my-3">
-                    
+
                     <label htmlFor="rank">Rank</label>
                     <div className="col-mb-6">
                         <select name="rank" id="rank" className="form-control" {...register('rank', { required: 'Senority is required!' })}>
@@ -72,7 +85,7 @@ const JobForm = () => {
                     <div className="row row-jobform">
                         <div className="col-mb-6">
                             <label htmlFor="requiredTime">Required Time</label>
-                            <input type="number" className="form-control" id="requiredTime" defaultValue={3}{...register('required_time', { required: 'Required time is required!' })}
+                            <input ref={daysRef} onKeyUp={e => onChange(e.target.value)} type="number" className="form-control" id="requiredTime" {...register('required_time', { required: 'Required time is required!' })}
                             />
                             {errors.required_time?.type === "required" && (
                                 <p className="text-danger p-1 m-1" role="alert">{errors.required_time.message}</p>
@@ -81,7 +94,7 @@ const JobForm = () => {
 
                         <div className="col-mb-6">
                             <label htmlFor="expirationDate">Expiration Date</label>
-                            <input type="date" className="form-control" id="expirationDate" {...register('expiration_date', { required: 'Expiration date is required!' })}
+                            <input type="date" className="form-control" min={minDate} id="expirationDate" {...register('expiration_date', { required: 'Expiration date is required!' })}
                             />
                             {/* {errors.expiration_date?.type === "required" && (
                                 <p className="text-danger p-1 m-1" role="alert">{errors.expiration_date.message}</p>
