@@ -5,7 +5,7 @@ import { FaGithub, FaLinkedin, FaBookOpen, FaEnvelope, FaPhone, FaLocationDot } 
 import { useNavigate, useParams } from 'react-router-dom'
 import { Context } from '../context/GlobalContext'
 import '../styles/Profile.css'
-
+import { TbBriefcase2Filled } from "react-icons/tb";
 
 
 const Profile = () => {
@@ -65,6 +65,10 @@ const Profile = () => {
           <div className="d-flex justify-content-start  mb-3">
             <FaLinkedin className='fs-4 mx-4' />
             <h5>{store?.user?.profile?.linkedin || "No LinkedIn link"}</h5>
+          </div>
+          <div className="d-flex justify-content-start  mb-3">
+            <TbBriefcase2Filled className='fs-4 mx-4' />
+            <a href={store?.user?.profile?.resume}><h5>{store?.user?.profile?.resume || "No Resume link"}</h5></a>
           </div>
 
         </div>
