@@ -11,7 +11,7 @@ const Home = () => {
 
   const [selectedTechnology, setSelectedTechnology] = useState({
     Python: false,
-    JavaScript: false,
+    Javascript: false,
     Java: false,
     SQL: false,
     React: false,
@@ -94,8 +94,8 @@ const Home = () => {
 
     // Si no hay filtros seleccionados, mostrar todos los datos
     if (!Object.values(selectedTechnology).some(val => val) &&
-        !Object.values(selectedLanguage).some(val => val) &&
-        !Object.values(selectedRank).some(val => val)) {
+      !Object.values(selectedLanguage).some(val => val) &&
+      !Object.values(selectedRank).some(val => val)) {
       setFilterData(data);
     } else {
       setFilterData(filtered);
@@ -200,24 +200,15 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Display filtered job postings */}
-      <div className="container-info-selected">
-        {filterData.length > 0 ? (
-          filterData.map((item) => (
-            <div className="info-selected" key={item.id}>
-              <JobCards data={filterData} />
-            </div>
-          ))
-        ) : (
-          <p>No se encontraron resultados.</p>
-        )}
-      </div>
-
-      {/* Mostrar todas las ofertas si no hay filtros activos */}
       <div className='container-fluid d-flex justify-content-center'>
         <div className='container-fluid'>
+          {/* Si hay datos filtrados, mostrar los datos filtrados. Si no hay filtros, mostrar todos los trabajos */}
           {loaded ? (
-            <JobCards data={filterData.length > 0 ? filterData : data} />
+            filterData.length > 0 ? (
+              <JobCards data={filterData} />
+            ) : (
+              <JobCards data={data} />
+            )
           ) : (
             <h1>Loading...</h1>
           )}
