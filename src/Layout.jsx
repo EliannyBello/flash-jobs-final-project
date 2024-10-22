@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import NavBar from './components/NavBar'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Footer from './components/Footer'
@@ -12,7 +11,7 @@ import JobForm from './page/JobForm'
 import ApplicantsList from './page/ApplicantsList'
 import UpdateCard from './page/updateCard'
 import Help from './page/Help'
-
+import PublicProfile from './page/PublicProfile'
 
 
 
@@ -25,6 +24,7 @@ function Layout() {
         <Route path='/' element={<Home />} />
         <Route path='/register' element={<Register />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/profile/:id' element={<PublicProfile />} />
         <Route path='/settings' element={<Settings />} />
         <Route path='/settings/:tab' element={<Settings />} />
         <Route path='/post/:id' element={<Post />} />
