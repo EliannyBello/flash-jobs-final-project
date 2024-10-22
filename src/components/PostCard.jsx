@@ -80,7 +80,7 @@ const PostCard = ({ datos, data }) => {
                         {location.pathname != '/' && <EditsIcon id={datos.id} />}
                     </div>
                 </div>
-                {(location.pathname != "/") && <Link to={`/applicants/${data.id}`} className="btn btn-dark m-1">Applicants</Link>}
+                {(location.pathname != "/") && <Link to={`/applicants/${datos.id}`} className="btn btn-dark m-1">Applicants</Link>}
             </div>
         </div>
     )

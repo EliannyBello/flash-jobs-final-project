@@ -1,5 +1,5 @@
 import React from "react";
-import { FaReact, FaJava, FaSquareJs, FaPython, FaCss3Alt, FaGolang, FaBootstrap, FaNodeJs } from "react-icons/fa6";
+import { FaReact, FaJava, FaCss3Alt, FaGolang, FaBootstrap, FaNodeJs } from "react-icons/fa6";
 import { TbSql } from "react-icons/tb";
 import { AiOutlinePython } from "react-icons/ai";
 import { LiaJsSquare } from "react-icons/lia";
@@ -37,7 +37,6 @@ const Icon = ({ icon, len, index }) => {
 }
 
 const PostIcons = ({ list, len, collapsed }) => {
-    console.log(len)
     return (
         <div className={"col-3 h-100 " + ((collapsed) && "w-100")}>
             <div className={"d-flex justify-content-evenly align-items-center h-100 " + (((len >= 3) || collapsed) ? "row flex-row row-cols-4 row-cols-md-2" : "flex-column")}>
