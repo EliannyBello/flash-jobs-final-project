@@ -247,7 +247,14 @@ export const AppContext = ({ children }) => {
                 console.log(error.message);
             }
         },
-        
+        acceptApplicant: async () => {
+            try {
+
+            } catch (error) {
+                console.log(error.message)
+            }
+        }
+
 
     }
     )
