@@ -77,17 +77,22 @@ const Profile = () => {
                 </div>
                 <div>
 
-                  <embed
+                  {/* <embed
                     src={store?.user?.profile?.resume}
                     type="application/pdf"
                     width="600"
                     height="800"
-                  />
+                  /> */}
                 </div>
 
               </div>
             ) : (
-              <h5>No Resume</h5>
+              <div className="d-flex flex-column">
+                    <div className="d-flex justify-content-start mb-3">
+                      <TbBriefcase2Filled className="fs-4 mx-4" />
+                      <h5 className='me-1'>No Resume</h5>
+                    </div>
+                  </div>
             )}
           </div>
 

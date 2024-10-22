@@ -18,13 +18,13 @@ const Register = () => {
         const response = await actions.register(data)
         console.log(response)
         Swal.fire({
-            position: "top-end",
-            icon: "success",
+            position: "center",
+            icon: response.status,
             title: response.message,
             showConfirmButton: false,
             timer: 1500
         });
-        navigate('/')
+        (response.status == 'success') && navigate('/')
     }
     return (
         <div className="container container-register">

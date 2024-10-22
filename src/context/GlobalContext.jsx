@@ -162,7 +162,13 @@ export const AppContext = ({ children }) => {
         getUserByid: async (id) => {
             const { apiUrl } = store
             try {
-                const response = await fetch(`${apiUrl}/api/profile/${id}`)
+                const response = await fetch(`${apiUrl}/api/profile/${id}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${sessionStorage.access_token}`,
+                        'Content-Type': 'application/json'
+                    }
+                })
                 const data = await response.json()
                 //modificado para retornar los datos
                 return data.user;
