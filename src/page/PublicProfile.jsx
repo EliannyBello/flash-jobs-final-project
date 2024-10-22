@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';  // Importamos useParams
 import imgSrc from './img/avatarDefault.png';
 import { FaGithub, FaLinkedin, FaBookOpen, FaEnvelope, FaPhone, FaLocationDot } from "react-icons/fa6";
 import { Context } from '../context/GlobalContext';
-import '../styles/Profile.css';
+import '../styles/publicProfile.css';
 import { TbBriefcase2Filled } from "react-icons/tb";
 
 const PublicProfile = () => {

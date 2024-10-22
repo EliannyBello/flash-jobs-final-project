@@ -1,17 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react'
-import JobCards from '../components/jobCards'
-import { Context } from '../context/GlobalContext'
-import Carrusel from '../components/Carrusel.jsx'
-import '../styles/home.css'
+import React, { useContext, useEffect, useState } from 'react';
+import JobCards from '../components/jobCards';
+import { Context } from '../context/GlobalContext';
+import Carrusel from '../components/Carrusel.jsx';
+import '../styles/home.css';
 
 const Home = () => {
-  const { actions } = useContext(Context)
-  const [data, setData] = useState([])
-  const [loaded, setLoaded] = useState(false)
+  const { actions } = useContext(Context);
+  const [data, setData] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   const [selectedTechnology, setSelectedTechnology] = useState({
     Python: false,
-    JavaScript: false,
+    Javascript: false,
     Java: false,
     SQL: false,
     React: false,
@@ -19,89 +19,103 @@ const Home = () => {
     GO: false,
     NodeJS: false,
     Bootstrap: false,
-  })
+  });
 
   const [selectedLanguage, setSelectedLanguage] = useState({
     Spanish: false,
     English: false,
-    Korean: false
-  })
+    Korean: false,
+  });
 
   const [selectedRank, setSelectedRank] = useState({
-    junior: false,
-    semiSenior: false,
-    senior: false,
-  })
+    Junior: false,
+    'Semi-Senior': false,
+    Senior: false,
+  });
 
-  const [filterData, setFilterData] = useState
-  ([])
+  const [filterData, setFilterData] = useState([]);
 
-
+  // Funciones para manejar cambios en los checkboxes
   const handleTechnologyChange = (e) => {
     setSelectedTechnology({
       ...selectedTechnology,
       [e.target.value]: e.target.checked,
-    })
-    applyFilters()
-  }
+    });
+  };
 
   const handleLanguageChange = (e) => {
     setSelectedLanguage({
       ...selectedLanguage,
       [e.target.value]: e.target.checked,
-    })
-    applyFilters()
-  }
+    });
+  };
 
   const handleRankChange = (e) => {
     setSelectedRank({
       ...selectedRank,
       [e.target.value]: e.target.checked,
-    })
-    applyFilters()
-  }
+    });
+  };
+
+  // Aplicar filtros en base a las selecciones actuales
+  useEffect(() => {
+    applyFilters();
+  }, [selectedTechnology, selectedLanguage, selectedRank]);
 
   const applyFilters = () => {
-    let filtered = [...data]
+    let filtered = [...data];
 
-    filtered = filtered.filter((item) =>   // Filter by technology
-      Object.keys(selectedTechnology).some(
-        (tech) => selectedTechnology[tech] && item.technologies.includes(tech)
-      )
-    )
+    // Filtrar por tecnologías si alguna está seleccionada
+    if (Object.values(selectedTechnology).some(val => val)) {
+      filtered = filtered.filter(item =>
+        Object.keys(selectedTechnology).some(tech =>
+          selectedTechnology[tech] && item.technologies.includes(tech)
+        )
+      );
+    }
 
-    filtered = filtered.filter((item) => // Filter by language
-      Object.keys(selectedLanguage).some(
-        (lang) => selectedLanguage[lang] && item.languages.includes(lang)
-      )
-    )
+    // Filtrar por idiomas si alguno está seleccionado
+    if (Object.values(selectedLanguage).some(val => val)) {
+      filtered = filtered.filter(item =>
+        Object.keys(selectedLanguage).some(lang =>
+          selectedLanguage[lang] && item.languages.includes(lang)
+        )
+      );
+    }
 
-    filtered = filtered.filter((item) => // Filter by rank
-      Object.keys(selectedRank).some(
-        (rank) => selectedRank[rank] && item.rank === rank
-      )
-    )
+    // Filtrar por rango si alguno está seleccionado
+    if (Object.values(selectedRank).some(val => val)) {
+      filtered = filtered.filter(item =>
+        Object.keys(selectedRank).some(rank =>
+          selectedRank[rank] && item.rank === rank
+        )
+      );
+    }
 
-    setFilterData(filtered)
-  }
+    // Si no hay filtros seleccionados, mostrar todos los datos
+    if (!Object.values(selectedTechnology).some(val => val) &&
+      !Object.values(selectedLanguage).some(val => val) &&
+      !Object.values(selectedRank).some(val => val)) {
+      setFilterData(data);
+    } else {
+      setFilterData(filtered);
+    }
+  };
 
   const getJobPosting = async () => {
-    const response = await actions.getAllJobPosting()
-    setData(response)
-    console.log(response)
-    setLoaded(true)
-  }
+    const response = await actions.getAllJobPosting();
+    setData(response);
+    setFilterData(response);  // Al cargar, se muestra toda la data
+    setLoaded(true);
+  };
 
   useEffect(() => {
-    setLoaded(false)
+    setLoaded(false);
     const waitToFetch = setTimeout(() => {
-      getJobPosting()
-    }, 2000)
-    return () => clearTimeout(waitToFetch)
-  }, [])
-
-
-  
+      getJobPosting();
+    }, 2000);
+    return () => clearTimeout(waitToFetch);
+  }, []);
 
   return (
     <div className="container-fluid mt-5 py-3">
@@ -186,28 +200,23 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Display filtered job postings */}
-      <div className="container-info-selected">
-        {filterData.length > 0
-          ? filterData.map((item) => (
-              <div className="info-selected" key={item.id}>
-                <JobCards data={filterData} />
-              </div>
-            ))
-          : null}
-      </div>
-
-
       <div className='container-fluid d-flex justify-content-center'>
         <div className='container-fluid'>
-          {loaded ? (<JobCards data={data} />) : (<h1>Loading...</h1>)}
+          {/* Si hay datos filtrados, mostrar los datos filtrados. Si no hay filtros, mostrar todos los trabajos */}
+          {loaded ? (
+            filterData.length > 0 ? (
+              <JobCards data={filterData} />
+            ) : (
+              <JobCards data={data} />
+            )
+          ) : (
+            <h1>Loading...</h1>
+          )}
         </div>
       </div>
 
     </div>
-
-
-  )
+  );
 }
 
-export default Home
+export default Home;
