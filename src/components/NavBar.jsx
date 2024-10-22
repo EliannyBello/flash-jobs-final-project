@@ -10,87 +10,11 @@ import '../styles/NavBar.css'
 const NavBar = () => {
     const { actions, darkMode, logged } = useContext(Context)
     const [collapsed, setCollapsed] = useState()
-    const [input, setInput] = useState("")
-    const [searchResults, setSearchResults] = useState([])
 
-    useEffect(() => {
-        if (input) {
-            fetchData(input);
-        }
-    }, [input]);
-
-    const fetchData = async (value) => {
-        try {
-            const jobPostings = await actions.getAllJobPosting();
-            // Filter job postings based on search input, change tittle to other?
-            const filteredResults = jobPostings.filter(job =>
-                job.title.toLowerCase().includes(value.toLowerCase())
-            );
-            setSearchResults(filteredResults); // Update state with filtered results
-        } catch (error) {
-            console.log("Error fetching job postings:", error);
-        }
-    }
-    const handleChange = (e) => {
-        setInput(e.target.value)
-
-    }
-
-
-
-
-    const SearchForm = () => (
-        <form className="d-flex mx-3" role="search" >
-            <div className="input-group">
-                <input type="text" className="form-control input-search"
-                    placeholder=" Type to search..."
-                    aria-label="Recipient's username"
-                    aria-describedby="button-addon2"
-                    onChange={(e) => handleChange(e.target.value)}
-                />
-
-                <button className="btn btn-search" type="button" id="btn-search">
-                    <FaSearch className="search-icon" />
-                </button>
-            </div>
-
-        </form>
-    )
-
-    const renderSearchResults = () => (
-        <div className="search-results">
-            {searchResults.length > 0 ? (
-                searchResults.map((job, index) => (
-                    <div key={index}>
-                        <Link to={`/jobs/${job.id}`}>{job.title}</Link>
-                    </div>
-                ))
-            ) : (
-                <p>No results found</p>
-            )}
-        </div>
-    )
-
-    const DropdownList = () => (
-        <div>
-            <a className="nav-link dropdown-toggle nb-item" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-            </a>
-            <ul className="dropdown-menu nb-dropdown-list mt-3">
-                <li><Link className="dropdown-item" href="#">Action</Link></li>
-                <li><Link className="dropdown-item" href="#">Another action</Link></li>
-                <li><hr className="dropdown-divider" /></li>
-                <li><Link className="dropdown-item" href="#">Something else here</Link></li>
-            </ul>
-        </div>
-    )
 
     //please no delete, used to save temporal changes and testing
     const Testing = () => (
         <div className="btn-group dropend">
-            <button type="button" className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                <FaSearch className="search-icon" />
-            </button>
             <ul className="dropdown-menu">
                 <li><form action="search">
                     <input className="form-control" type="text" />
@@ -114,13 +38,9 @@ const NavBar = () => {
             <div className="UserDropDown collapse navbar-collapse justify-content-end me-3" id="nabvarGeneralOptions">
                 <ul className="navbar-nav mb-2 mb-lg-0 align-items-start align-items-md-center">
                     <li className="nav-item">
-                        <Link to='/jobform' className="btn nb-item" >Create Post</Link>
+                        <Link to='/jobform' className="btn nb-item me-5" >Create Post</Link>
                     </li>
                 </ul>
-                {!collapsed && <SearchForm />}
-
-                {!collapsed && renderSearchResults()}
-
                 <div className="userDropDown d-flex align-items-center">
                     {!collapsed && <UserDropDown collapsed={collapsed} />}
                     <Link className="navbar-brand nb-item mx-5" to='/Help' >
@@ -144,7 +64,6 @@ const NavBar = () => {
                 <FaBars className="navbar-toggler-icon" />
             </button>
             <div className="collapse navbar-collapse justify-content-end me-3" id="nabvarGeneralOptions">
-                {!collapsed && <SearchForm />}
                 <div className="d-flex align-items-center">
                     {!collapsed && <UserDropDown collapsed={collapsed} />}
                     <Link className="navbar-brand nb-item mx-5" to='/Help' >
