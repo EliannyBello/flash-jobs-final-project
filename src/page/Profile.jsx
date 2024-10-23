@@ -13,6 +13,8 @@ const Profile = () => {
   const [data, setData] = useState([])
   const userId = JSON.parse(sessionStorage.user)
 
+  const [applications, setApplications] = useState([])
+
   const [loaded, setLoaded] = useState(false)
 
 
@@ -23,9 +25,17 @@ const Profile = () => {
     setLoaded(true)
   }
 
+  //funcion para traer las applications del user
+  const fetchApplications = async () => {
+    const apps = await actions.getUserApplications(userId.id, sessionStorage.access_token)
+    setApplications(apps || []) //asegurar que empieze en array vacio o manda error
+      
+  }
+
   useEffect(() => {
     const waitToFetch = setTimeout(() => {
       cardsJob()
+      fetchApplications()
     }, 2000)
     return () => clearTimeout(waitToFetch)
 
@@ -111,8 +121,6 @@ const Profile = () => {
               aria-controls="multiCollapseExample1"
             > Your offers</button>
 
-
-
             <div className="collapse multi-collapse" id="multiCollapseExample1">
               <div className="">
                 <JobCards data={data} />
@@ -133,7 +141,21 @@ const Profile = () => {
             </button>
             <div className="collapse multi-collapse" id="multiCollapseExample2">
               <div className="">
-
+              {applications.length > 0 ? (
+                    applications.map((app, index) => (
+                      <div key={index} className="card application-card p-3">
+                        {/* Display each application */}
+                        <h5 className='text-center'> Title: {app.job_posting.title}</h5>
+                        <p>Job status: {app.job_posting.status}</p>
+                        <p>Response: {app.status}</p>
+                        
+                        
+                        
+                      </div>
+                    ))
+                  ) : (
+                    <p>No applications found.</p>
+                  )}
               </div>
             </div>
           </div>

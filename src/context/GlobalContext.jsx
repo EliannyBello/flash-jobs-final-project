@@ -275,7 +275,25 @@ export const AppContext = ({ children }) => {
             } catch (error) {
                 console.log(error.message)
             }
-        }
+        },
+        getUserApplications: async (id, token) => {
+            const { apiUrl } = store;
+            try {
+              const response = await fetch(`${apiUrl}/api/applications/user/${id}`, {
+                method: 'GET',
+                headers: {
+                  'Authorization': `Bearer ${token}`,
+                  'Content-Type': 'application/json',
+                },
+              });
+              const data = await response.json();
+              return data.applications;
+            } catch (error) {
+              console.log(error.message);
+              return false;
+            }
+          },
+
 
 
     }
