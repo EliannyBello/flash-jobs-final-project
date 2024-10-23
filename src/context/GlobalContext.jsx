@@ -260,6 +260,21 @@ export const AppContext = ({ children }) => {
             } catch (error) {
                 console.log(error.message)
             }
+        },
+        rejectApplicant: async (id, token) => {
+            const { apiUrl } = store
+            try {
+                const response = await fetch(`${apiUrl}/api/applications/reject/${id}`,{
+                    method: 'PATCH',
+                    headers: {
+                        'Authorization' : `Bearer ${token}`
+                    }
+                })
+                const datos = await response.json();
+                return datos;
+            } catch (error) {
+                console.log(error.message)
+            }
         }
 
 
