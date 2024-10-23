@@ -28,18 +28,18 @@ const PublicProfile = () => {
 
   return (
     <>
-      <div className="container mt-5 py-3">
+      <div className="container container-public mt-5 py-3">
         {!loaded ? (
           <div><h1>Loading...</h1></div>
         ) : (
-          <div className="row">
-            <div className="col-md-5">
-              <h2 className="mt-5 ms-5">{user.username}</h2>
-              <div className="mx-auto my-1 p-2">
+          <div className="row row-public">
+            <div className="col-md-5 user-datos">
+              <h2 className="mt-5 ms-3">{user.username}</h2>
+              <div className="mx-auto my-1 p-2 img-public">
                 <img src={user.profile?.avatar || imgSrc} alt="Profile Avatar" className='img-fluid w-50 my-3 profile-avatar rounded-circle' />
               </div>
             </div>
-            <div className='col-md-5 mt-5 py-5'>
+            <div className='col-md-5 mt-5 py-5 biografia-public'>
               <div className="d-flex justify-content-start mb-3">
                 <FaEnvelope className='fs-4 mx-4' />
                 <h5>{user.email}</h5>
@@ -78,7 +78,7 @@ const PublicProfile = () => {
                         src={user.profile?.resume}
                         type="application/pdf"
                         width="600"
-                        height="800"
+                        height="890"
                       />
                     </div>
                   </div>

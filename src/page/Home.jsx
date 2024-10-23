@@ -207,7 +207,7 @@ const Home = () => {
       filterData.length > 0 ? (
         <JobCards data={filterData} />
       ) : (
-        data.length > 0 ? (
+        filterData.length > 0 ? (
           <JobCards data={data} />
         ) : (
           <h2>No job postings found.</h2> // Si no hay trabajos
