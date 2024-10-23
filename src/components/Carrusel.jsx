@@ -11,7 +11,7 @@ const Carrusel = () => {
             className="carousel slide m-0"
             data-bs-ride="carousel"
         >
-            <div className="carousel-inner m-0">
+            <div className="carousel-inner m-0 p-0">
                 <div className="carousel-item active">
                     <img src={empleo1} className="img-carrusel d-block w-100" alt="..." />
                 </div>

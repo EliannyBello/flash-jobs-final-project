@@ -36,75 +36,107 @@ const JobForm = () => {
     }, [])
 
     return (
-        <div className="container-fluid pt-3 mt-5">
-            <div className="container container-jobform m-auto justify-content-center pt-3">
-                <h3>Post Job</h3>
+        <div className="container-fluid  pt-3 mt-5 mb-5">
+            <div className="container container-jobform m-auto justify-content-center pt-3 mt-5">
+                <h2>Post Job</h2>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="row row-jobform my-3">
+                 
+                    <div className="row">
+                        <div className="col-md-12 form-group form-group-jobform">
+                            <h6 htmlFor="postTitle">Title</h6>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="title"
+                                name="title"
+                                placeholder="Title"
+                                {...register('title', { required: 'Title is required!' })}
+                            />
+                            {errors.title?.type === "required" && (
+                                <p className="text-danger p-1 m-1" role="alert">{errors.title.message}</p>
+                            )}
+                        </div>
 
-                    <label htmlFor="rank">Rank</label>
-                    <div className="col-mb-6">
-                        <select name="rank" id="rank" className="form-control" {...register('rank', { required: 'Senority is required!' })}>
-                            <option value="1">Junior</option>
-                            <option value="2">Semi Senior</option>
-                            <option value="3">Senior</option>
-                        </select>
-                    </div>
-                    <div className="form-group form-group-jobform">
-                        <label htmlFor="postTitle">Title</label>
-                        <input type="text" className="form-control" id="title" name="title" placeholder="Title" {...register('title', { required: 'Title is required!' })}
-                        /> {errors.title?.type === "required" && (
-                            <p className="text-danger p-1 m-1" role="alert">{errors.title.message}</p>
-                        )}
-                    </div>
-
-                    <div className="form-group form-group-jobform">
-                        <label htmlFor="postDescription">Description</label>
-                        <textarea
-                            className="form-control"
-                            id="postDescription"
-                            name="description"
-                            placeholder="Enter job description"
-                            {...register('description', { required: 'Description is required!' })}
-                        ></textarea>
-                        {errors.description?.type === "required" && (
-                            <p className="text-danger p-1 m-1" role="alert">{errors.description.message}</p>
-                        )}
-                    </div>
-
-
-                    <div className="col-mb-6">
-                        <label htmlFor="payment">Budget USD</label>
-                        <input type="number" className="form-control" id="payment" {...register('payment', { required: 'Payment is required!' })}
-                        />
-                        {errors.payment?.type === "required" && (
-                            <p className="text-danger p-1 m-1" role="alert">{errors.payment.message}</p>
-                        )}
+                        <div className="col-md-12 form-group form-group-jobform">
+                            <h6 htmlFor="postDescription">Description</h6>
+                            <textarea
+                                className="form-control"
+                                id="postDescription"
+                                name="description"
+                                placeholder="Enter job description"
+                                {...register('description', { required: 'Description is required!' })}
+                            ></textarea>
+                            {errors.description?.type === "required" && (
+                                <p className="text-danger p-1 m-1" role="alert">{errors.description.message}</p>
+                            )}
+                        </div>
                     </div>
 
-                    <div className="row row-jobform">
-                        <div className="col-mb-6">
-                            <label htmlFor="requiredTime">Required Time</label>
-                            <input ref={daysRef} onKeyUp={e => onChange(e.target.value)} type="number" className="form-control" id="requiredTime" {...register('required_time', { required: 'Required time is required!' })}
+                   
+                    <div className="row">
+                        <div className="col-md-4">
+                            <h6 htmlFor="rank">Rank</h6>
+                            <select
+                                name="rank"
+                                id="rank"
+                                className="form-control"
+                                {...register('rank', { required: 'Seniority is required!' })}
+                            >
+                                <option value="1">Junior</option>
+                                <option value="2">Semi Senior</option>
+                                <option value="3">Senior</option>
+                            </select>
+                        </div>
+
+                        <div className="col-md-4">
+                            <h6 htmlFor="payment">Budget USD</h6>
+                            <input
+                                type="number"
+                                className="form-control"
+                                id="payment"
+                                {...register('payment', { required: 'Payment is required!' })}
+                            />
+                            {errors.payment?.type === "required" && (
+                                <p className="text-danger p-1 m-1" role="alert">{errors.payment.message}</p>
+                            )}
+                        </div>
+
+                        <div className="col-md-4">
+                            <h6 htmlFor="requiredTime">Required Time (days)</h6>
+                            <input
+                                ref={daysRef}
+                                onKeyUp={e => onChange(e.target.value)}
+                                type="number"
+                                className="form-control"
+                                id="requiredTime"
+                                {...register('required_time', { required: 'Required time is required!' })}
                             />
                             {errors.required_time?.type === "required" && (
                                 <p className="text-danger p-1 m-1" role="alert">{errors.required_time.message}</p>
                             )}
                         </div>
+                    </div>
 
-                        <div className="col-mb-6">
-                            <label htmlFor="expirationDate">Expiration Date</label>
-                            <input type="date" className="form-control" min={minDate} id="expirationDate" {...register('expiration_date', { required: 'Expiration date is required!' })}
+               
+                    <div className="row mt-3">
+                        <div className="col-md-6">
+                            <h6 htmlFor="expirationDate">Expiration Date</h6>
+                            <input
+                                type="date"
+                                className="form-control"
+                                min={minDate}
+                                id="expirationDate"
+                                {...register('expiration_date', { required: 'Expiration date is required!' })}
                             />
-                            {/* {errors.expiration_date?.type === "required" && (
-                                <p className="text-danger p-1 m-1" role="alert">{errors.expiration_date.message}</p>
-                            )} */}
+                         
                         </div>
                     </div>
 
-                    <div className="row row-jobform">
-                        <div className="col-mb-6">
-                            <label htmlFor="postLanguages">Post Languages</label>
+                 
+                    <div className="row mt-4">
+                        <div className="col-md-6">
+                            <h6 htmlFor="postLanguages">Post Languages</h6>
                             <div className="form-control" id="postLanguages">
                                 <div>
                                     <input
@@ -137,8 +169,8 @@ const JobForm = () => {
                             {errors.languages && <p className="text-danger p-1 m-1">{errors.languages.message}</p>}
                         </div>
 
-                        <div className="col-mb-6">
-                            <label htmlFor="techKnowledges">Tech Knowledges</label>
+                        <div className="col-md-6">
+                            <h6 htmlFor="techKnowledges">Tech Knowledges</h6>
                             <div className="form-control tech-knowledges-list" id="techKnowledges">
                                 <div>
                                     <input
@@ -180,7 +212,7 @@ const JobForm = () => {
                                     <input
                                         type="checkbox"
                                         id="techJavaScript"
-                                        value="Javascript"
+                                        value="JavaScript"
                                         {...register('technologies', { required: 'Tech Knowledges is required!' })}
                                     />
                                     <label htmlFor="techJavaScript">JavaScript</label>
@@ -224,14 +256,13 @@ const JobForm = () => {
                             </div>
                             {errors.technologies && <p className="text-danger p-1 m-1">{errors.technologies.message}</p>}
                         </div>
-
-
                     </div>
 
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary mt-4">Submit</button>
                 </form>
             </div>
         </div>
+
     );
 };
 

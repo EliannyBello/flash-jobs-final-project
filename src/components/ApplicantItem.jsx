@@ -15,6 +15,7 @@ const ApplicantItem = ({ item }) => {
     }
 
     const acceptApplicant = async () => {
+        console.log(item.id)
         Swal.fire({
             title: "Are you sure?",
             text: "This will reject the others applicants automatically",
@@ -22,14 +23,45 @@ const ApplicantItem = ({ item }) => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                });
+            confirmButtonText: "Yes, accept!"
+        }).then(async (result) => {
+            try {
+                if (result.isConfirmed) {
+                    const response = await actions.acceptApplicant(item.id, sessionStorage.access_token)
+                    Swal.fire({
+                        title: `${response.title}!`,
+                        text: response.message,
+                        icon: response.status
+                    });
+                }
+            } catch (error) {
+                console.log(error.message)
+            }
+        });
+    }
+
+    const rejectAppliccant = async () => {
+        console.log(item.id)
+        Swal.fire({
+            title: "Are you sure?",
+            text: "This will reject the selected applicant",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, accept!"
+        }).then(async (result) => {
+            try {
+                if (result.isConfirmed) {
+                    const response = await actions.rejectApplicant(item.id, sessionStorage.access_token)
+                    Swal.fire({
+                        title: `${response.title}!`,
+                        text: response.message,
+                        icon: response.status
+                    });
+                }
+            } catch (error) {
+                console.log(error.message)
             }
         });
     }
@@ -45,8 +77,8 @@ const ApplicantItem = ({ item }) => {
                 {user.username}
             </Link>
             <div className="d-flex">
-                <FaCheckSquare className="btn-hover check fs-4" />
-                <FaWindowClose className="btn-hover reject ms-2 fs-4" />
+                <FaCheckSquare onClick={acceptApplicant} className="btn-hover check fs-4" />
+                <FaWindowClose onClick={rejectAppliccant} className="btn-hover reject ms-2 fs-4" />
             </div>
         </li>
     )

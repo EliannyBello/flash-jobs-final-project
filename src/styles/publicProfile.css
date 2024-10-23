@@ -2,3 +2,66 @@ img.profile-avatar {
     aspect-ratio: 1/1 !important;
     object-fit: cover;
 }
+
+.container-public {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-top: 50px;
+  }
+  
+  .user-datos {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .user-datos h2 {
+    color: #333;
+    font-weight: bold;
+  }
+  
+ 
+  .img-public {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .profile-avatar {
+    border: 4px solid #ddd;
+    transition: all 0.3s ease;
+  }
+  
+  .profile-avatar:hover {
+    transform: scale(1.1);
+    border-color: #007bff;
+  }
+  
+  .biografia-public embed {
+    margin-top: 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+  }
+  .biografia-public .fs-4 {
+    color: #007bff;
+    margin-right: 15px;
+  }
+  
+
+  .biografia-public a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .biografia-public a:hover {
+    text-decoration: underline;
+  }
+  
+
+  .biografia-public embed {
+    margin-top: 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+  }
+  
+ 

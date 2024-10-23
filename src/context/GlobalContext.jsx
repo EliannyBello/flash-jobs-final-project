@@ -242,11 +242,11 @@ export const AppContext = ({ children }) => {
                 const datos = await response.json();
                 console.log(datos);
                 return datos
-
             } catch (error) {
                 console.log(error.message);
             }
         },
+<<<<<<< HEAD
         getUserApplications: async (id, token) => {
             const { apiUrl } = store
             try {
@@ -264,6 +264,38 @@ export const AppContext = ({ children }) => {
                 return false
             }
         },
+=======
+        acceptApplicant: async (id, token) => {
+            const { apiUrl } = store
+            try {
+                const response = await fetch(`${apiUrl}/api/applications/accept/${id}`,{
+                    method: 'PATCH',
+                    headers: {
+                        'Authorization' : `Bearer ${token}`
+                    }
+                })
+                const datos = await response.json();
+                return datos;
+            } catch (error) {
+                console.log(error.message)
+            }
+        },
+        rejectApplicant: async (id, token) => {
+            const { apiUrl } = store
+            try {
+                const response = await fetch(`${apiUrl}/api/applications/reject/${id}`,{
+                    method: 'PATCH',
+                    headers: {
+                        'Authorization' : `Bearer ${token}`
+                    }
+                })
+                const datos = await response.json();
+                return datos;
+            } catch (error) {
+                console.log(error.message)
+            }
+        }
+>>>>>>> ec02549fd3006a709d23b84e51bea68d42a21776
 
 
     }

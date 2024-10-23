@@ -204,6 +204,7 @@ const Home = () => {
         <div className='container-fluid'>
           {/* Si hay datos filtrados, mostrar los datos filtrados. Si no hay filtros, mostrar todos los trabajos */}
           {loaded ? (
+<<<<<<< HEAD
             filterData.length > 0 ? (
               <JobCards data={filterData} />
             ) : (
@@ -216,6 +217,20 @@ const Home = () => {
           ) : (
             <h1>Loading...</h1>
           )}
+=======
+      filterData.length > 0 ? (
+        <JobCards data={filterData} />
+      ) : (
+        filterData.length > 0 ? (
+          <JobCards data={data} />
+        ) : (
+          <h2>No job postings found.</h2> // Si no hay trabajos
+        )
+      )
+    ) : (
+      <h1>Loading...</h1>
+    )}
+>>>>>>> ec02549fd3006a709d23b84e51bea68d42a21776
         </div>
       </div>
 
