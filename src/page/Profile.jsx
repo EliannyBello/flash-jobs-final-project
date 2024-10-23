@@ -146,8 +146,8 @@ const Profile = () => {
                       <div key={index} className="card application-card p-3">
                         {/* Display each application */}
                         <h5 className='text-center'> Title: {app.job_posting.title}</h5>
-                        <p>Status: {app.job_posting.status}</p>
-                        <p>Status: {app.status}</p>
+                        <p>Job status: {app.job_posting.status}</p>
+                        <p>Response: {app.status}</p>
                         
                         
                         
