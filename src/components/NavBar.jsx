@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../context/GlobalContext";
 import UserDropDown from "./navbar/UserDropdown";
-
+import logo from '../page/img/flashjobs.png' 
 import Notifications from "./navbar/Notifications";
 import { FaSearch, FaRegQuestionCircle, FaBars } from "react-icons/fa";
 import '../styles/NavBar.css'
@@ -27,7 +27,7 @@ const NavBar = () => {
         <div className="container-fluid d-flex justify-content-between">
 
             <div className="d-flex justify-content-between">
-                <Link className="navbar-brand nb-item mx-5" to='/' >Flash Jobs</Link>
+                <Link className="navbar-brand nb-item mx-5" to='/' ><img src={logo} alt="" /></Link>
                 {collapsed && <Testing />}
             </div>
             {collapsed && <UserDropDown collapsed={collapsed} />}

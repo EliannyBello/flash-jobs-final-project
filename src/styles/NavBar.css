@@ -120,3 +120,8 @@ img.user-avatar{
   
 }
 
+.navbar-brand img {
+    width: 90px;
+    height: 55px;
+    mask-image: radial-gradient(rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
+}

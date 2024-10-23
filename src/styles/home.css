@@ -2,6 +2,7 @@
     width: 100%;
     height: 50%;
     position: absolute;
+  
 
     
   }
@@ -11,6 +12,7 @@
     width: 100%;
     max-width: 100%; 
     object-fit: cover;
+   
   
 
   }
@@ -19,6 +21,10 @@
     height: 60%;
     width: 100%;
     object-fit: cover;
+    margin-top: 15px;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
   
 
   }
@@ -28,6 +34,8 @@
     height: 500px;
     object-fit: cover;
     object-position: top;
+    -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
+    mask-image: radial-gradient(circle, rgba(0, 0, -1, 1) 70%, rgba(0, 0, 0, 0) 100%);
 
   }
   
