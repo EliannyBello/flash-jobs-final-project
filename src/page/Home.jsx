@@ -118,7 +118,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="container-fluid mt-5 py-3">
+    <div className="container-fluid mt-5 py-3 px-0">
       <div className="text-overlay">
         <h1>Welcome to Flash Jobs!</h1>
         <h3>Work from anywhere in the world with only remote offers</h3>
