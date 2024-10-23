@@ -4,18 +4,16 @@ import { FaWindowClose, FaCheckSquare } from "react-icons/fa";
 import { Link } from "react-router-dom";  // Importamos Link de react-router-dom
 import Swal from "sweetalert2";
 
-const ApplicantItem = ({ item }) => {
+const ApplicantItem = ({ item, style }) => {
     const [user, setUser] = useState({})
     const { actions } = useContext(Context)
 
     const getInfo = async () => {
         const user = await actions.getUserByid(item.user, sessionStorage.access_token)
-        console.log(user)
         setUser(user)
     }
 
     const acceptApplicant = async () => {
-        console.log(item.id)
         Swal.fire({
             title: "Are you sure?",
             text: "This will reject the others applicants automatically",
@@ -32,6 +30,8 @@ const ApplicantItem = ({ item }) => {
                         title: `${response.title}!`,
                         text: response.message,
                         icon: response.status
+                    }).then(() => {
+                        window.location.reload()
                     });
                 }
             } catch (error) {
@@ -58,6 +58,8 @@ const ApplicantItem = ({ item }) => {
                         title: `${response.title}!`,
                         text: response.message,
                         icon: response.status
+                    }).then(() => {
+                        window.location.reload()
                     });
                 }
             } catch (error) {
@@ -71,9 +73,8 @@ const ApplicantItem = ({ item }) => {
     }, [])
 
     return (
-        <li className="list-group-item align-items-center d-flex text-bg-dark justify-content-between">
-
-            <Link to={`/profile/${user.id}`} className="m-0 text-light text-decoration-none">
+        <li className={`list-group-item align-items-center d-flex justify-content-between bg-${style}-subtle`}>
+            <Link to={`/profile/${user.id}`} className="m-0 text-dark text-decoration-none">
                 {user.username}
             </Link>
             <div className="d-flex">
