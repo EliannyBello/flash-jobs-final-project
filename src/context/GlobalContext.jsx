@@ -83,7 +83,7 @@ export const AppContext = ({ children }) => {
                 })
                 const datos = await response.json()
                 console.log(datos)
-
+                return datos
             } catch (error) {
                 console.log(error.message)
             }
@@ -191,7 +191,6 @@ export const AppContext = ({ children }) => {
                 const datos = await response.json()
                 console.log(datos)
                 return datos
-
             } catch (error) {
                 console.log(error.message)
             }
@@ -249,10 +248,10 @@ export const AppContext = ({ children }) => {
         acceptApplicant: async (id, token) => {
             const { apiUrl } = store
             try {
-                const response = await fetch(`${apiUrl}/api/applications/accept/${id}`,{
+                const response = await fetch(`${apiUrl}/api/applications/accept/${id}`, {
                     method: 'PATCH',
                     headers: {
-                        'Authorization' : `Bearer ${token}`
+                        'Authorization': `Bearer ${token}`
                     }
                 })
                 const datos = await response.json();
@@ -264,10 +263,10 @@ export const AppContext = ({ children }) => {
         rejectApplicant: async (id, token) => {
             const { apiUrl } = store
             try {
-                const response = await fetch(`${apiUrl}/api/applications/reject/${id}`,{
+                const response = await fetch(`${apiUrl}/api/applications/reject/${id}`, {
                     method: 'PATCH',
                     headers: {
-                        'Authorization' : `Bearer ${token}`
+                        'Authorization': `Bearer ${token}`
                     }
                 })
                 const datos = await response.json();
@@ -279,20 +278,20 @@ export const AppContext = ({ children }) => {
         getUserApplications: async (id, token) => {
             const { apiUrl } = store;
             try {
-              const response = await fetch(`${apiUrl}/api/applications/user/${id}`, {
-                method: 'GET',
-                headers: {
-                  'Authorization': `Bearer ${token}`,
-                  'Content-Type': 'application/json',
-                },
-              });
-              const data = await response.json();
-              return data.applications;
+                const response = await fetch(`${apiUrl}/api/applications/user/${id}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    },
+                });
+                const data = await response.json();
+                return data.applications;
             } catch (error) {
-              console.log(error.message);
-              return false;
+                console.log(error.message);
+                return false;
             }
-          },
+        },
 
 
 

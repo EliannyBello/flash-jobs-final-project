@@ -1,11 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../context/GlobalContext";
-import { FaRegStar, FaStar } from "react-icons/fa";
+import { FaRegStar, FaStar, FaTrash, FaPencilAlt } from "react-icons/fa";
 import imgPrf from '../page/img/avatarDefault.png'
 import Swal from 'sweetalert2'
-
-
 
 const Post = () => {
     const { actions, logged } = useContext(Context);
@@ -13,7 +11,6 @@ const Post = () => {
     const [post, setPost] = useState({})
     const [user, setUser] = useState({})
     const params = useParams();
-
     const [isCreator, setIsCreator] = useState(false);
 
 
@@ -103,7 +100,14 @@ const Post = () => {
         }
     };
 
-
+    const EditsIcon = ({ id }) => (
+        <div className="ms-auto">
+            <Link to={`/post/${id}/edit`}>
+                <FaPencilAlt className="me-3" />
+            </Link>
+            <FaTrash />
+        </div>
+    )
 
     useEffect(() => {
         getPostInfo()
@@ -131,7 +135,10 @@ const Post = () => {
             <div className="card" >
                 
                 <div className="card-header">
-                    <h5 className="card-title">{post.title}</h5>
+                    <div className="d-flex justify-content-between align-items-center">
+                        <h5 className="card-title">{post.title}</h5>
+                        {isCreator && <EditsIcon id={post.id} />}
+                    </div>
                     <h6 className="card-subtitle mb-2 text-body-secondary">{dateConverter(post.date)}</h6>
                     <h6 className="card-subtitle mb-2 text-body-secondary"><b>{displayApplications(post.applications)}</b></h6>
                 </div>

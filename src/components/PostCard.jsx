@@ -5,7 +5,6 @@ import { FaTrash, FaPencilAlt } from "react-icons/fa";
 import PostIcons from "./PostIcons";
 import { useForm } from "react-hook-form";
 
-
 const PostCard = ({ datos, data }) => {
     const { actions } = useContext(Context)
     const [collapsed, setCollapsed] = useState()
@@ -35,10 +34,11 @@ const PostCard = ({ datos, data }) => {
         return (
             <div className="container pe-4">
                 <form onChange={handleSubmit(onSubmit)} className="row row-jobform my-3">
-                    <select name="status" id="status" className="form-control" {...register('status_id', { required: 'Status is required!' })}>
-                        <option value="1">Public</option>
-                        <option value="2">Completed</option>
-                        <option value="3">In Process</option>
+                    <select name="status" defaultValue={datos.status_id} id="status"className="form-control" {...register('status_id', { required: 'Status is required!' })}>
+                        <option value="1" >Public</option>
+                        <option value="2" >Completed</option>
+                        <option value="3" >In Process</option>
+                        <option value="7" >Private</option>
                     </select>
                 </form>
             </div>

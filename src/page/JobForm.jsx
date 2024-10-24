@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { Context } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useRef, useState } from 'react';
+import Swal from "sweetalert2";
 import '../styles/JobForm.css';
 
 const JobForm = () => {
@@ -24,10 +25,16 @@ const JobForm = () => {
     }
 
     const onSubmit = async (data) => {
-        console.log(data);
-        const response = actions.jobposting(data);
-        if (response) {
-            navigate('/');
+        const response = await actions.jobposting(data);
+        console.log(response)
+        if (response?.status == 'success') {
+            Swal.fire({
+                title: response.title,
+                text: response.message,
+                icon: response.status
+            }).then(() => {
+                navigate('/');
+            });
         }
     };
 
@@ -75,7 +82,7 @@ const JobForm = () => {
 
 
                     <div className="row">
-                        <div className="col-md-4">
+                        <div className="col-md-6 col-lg-3">
                             <h6 htmlFor="rank">Rank</h6>
                             <select
                                 name="rank"
@@ -89,7 +96,7 @@ const JobForm = () => {
                             </select>
                         </div>
 
-                        <div className="col-md-4">
+                        <div className="col-md-6 col-lg-3">
                             <h6 htmlFor="payment">Budget USD</h6>
                             <input
                                 type="number"
@@ -102,7 +109,7 @@ const JobForm = () => {
                             )}
                         </div>
 
-                        <div className="col-md-4">
+                        <div className="col-md-6 col-lg-3">
                             <h6 htmlFor="requiredTime">Required Time (days)</h6>
                             <input
                                 ref={daysRef}
@@ -116,11 +123,7 @@ const JobForm = () => {
                                 <p className="text-danger p-1 m-1" role="alert">{errors.required_time.message}</p>
                             )}
                         </div>
-                    </div>
-
-
-                    <div className="row mt-3">
-                        <div className="col-md-6">
+                        <div className="col-md-6 col-lg-3">
                             <h6 htmlFor="expirationDate">Expiration Date</h6>
                             <input
                                 type="date"
@@ -132,6 +135,8 @@ const JobForm = () => {
 
                         </div>
                     </div>
+
+
 
 
                     <div className="row mt-4">
@@ -262,7 +267,6 @@ const JobForm = () => {
                 </form>
             </div>
         </div>
-
     );
 };
 
