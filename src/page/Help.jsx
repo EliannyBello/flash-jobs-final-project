@@ -10,7 +10,7 @@ const Help = () => {
                 please send us an email to:</h3> 
                 </div>
                 <ul className="list-group list-group-flush text-center">
-                    <li className="list-group-item fs-3"> admin@flasjobs.cl</li>
+                    <li className="list-group-item fs-3"> admin@flashjobs.cl</li>
                     
                    
                 </ul>
