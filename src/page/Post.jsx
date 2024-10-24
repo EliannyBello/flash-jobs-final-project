@@ -16,6 +16,7 @@ const Post = () => {
 
     const [isCreator, setIsCreator] = useState(false);
 
+
     const defaultUser = {
         rating: 4
     }
@@ -110,7 +111,7 @@ const Post = () => {
 
     const UserCard = () => (
         <div className="col-12 col-lg-4 col-xxl-3">
-            <div className="card">
+            <div className="card">         
                 <div className="d-flex justify-content-center">
                     <img src={user?.profile?.avatar || imgPrf} className="profile-avatar rounded-circle" alt="user avatar" />
                 </div>
@@ -128,6 +129,7 @@ const Post = () => {
     const PostCard = () => (
         <div className="col-12 col-lg-8">
             <div className="card" >
+                
                 <div className="card-header">
                     <h5 className="card-title">{post.title}</h5>
                     <h6 className="card-subtitle mb-2 text-body-secondary">{dateConverter(post.date)}</h6>
