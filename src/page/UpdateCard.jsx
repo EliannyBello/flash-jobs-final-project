@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../context/GlobalContext";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UpdateCard = () => {
     const navigate = useNavigate()
@@ -54,11 +55,16 @@ const UpdateCard = () => {
     }, [params, actions, store.access_token, setValue]);
 
     const onSubmit = async (data) => {
-        
         console.log(data);
-        const response = actions.updateJobCards(params.id, data, sessionStorage.access_token);
-        if (response) {
-            navigate('/profile');
+        const response = await actions.updateJobCards(params.id, data, sessionStorage.access_token);
+        if (response?.status == 'success') {
+            Swal.fire({
+                title: response.title,
+                text: response.message,
+                icon: response.status
+            }).then(() => {
+                navigate('/');
+            });
         }
     };
 

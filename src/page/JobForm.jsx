@@ -150,7 +150,7 @@ const JobForm = () => {
                                         value="English"
                                         {...register('languages', { required: 'Languages is required!' })}
                                     />
-                                    <label htmlFor="languageEnglish">English</label>
+                                    <label className="ms-1" htmlFor="languageEnglish">English</label>
                                 </div>
                                 <div>
                                     <input
@@ -159,7 +159,7 @@ const JobForm = () => {
                                         value="Spanish"
                                         {...register('languages', { required: 'Languages is required!' })}
                                     />
-                                    <label htmlFor="languageSpanish">Spanish</label>
+                                    <label className="ms-1" htmlFor="languageSpanish"> Spanish</label>
                                 </div>
                                 <div>
                                     <input
@@ -168,7 +168,7 @@ const JobForm = () => {
                                         value="Korean"
                                         {...register('languages', { required: 'Languages is required!' })}
                                     />
-                                    <label htmlFor="languageKorean">Korean</label>
+                                    <label className="ms-1" htmlFor="languageKorean"> Korean</label>
                                 </div>
                             </div>
                             {errors.languages && <p className="text-danger p-1 m-1">{errors.languages.message}</p>}
@@ -184,7 +184,7 @@ const JobForm = () => {
                                         value="SQL"
                                         {...register('technologies', { required: 'Tech Knowledges is required!' })}
                                     />
-                                    <label htmlFor="techSQL">SQL</label>
+                                    <label className="ms-1" htmlFor="techSQL">SQL</label>
                                 </div>
                                 <div>
                                     <input
@@ -193,7 +193,7 @@ const JobForm = () => {
                                         value="React"
                                         {...register('technologies', { required: 'Tech Knowledges is required!' })}
                                     />
-                                    <label htmlFor="techReact">React</label>
+                                    <label className="ms-1" htmlFor="techReact">React</label>
                                 </div>
                                 <div>
                                     <input
@@ -202,7 +202,7 @@ const JobForm = () => {
                                         value="Python"
                                         {...register('technologies', { required: 'Tech Knowledges is required!' })}
                                     />
-                                    <label htmlFor="techPython">Python</label>
+                                    <label className="ms-1" htmlFor="techPython">Python</label>
                                 </div>
                                 <div>
                                     <input
@@ -211,7 +211,7 @@ const JobForm = () => {
                                         value="Java"
                                         {...register('technologies', { required: 'Tech Knowledges is required!' })}
                                     />
-                                    <label htmlFor="techJava">Java</label>
+                                    <label className="ms-1" htmlFor="techJava">Java</label>
                                 </div>
                                 <div>
                                     <input
@@ -220,7 +220,7 @@ const JobForm = () => {
                                         value="JavaScript"
                                         {...register('technologies', { required: 'Tech Knowledges is required!' })}
                                     />
-                                    <label htmlFor="techJavaScript">JavaScript</label>
+                                    <label className="ms-1" htmlFor="techJavaScript">JavaScript</label>
                                 </div>
                                 <div>
                                     <input
@@ -229,7 +229,7 @@ const JobForm = () => {
                                         value="CSS"
                                         {...register('technologies', { required: 'Tech Knowledges is required!' })}
                                     />
-                                    <label htmlFor="techCSS">CSS</label>
+                                    <label className="ms-1" htmlFor="techCSS">CSS</label>
                                 </div>
                                 <div>
                                     <input
@@ -238,7 +238,7 @@ const JobForm = () => {
                                         value="GO"
                                         {...register('technologies', { required: 'Tech Knowledges is required!' })}
                                     />
-                                    <label htmlFor="techGo">GO</label>
+                                    <label className="ms-1" htmlFor="techGo">GO</label>
                                 </div>
                                 <div>
                                     <input
@@ -247,7 +247,7 @@ const JobForm = () => {
                                         value="NodeJS"
                                         {...register('technologies', { required: 'Tech Knowledges is required!' })}
                                     />
-                                    <label htmlFor="techNodeJS">NodeJS</label>
+                                    <label className="ms-1" htmlFor="techNodeJS">NodeJS</label>
                                 </div>
                                 <div>
                                     <input
@@ -256,7 +256,7 @@ const JobForm = () => {
                                         value="Bootstrap"
                                         {...register('technologies', { required: 'Tech Knowledges is required!' })}
                                     />
-                                    <label htmlFor="techBootstrap">Bootstrap</label>
+                                    <label className="ms-1" htmlFor="techBootstrap">Bootstrap</label>
                                 </div>
                             </div>
                             {errors.technologies && <p className="text-danger p-1 m-1">{errors.technologies.message}</p>}

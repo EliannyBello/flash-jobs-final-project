@@ -58,7 +58,7 @@ const PostCard = ({ datos, data }) => {
 
     return (
         <div className={(location.pathname == "/") ? "col-12 col-md-6" : "container-fluid"}>
-            <div className={"card p-2 mb-2 " + (!collapsed && "h-100")}>
+            <div className={"card shadow p-2 mb-2 " + (!collapsed && "h-100")}>
                 <div className="d-flex flex-column flex-md-row">
                     <PostIcons list={datos.technologies} len={datos.technologies.length} collapsed={collapsed} />
                     <div className="ms-3 w-100">
