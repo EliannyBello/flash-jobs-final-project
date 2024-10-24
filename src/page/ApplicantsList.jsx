@@ -25,10 +25,10 @@ const ApplicantsList = () => {
 
     const Pending = ({ style }) => (
         <ul className="list-group list-group-flush">
-            {(pending.length > 0) ? (pending.map((item, index) => <ApplicantItem item={item} key={index} style={style} />)
+            {(pending.length > 0) ? (pending.map((item, index) => <ApplicantItem item={item} key={index} style={style} editable={true} />)
             ) : (
                 <li className={`list-group-item align-items-center d-flex justify-content-between bg-${style}-subtle`}>
-                    <p>There is no pending applicants...</p>
+                    <h6>There is no pending applicants...</h6>
                 </li>
             )}
         </ul>
@@ -42,7 +42,12 @@ const ApplicantsList = () => {
 
     const Rejected = ({ style }) => (
         <ul className="list-group list-group-flush">
-            {rejected.map((item, index) => <ApplicantItem item={item} key={index} style={style} />)}
+            {(rejected.length > 0) ? (rejected.map((item, index) => <ApplicantItem item={item} key={index} style={style} />)
+            ) : (
+                <li className={`list-group-item align-items-center d-flex justify-content-between m-0 bg-${style}-subtle`}>
+                    <h6>There is no rejected applicants...</h6>
+                </li>
+            )}
         </ul>
     );
 

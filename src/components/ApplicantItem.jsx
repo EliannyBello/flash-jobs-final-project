@@ -4,7 +4,7 @@ import { FaWindowClose, FaCheckSquare } from "react-icons/fa";
 import { Link } from "react-router-dom";  // Importamos Link de react-router-dom
 import Swal from "sweetalert2";
 
-const ApplicantItem = ({ item, style }) => {
+const ApplicantItem = ({ item, style, editable = false }) => {
     const [user, setUser] = useState({})
     const { actions } = useContext(Context)
 
@@ -31,7 +31,7 @@ const ApplicantItem = ({ item, style }) => {
                         text: response.message,
                         icon: response.status
                     }).then(() => {
-                        window.location.reload()
+                        (response.status == 'success') && window.location.reload();
                     });
                 }
             } catch (error) {
@@ -59,7 +59,7 @@ const ApplicantItem = ({ item, style }) => {
                         text: response.message,
                         icon: response.status
                     }).then(() => {
-                        window.location.reload()
+                        (response.status == 'success') && window.location.reload();
                     });
                 }
             } catch (error) {
@@ -77,10 +77,11 @@ const ApplicantItem = ({ item, style }) => {
             <Link to={`/profile/${user.id}`} className="m-0 text-dark text-decoration-none">
                 {user.username}
             </Link>
-            <div className="d-flex">
+            {editable && (<div className="d-flex">
                 <FaCheckSquare onClick={acceptApplicant} className="btn-hover check fs-4" />
                 <FaWindowClose onClick={rejectAppliccant} className="btn-hover reject ms-2 fs-4" />
             </div>
+            )}
         </li>
     )
 }
