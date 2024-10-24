@@ -17,9 +17,9 @@ const ApplicantsList = () => {
         const response = await actions.getApplications(params.id, sessionStorage.access_token);
         const data = await response;
         data && setApList(data);
-        data && setAccepted(data.filter(item => item.status == 6)[0])
-        data && setPending(data.filter(item => item.status == 4))
-        data && setRejected(data.filter(item => item.status == 5))
+        data && setAccepted(data.filter(item => item.status_id == 6)[0])
+        data && setPending(data.filter(item => item.status_id == 4))
+        data && setRejected(data.filter(item => item.status_id == 5))
         console.log(data);
     }
 
