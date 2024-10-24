@@ -16,7 +16,7 @@ const JobForm = () => {
     } = useForm();
 
 
-    const onChange = (num) => {
+    const onChange = (num = 3) => {
         const today = new Date();
         const toAdd = (typeof num === 'string') ? parseInt(num, 10) : num;
         const newDate = new Date(today.setDate(today.getDate() + ((toAdd <= 0 || isNaN(toAdd)) ? 1 : toAdd)));
@@ -32,7 +32,7 @@ const JobForm = () => {
     };
 
     useEffect(() => {
-        onChange(3)
+        onChange()
     }, [])
 
     return (
@@ -41,7 +41,7 @@ const JobForm = () => {
                 <h2>Post Job</h2>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="row row-jobform my-3">
-                 
+
                     <div className="row">
                         <div className="col-md-12 form-group form-group-jobform">
                             <h6 htmlFor="postTitle">Title</h6>
@@ -73,7 +73,7 @@ const JobForm = () => {
                         </div>
                     </div>
 
-                   
+
                     <div className="row">
                         <div className="col-md-4">
                             <h6 htmlFor="rank">Rank</h6>
@@ -118,7 +118,7 @@ const JobForm = () => {
                         </div>
                     </div>
 
-               
+
                     <div className="row mt-3">
                         <div className="col-md-6">
                             <h6 htmlFor="expirationDate">Expiration Date</h6>
@@ -129,11 +129,11 @@ const JobForm = () => {
                                 id="expirationDate"
                                 {...register('expiration_date', { required: 'Expiration date is required!' })}
                             />
-                         
+
                         </div>
                     </div>
 
-                 
+
                     <div className="row mt-4">
                         <div className="col-md-6">
                             <h6 htmlFor="postLanguages">Post Languages</h6>

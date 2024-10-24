@@ -30,16 +30,18 @@ const PostCard = ({ datos, data }) => {
     const onSubmit = async (data) => {
         const response = actions.updateJobCards(datos.id, data, sessionStorage.access_token);
     };
-    
+
     const Getstatus = () => {
         return (
-            <form onChange={handleSubmit(onSubmit)} className="row row-jobform my-3">
-                <select name="status" id="status" className="form-control" {...register('status_id', { required: 'Status is required!' })}>
-                    <option value="1">Public</option>
-                    <option value="2">Completed</option>
-                    <option value="3">In Process</option>
-                </select>
-            </form>
+            <div className="container pe-4">
+                <form onChange={handleSubmit(onSubmit)} className="row row-jobform my-3">
+                    <select name="status" id="status" className="form-control" {...register('status_id', { required: 'Status is required!' })}>
+                        <option value="1">Public</option>
+                        <option value="2">Completed</option>
+                        <option value="3">In Process</option>
+                    </select>
+                </form>
+            </div>
         )
     }
 
@@ -56,11 +58,11 @@ const PostCard = ({ datos, data }) => {
 
     return (
         <div className={(location.pathname == "/") ? "col-12 col-md-6" : "container-fluid"}>
-            <div className={"card p-2 mb-2 "+(!collapsed && "h-100")}>
+            <div className={"card p-2 mb-2 " + (!collapsed && "h-100")}>
                 <div className="d-flex flex-column flex-md-row">
                     <PostIcons list={datos.technologies} len={datos.technologies.length} collapsed={collapsed} />
                     <div className="ms-3 w-100">
-                        {location.pathname == "/profile" && <Getstatus  id={datos.id}/>}
+                        {location.pathname == "/profile" && <Getstatus id={datos.id} />}
                         <Link className='link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover' to={`/post/${datos.id}`}>{datos.title}</Link>
                         <div className="">
                             {datos.rank}

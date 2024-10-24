@@ -6,10 +6,18 @@ import { useNavigate, useParams } from "react-router-dom";
 const UpdateCard = () => {
     const navigate = useNavigate()
     const params = useParams()
+    const [minDate, setMinDate] = useState('')
     const { store, actions } = useContext(Context);
 
 
     const [jobPost, setJobPost] = useState([]);
+
+    const onChange = (num = 3) => {
+        const today = new Date();
+        const toAdd = (typeof num === 'string') ? parseInt(num, 10) : num;
+        const newDate = new Date(today.setDate(today.getDate() + ((toAdd <= 0 || isNaN(toAdd)) ? 1 : toAdd)));
+        setMinDate(newDate.toISOString().substring(0, 10));
+    }
 
     const {
         register,
@@ -20,7 +28,7 @@ const UpdateCard = () => {
 
     const dateConverter = (stringDate) => {
         const date = new Date(stringDate);
-        const newDate = date.toISOString().substring(0,10)
+        const newDate = date.toISOString().substring(0, 10)
         return newDate;
     }
 
@@ -37,9 +45,8 @@ const UpdateCard = () => {
     };
 
     useEffect(() => {
-       
-            fetchJobPost()
-        
+        fetchJobPost()
+        onChange()
     }, [params, actions, store.access_token, setValue]);
 
     const onSubmit = async (data) => {
@@ -54,87 +61,87 @@ const UpdateCard = () => {
 
     return (
         <div className="container-fluid pt-3 mt-5">
-           
-                <div className="container container-jobform m-auto justify-content-center pt-3">
-                    <h3>Edit Post Job</h3>
 
-                    {jobPost ? (
-                        <form onSubmit={handleSubmit(onSubmit)} className="row row-jobform my-3">
-                            <div className="form-group form-group-jobform">
-                                <label htmlFor="postTitle">Title</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="title"
-                                    name="title"
-                                    placeholder="Title"
-                                    {...register('title', { required: 'Title is required!' })}
+            <div className="container container-jobform m-auto justify-content-center pt-3">
+                <h3>Edit Post Job</h3>
+
+                {jobPost ? (
+                    <form onSubmit={handleSubmit(onSubmit)} className="row row-jobform my-3">
+                        <div className="form-group form-group-jobform">
+                            <label htmlFor="postTitle">Title</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="title"
+                                name="title"
+                                placeholder="Title"
+                                {...register('title', { required: 'Title is required!' })}
+                            />
+                            {errors.title && (
+                                <p className="text-danger p-1 m-1" role="alert">
+                                    {errors.title.message}
+                                </p>
+                            )}
+                        </div>
+
+                        <div className="form-group form-group-jobform">
+                            <label htmlFor="postDescription">Description</label>
+                            <textarea
+                                className="form-control"
+                                id="postDescription"
+                                name="description"
+                                placeholder="Enter job description"
+                                {...register('description', { required: 'Description is required!' })}
+                            ></textarea>
+                            {errors.description && (
+                                <p className="text-danger p-1 m-1" role="alert">
+                                    {errors.description.message}
+                                </p>
+                            )}
+                        </div>
+
+                        <div className="col-mb-6">
+                            <label htmlFor="payment">Budget USD</label>
+                            <input
+                                type="number"
+                                className="form-control"
+                                id="payment"
+                                name="payment"
+                                {...register('payment', { required: 'Payment is required!' })}
+                            />
+                            {errors.payment && (
+                                <p className="text-danger p-1 m-1" role="alert">
+                                    {errors.payment.message}
+                                </p>
+                            )}
+                        </div>
+                        <div className="row row-jobform">
+                            <div className="col-mb-6">
+                                <label htmlFor="requiredTime">Required Time</label>
+                                <input onKeyUp={e => onChange(e.target.value)} type="number" className="form-control" id="requiredTime" defaultValue={3}{...register('required_time', { required: 'Required time is required!' })}
                                 />
-                                {errors.title && (
-                                    <p className="text-danger p-1 m-1" role="alert">
-                                        {errors.title.message}
-                                    </p>
-                                )}
-                            </div>
-
-                            <div className="form-group form-group-jobform">
-                                <label htmlFor="postDescription">Description</label>
-                                <textarea
-                                    className="form-control"
-                                    id="postDescription"
-                                    name="description"
-                                    placeholder="Enter job description"
-                                    {...register('description', { required: 'Description is required!' })}
-                                ></textarea>
-                                {errors.description && (
-                                    <p className="text-danger p-1 m-1" role="alert">
-                                        {errors.description.message}
-                                    </p>
+                                {errors.required_time?.type === "required" && (
+                                    <p className="text-danger p-1 m-1" role="alert">{errors.required_time.message}</p>
                                 )}
                             </div>
 
                             <div className="col-mb-6">
-                                <label htmlFor="payment">Budget USD</label>
-                                <input
-                                    type="number"
-                                    className="form-control"
-                                    id="payment"
-                                    name="payment"
-                                    {...register('payment', { required: 'Payment is required!' })}
+                                <label htmlFor="expirationDate">Expiration Date</label>
+                                <input type="date" min={minDate} className="form-control" id="expirationDate" {...register('expiration_date', { required: 'Expiration date is required!' })}
                                 />
-                                {errors.payment && (
-                                    <p className="text-danger p-1 m-1" role="alert">
-                                        {errors.payment.message}
-                                    </p>
-                                )}
+
                             </div>
-                            <div className="row row-jobform">
-                                <div className="col-mb-6">
-                                    <label htmlFor="requiredTime">Required Time</label>
-                                    <input type="number" className="form-control" id="requiredTime" defaultValue={3}{...register('required_time', { required: 'Required time is required!' })}
-                                    />
-                                    {errors.required_time?.type === "required" && (
-                                        <p className="text-danger p-1 m-1" role="alert">{errors.required_time.message}</p>
-                                    )}
-                                </div>
-
-                                <div className="col-mb-6">
-                                    <label htmlFor="expirationDate">Expiration Date</label>
-                                    <input type="date" className="form-control" id="expirationDate" {...register('expiration_date', { required: 'Expiration date is required!' })}
-                                    />
-
-                                </div>
-                            </div>
+                        </div>
 
 
-                            <button type="submit" className="btn btn-primary">
-                                Submit
-                            </button>
-                        </form>
-                    ) : (
-                        <p>Loading...</p>
-                    )}
-                </div>
+                        <button type="submit" className="btn btn-primary">
+                            Submit
+                        </button>
+                    </form>
+                ) : (
+                    <p>Loading...</p>
+                )}
+            </div>
         </div>
     );
 }
