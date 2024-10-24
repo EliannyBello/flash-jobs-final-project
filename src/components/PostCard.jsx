@@ -5,7 +5,6 @@ import { FaTrash, FaPencilAlt } from "react-icons/fa";
 import PostIcons from "./PostIcons";
 import { useForm } from "react-hook-form";
 
-
 const PostCard = ({ datos, data }) => {
     const { actions } = useContext(Context)
     const [collapsed, setCollapsed] = useState()
