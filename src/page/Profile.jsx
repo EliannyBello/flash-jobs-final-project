@@ -44,7 +44,11 @@ const Profile = () => {
   return (
     <div className="container mt-5 py-3">
       {!loaded ? (
-        <div><h1>Loading...</h1></div>
+        <div className="d-flex justify-content-center mt-5">
+        <div className="spinner-border text-info mt-5" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
       ) : (<div className="row ">
         <div className="col-md-5">
           <h2 className=" mt-5 ms-5">{store?.user?.username}</h2>
@@ -146,10 +150,9 @@ const Profile = () => {
                       <div key={index} className="card application-card p-3">
                         {/* Display each application */}
                         <h5 className='text-center'> Title: {app.job_posting.title}</h5>
-                        <p>Job status: {app.job_posting.status}</p>
-                        <p>Response: {app.status}</p>
-                        
-                        
+                        {/* <p>Job status: {app.job_posting.status}</p> */}
+                        <p>Application response: {app.status}</p>
+
                         
                       </div>
                     ))
