@@ -4,6 +4,7 @@ import { Context } from "../context/GlobalContext";
 import { FaTrash, FaPencilAlt } from "react-icons/fa";
 import PostIcons from "./PostIcons";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const PostCard = ({ datos, data }) => {
     const { actions } = useContext(Context)
@@ -11,14 +12,42 @@ const PostCard = ({ datos, data }) => {
 
     const location = useLocation()
 
-    const EditsIcon = ({ id }) => (
-        <div className="ms-auto">
-            <Link to={`/post/${id}/edit`}>
-                <FaPencilAlt className="me-3" />
-            </Link>
-            <FaTrash />
-        </div>
-    )
+    const EditsIcon = ({ id }) => {
+      
+    
+        // const handleDelete = async () => {
+        //     const result = await Swal.fire({
+        //         title: '¿Are you sure?',
+        //         text: "This action cannot be undone",
+        //         icon: 'warning',
+        //         showCancelButton: true,
+        //         confirmButtonColor: '#d33',
+        //         cancelButtonColor: '#3085d6',
+        //         confirmButtonText: 'Yes, delete',
+        //         cancelButtonText: 'Cancel'
+        //     });
+    
+        //     if (result.isConfirmed) {
+        //         const response = await actions.deleteJobPosting(id, sessionStorage.access_token);
+        //         if (response && response.status === "success") {
+        //             Swal.fire("Deleted", "The post has been deleted.", "success");
+        //         } else {
+        //             Swal.fire("Error", "Can not be delated", "error");
+        //         }
+        //     }
+        // };
+    
+        return (
+            <div className="ms-auto">
+                <Link to={`/post/${id}/edit`}>
+                    <FaPencilAlt className="me-3" />
+                </Link>
+                {/* <FaTrash onClick={handleDelete} style={{ cursor: "pointer", color: "red" }} /> */}
+            </div>
+        );
+    };
+
+    
 
     const {
         register,

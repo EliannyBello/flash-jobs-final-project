@@ -83,7 +83,7 @@ export const AppContext = ({ children }) => {
                 })
                 const datos = await response.json()
                 console.log(datos)
-                return datos
+
             } catch (error) {
                 console.log(error.message)
             }
@@ -191,6 +191,7 @@ export const AppContext = ({ children }) => {
                 const datos = await response.json()
                 console.log(datos)
                 return datos
+
             } catch (error) {
                 console.log(error.message)
             }
@@ -293,6 +294,31 @@ export const AppContext = ({ children }) => {
             }
         },
 
+        // deleteJobPosting: async (id, token) => {
+        //     const { apiUrl } = store;
+        //     try {
+        //         const response = await fetch(`${apiUrl}/api/job_postings/${id}`, {
+        //             method: 'DELETE',
+        //             headers: {
+        //                 'Authorization': `Bearer ${sessionStorage.access_token}`,
+        //                 'Content-Type': 'application/json'
+        //             }
+        //         });
+        //         const datos = await response.json();
+
+        //         if (response.ok) {
+                    
+        //             setStore(prev => ({
+        //                 ...prev,
+        //                 JobCards: prev.JobCards.filter(job => job.id !== id)
+        //             }));
+        //         }
+        //         return datos;
+        //     } catch (error) {
+        //         console.log(error.message);
+        //         return { status: "error", message: error.message };
+        //     }
+        // },
 
 
     }
