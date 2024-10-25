@@ -3,24 +3,63 @@ import { Link } from 'react-router-dom';
 import { FaTrash, FaPencilAlt } from "react-icons/fa";
 import { Context } from '../context/GlobalContext';
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const ProfilePostCard = ({ datos }) => {
     const { actions } = useContext(Context)
     const [collapsed, setCollapsed] = useState()
 
 
-    const EditsIcon = ({ id }) => (
-        <div className="ms-auto pe-4">
-            <Link to={`/post/${id}/edit`}>
-                <FaPencilAlt className="me-3" />
-            </Link>
-            <FaTrash />
-        </div>
-    )
 
-    const onSubmit = async (data) => {
-        const response = actions.updateJobCards(datos.id, data, sessionStorage.access_token);
+    const EditsIcon = ({ id }) => {
+
+
+        const handleDelete = async (id) => {
+            const result = await Swal.fire({
+                title: '¿Are you sure?',
+                text: "This action cannot be undone",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete',
+                cancelButtonText: 'Cancel'
+            }).then(async (result) => {
+                try {
+                    if (result.isConfirmed) {
+                        const response = await actions.updateJobCards(id, { status_id: 8 }, sessionStorage.access_token);
+                        if (response && response.status === "success") {
+                            Swal.fire("Deleted", "The post has been deleted.", "success");
+                        } Swal.fire({
+                            title: `${response.title}!`,
+                            text: response.message,
+                            icon: response.status
+                        }).then(() => {
+                            (response.status == 'success') && window.location.reload();
+                        });
+                    }
+                } catch (error) {
+                    console.log(error.message)
+                }
+            });
+        }
+
+        return (
+            <div className="ms-auto">
+                <Link to={`/post/${id}/edit`}>
+                    <FaPencilAlt className="me-3" />
+                </Link>
+                <FaTrash onClick={() => handleDelete(datos.id)} style={{ cursor: "pointer", color: "red" }} />
+            </div>
+        );
     };
+
+
+    const onSubmit = (data) => {
+        actions.updateJobCards(datos.id, data, sessionStorage.access_token);
+    };
+
+
 
     const {
         register,
@@ -41,6 +80,7 @@ const ProfilePostCard = ({ datos }) => {
             </form>
         </div>
     )
+    if (datos.status_id === 8) return null;
 
     return (
         <div className="container-fluid">

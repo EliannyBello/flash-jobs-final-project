@@ -83,7 +83,7 @@ export const AppContext = ({ children }) => {
                 })
                 const datos = await response.json()
                 console.log(datos)
-                return datos
+
             } catch (error) {
                 console.log(error.message)
             }
@@ -191,6 +191,7 @@ export const AppContext = ({ children }) => {
                 const datos = await response.json()
                 console.log(datos)
                 return datos
+
             } catch (error) {
                 console.log(error.message)
             }
@@ -227,7 +228,7 @@ export const AppContext = ({ children }) => {
                 return false
             }
         },
-        updateJobCards: async (id, job_posting, token,) => {
+        updateJobCards: async (id, job_posting, token) => {
             try {
                 const { apiUrl } = store
                 const response = await fetch(`${apiUrl}/api/job_postings/${id}`, {

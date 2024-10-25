@@ -4,6 +4,7 @@ import { Context } from "../context/GlobalContext";
 import { FaTrash, FaPencilAlt } from "react-icons/fa";
 import PostIcons from "./PostIcons";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const PostCard = ({ datos, data }) => {
     const { actions } = useContext(Context)
@@ -11,14 +12,21 @@ const PostCard = ({ datos, data }) => {
 
     const location = useLocation()
 
-    const EditsIcon = ({ id }) => (
-        <div className="ms-auto">
-            <Link to={`/post/${id}/edit`}>
-                <FaPencilAlt className="me-3" />
-            </Link>
-            <FaTrash />
-        </div>
-    )
+    const EditsIcon = ({ id }) => {
+      
+    
+        
+        return (
+            <div className="ms-auto">
+                <Link to={`/post/${id}/edit`}>
+                    <FaPencilAlt className="me-3" />
+                </Link>
+                {/* <FaTrash onClick={handleDelete} style={{ cursor: "pointer", color: "red" }} /> */}
+            </div>
+        );
+    };
+
+    
 
     const {
         register,
