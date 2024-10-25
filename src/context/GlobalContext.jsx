@@ -228,7 +228,7 @@ export const AppContext = ({ children }) => {
                 return false
             }
         },
-        updateJobCards: async (id, job_posting, token,) => {
+        updateJobCards: async (id, job_posting, token) => {
             try {
                 const { apiUrl } = store
                 const response = await fetch(`${apiUrl}/api/job_postings/${id}`, {
@@ -294,31 +294,6 @@ export const AppContext = ({ children }) => {
             }
         },
 
-        // deleteJobPosting: async (id, token) => {
-        //     const { apiUrl } = store;
-        //     try {
-        //         const response = await fetch(`${apiUrl}/api/job_postings/${id}`, {
-        //             method: 'DELETE',
-        //             headers: {
-        //                 'Authorization': `Bearer ${sessionStorage.access_token}`,
-        //                 'Content-Type': 'application/json'
-        //             }
-        //         });
-        //         const datos = await response.json();
-
-        //         if (response.ok) {
-                    
-        //             setStore(prev => ({
-        //                 ...prev,
-        //                 JobCards: prev.JobCards.filter(job => job.id !== id)
-        //             }));
-        //         }
-        //         return datos;
-        //     } catch (error) {
-        //         console.log(error.message);
-        //         return { status: "error", message: error.message };
-        //     }
-        // },
 
 
     }

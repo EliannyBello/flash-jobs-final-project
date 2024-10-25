@@ -15,28 +15,7 @@ const PostCard = ({ datos, data }) => {
     const EditsIcon = ({ id }) => {
       
     
-        // const handleDelete = async () => {
-        //     const result = await Swal.fire({
-        //         title: '¿Are you sure?',
-        //         text: "This action cannot be undone",
-        //         icon: 'warning',
-        //         showCancelButton: true,
-        //         confirmButtonColor: '#d33',
-        //         cancelButtonColor: '#3085d6',
-        //         confirmButtonText: 'Yes, delete',
-        //         cancelButtonText: 'Cancel'
-        //     });
-    
-        //     if (result.isConfirmed) {
-        //         const response = await actions.deleteJobPosting(id, sessionStorage.access_token);
-        //         if (response && response.status === "success") {
-        //             Swal.fire("Deleted", "The post has been deleted.", "success");
-        //         } else {
-        //             Swal.fire("Error", "Can not be delated", "error");
-        //         }
-        //     }
-        // };
-    
+        
         return (
             <div className="ms-auto">
                 <Link to={`/post/${id}/edit`}>
