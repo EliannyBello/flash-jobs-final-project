@@ -83,7 +83,7 @@ export const AppContext = ({ children }) => {
                 })
                 const datos = await response.json()
                 console.log(datos)
-
+                return datos
             } catch (error) {
                 console.log(error.message)
             }
