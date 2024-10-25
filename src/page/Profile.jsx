@@ -6,7 +6,6 @@ import { Context } from '../context/GlobalContext'
 import '../styles/Profile.css'
 import { TbBriefcase2Filled } from "react-icons/tb";
 
-
 const Profile = () => {
 
   const { store, actions } = useContext(Context)
@@ -29,7 +28,7 @@ const Profile = () => {
   const fetchApplications = async () => {
     const apps = await actions.getUserApplications(userId.id, sessionStorage.access_token)
     setApplications(apps || []) //asegurar que empieze en array vacio o manda error
-      
+
   }
 
   useEffect(() => {
@@ -44,12 +43,17 @@ const Profile = () => {
   return (
     <div className="container mt-5 py-3">
       {!loaded ? (
-        <div><h1>Loading...</h1></div>
+        <div className="d-flex justify-content-center mt-5">
+        <div className="spinner-border text-info mt-5" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
       ) : (<div className="row ">
         <div className="col-md-5">
           <h2 className=" mt-5 ms-5">{store?.user?.username}</h2>
           <div className="mx-auto my-1 p-2">
-            <img src={store?.user?.profile?.avatar || imgSrc} alt="Profile Avatar" className='img-fluid w-50 my-3 profile-avatar rounded-circle' />
+            <img src={store?.user?.profile?.avatar || imgSrc} alt="Profile Avatar"
+              className='img-fluid w-50 my-3 profile-avatar rounded-circle' />
           </div>
           <div className="d-flex justify-content-start mb-3">
             <FaEnvelope className='fs-4 mx-4' />
@@ -80,10 +84,11 @@ const Profile = () => {
             {store?.user?.profile?.resume ? (
               <div className="d-flex flex-column">
                 <div className="d-flex justify-content-start mb-3">
-{/* esto va para el perfil publico */}
+                  {/* esto va para el perfil publico */}
                   <TbBriefcase2Filled className="fs-4 mx-4" />
                   <h5 className='me-1'>Resume:</h5>
-                  <a href={store?.user?.profile?.resume} target='_blank' className='link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover h5'>See more</a>
+                  <a href={store?.user?.profile?.resume} target='_blank'
+                    className='link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover h5'>See more</a>
                 </div>
                 <div>
 
@@ -98,11 +103,11 @@ const Profile = () => {
               </div>
             ) : (
               <div className="d-flex flex-column">
-                    <div className="d-flex justify-content-start mb-3">
-                      <TbBriefcase2Filled className="fs-4 mx-4" />
-                      <h5 className='me-1'>No Resume</h5>
-                    </div>
-                  </div>
+                <div className="d-flex justify-content-start mb-3">
+                  <TbBriefcase2Filled className="fs-4 mx-4" />
+                  <h5 className='me-1'>No Resume</h5>
+                </div>
+              </div>
             )}
           </div>
 
@@ -146,10 +151,9 @@ const Profile = () => {
                       <div key={index} className="card application-card p-3">
                         {/* Display each application */}
                         <h5 className='text-center'> Title: {app.job_posting.title}</h5>
-                        <p>Job status: {app.job_posting.status}</p>
-                        <p>Response: {app.status}</p>
-                        
-                        
+                        {/* <p>Job status: {app.job_posting.status}</p> */}
+                        <p>Application response: {app.status}</p>
+
                         
                       </div>
                     ))
@@ -159,15 +163,10 @@ const Profile = () => {
               </div>
             </div>
           </div>
-
-
-
-
         </div>
       </div>)}
     </div>
   )
 }
-
 
 export default Profile

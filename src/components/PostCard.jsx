@@ -92,7 +92,8 @@ const PostCard = ({ datos, data }) => {
                     <PostIcons list={datos.technologies} len={datos.technologies.length} collapsed={collapsed} />
                     <div className="ms-3 w-100">
                         {location.pathname == "/profile" && <Getstatus id={datos.id} />}
-                        <Link className='link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover' to={`/post/${datos.id}`}>{datos.title}</Link>
+                        <Link className='link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover'
+                        to={`/post/${datos.id}`}>{datos.title}</Link>
                         <div className="">
                             {datos.rank}
                         </div>
