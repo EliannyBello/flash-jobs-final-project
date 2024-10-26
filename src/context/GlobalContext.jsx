@@ -305,7 +305,7 @@ export const AppContext = ({ children }) => {
                         application_id: application_id
                     }),
                     headers: {
-                        'Authorization': `Bearer ${token}`, //token agregar arriba
+                        'Authorization': `Bearer ${sessionStorage.access_token}`, //token agregar arriba
                         'Content-Type': 'application/json'
                     }
                 });
