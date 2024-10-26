@@ -71,7 +71,7 @@ const PublicProfile = () => {
               </div>
 
               <div className="d-flex justify-content-start mb-3">
-                {(user?.profile?.resume != null) ? (
+                {(user?.profile?.resume) ? (
                   <div className="d-flex flex-column">
                     <div className="d-flex justify-content-start mb-3">
                       <TbBriefcase2Filled className="fs-4 mx-4" />
