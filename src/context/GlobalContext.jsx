@@ -293,9 +293,35 @@ export const AppContext = ({ children }) => {
                 return false;
             }
         },
-
-
-
+        createAppRating: async (rating, user_id, application_id) => {
+            const { apiUrl} = store;
+            
+            try {
+                const response = await fetch(`${apiUrl}/api/profile/rank_app`, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        user_id: user_id,
+                        ranking_id: rating, 
+                        application_id: application_id
+                    }),
+                    headers: {
+                        'Authorization': `Bearer ${token}`, //token agregar arriba
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                // Manejo de la respuesta del servidor
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.statusText}`);
+                }
+                
+                const result = await response.json();
+                console.log("Ranking registrado exitosamente:", result);
+        
+            } catch (error) {
+                console.log("Error al registrar el ranking:", error.message);
+            }
+        },
     }
     )
     useEffect(() => {
