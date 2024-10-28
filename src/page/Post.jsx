@@ -130,7 +130,9 @@ const Post = () => {
                     <img src={user?.profile?.avatar || imgPrf} className="profile-avatar rounded-circle" alt="user avatar" />
                 </div>
                 <div className="card-body">
-                    <h5 className="card-title">{user.username}</h5>
+                    <Link to={`/profile/${user.id}`} className="m-0 text-dark text-decoration-none">
+                        {user.username}
+                    </Link>
                     <p className="card-text"><b>Rating: </b>{[...new Array(5)].map((_, i) => displayRating(calculateRating(user.profile.employer_ratings), i))}</p>
                 </div>
                 <ul className="list-group list-group-flush">
