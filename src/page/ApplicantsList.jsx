@@ -17,7 +17,8 @@ const ApplicantsList = () => {
         const response = await actions.getApplications(params.id, sessionStorage.access_token);
         const data = await response;
         data && setApList(data);
-        data && setAccepted(data.filter(item => item.status_id == 6)[0])
+        console.log(data.filter(item => item.status_id == 6 || item.status_id == 2))
+        data && setAccepted(data.filter(item => item.status_id == 6 || item.status_id == 2)[0])
         data && setPending(data.filter(item => item.status_id == 4))
         data && setRejected(data.filter(item => item.status_id == 5))
         console.log(data);
@@ -63,7 +64,16 @@ const ApplicantsList = () => {
                     {accepted && (
                         <div className="card text-bg-success mb-3">
                             <div className="card-header">
-                                Accepted...
+                                {(accepted.status_id == 2) ? (
+                                    <p className="m-0">
+                                        Completed...
+                                    </p>
+                                ) : (
+                                    <p className="m-0">
+                                        Accepted...
+                                    </p>
+                                )
+                                }
                             </div>
                             <Accepted style='success' />
                         </div>
