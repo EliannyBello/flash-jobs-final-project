@@ -294,13 +294,13 @@ export const AppContext = ({ children }) => {
             }
         },
         createAppRating: async (rating, user_id, application_id) => {
-            const { apiUrl} = store;
+            const { apiUrl } = store;
             try {
                 const response = await fetch(`${apiUrl}/api/profile/rank_app`, {
                     method: 'POST',
                     body: JSON.stringify({
                         user_id: user_id,
-                        ranking_id: rating, 
+                        ranking_id: rating,
                         application_id: application_id
                     }),
                     headers: {
@@ -312,32 +312,55 @@ export const AppContext = ({ children }) => {
                 if (!response.ok) {
                     throw new Error(`Error: ${response.statusText}`);
                 }
-                
+
                 const result = await response.json();
                 console.log("Ranking registrado exitosamente:", result);
-        
+
             } catch (error) {
                 console.log("Error al registrar el ranking:", error.message);
             }
         },
         completeJobPost: async (id) => {
-            const {apiUrl} = store;
-            try{
+            const { apiUrl } = store;
+            try {
                 const response = await fetch(`${apiUrl}/api/job_postings/complete/${id}`, {
                     method: 'PATCH',
-                    body: JSON.stringify,
                     headers: {
                         'Authorization': `Bearer ${sessionStorage.access_token}`,
                         'Content-Type': 'application/json'
                     }
                 })
+                const data = await response.json();
+                return data;
             }
             catch (error) {
                 console.log("Error al completar Job:", error.message);
             }
+        },
+        rateApplicant: async (user_id, app_id, rate) => {
+            const { apiUrl } = store;
+            try {
+                const response = await fetch(`${apiUrl}/api/profile/rank_app`, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        ranking_id: rate,
+                        application_id: app_id,
+                        user_id: user_id
+                    }),
+                    headers: {
+                        'Authorization': `Bearer ${sessionStorage.access_token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                const data = await response.json();
+                return data;
+            }
+            catch (error) {
+                console.log("Error al calificar aplicante:", error.message);
+            }
         }
     })
-    
+
     useEffect(() => {
         actions.checkUser()
     }, [])
