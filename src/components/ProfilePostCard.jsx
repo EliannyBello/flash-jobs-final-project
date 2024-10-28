@@ -13,7 +13,6 @@ const ProfilePostCard = ({ datos }) => {
 
     const EditsIcon = ({ id }) => {
 
-
         const handleDelete = async (id) => {
             const result = await Swal.fire({
                 title: '¿Are you sure?',
@@ -59,7 +58,14 @@ const ProfilePostCard = ({ datos }) => {
         actions.updateJobCards(datos.id, data, sessionStorage.access_token);
     };
 
-
+    const completeJob = async (id) => {
+        try {
+            await actions.completeJobPost(id)
+        }
+        catch (error) {
+            console.log("Error al completar Job:", error.message)
+        }
+    }
 
     const {
         register,
