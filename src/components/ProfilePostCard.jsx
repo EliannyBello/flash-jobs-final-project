@@ -68,16 +68,21 @@ const ProfilePostCard = ({ datos }) => {
     } = useForm();
 
     const Getstatus = () => (
-        <div className="container pe-4">
-            <form onChange={handleSubmit(onSubmit)} className="row row-jobform my-3">
-                <select name="status" defaultValue={datos.status_id} id="status" className="form-control"
-                    {...register('status_id', { required: 'Status is required!' })}>
-                    <option value="1" >Public</option>
-                    <option value="2" >Completed</option>
-                    <option value="3" >In Process</option>
-                    <option value="7" >Private</option>
-                </select>
-            </form>
+        <div className="w-100">
+            <div className="d-flex w-100 justify-content-between align-items-center">
+                <form onChange={handleSubmit(onSubmit)} className=" w-50 ">
+
+                    <select name="status" defaultValue={datos.status_id} id="status" className="form-control"
+                        {...register('status_id', { required: 'Status is required!' })}>
+                        <option value="1" >Public</option>
+                        <option value="3" >In Process</option>
+                        <option value="7" >Private</option>
+                    </select>
+                </form>
+                <button className="btn btn-success btn-sm">
+                    Mark as Completed
+                </button>
+            </div>
         </div>
     )
     if (datos.status_id === 8) return null;
@@ -86,7 +91,7 @@ const ProfilePostCard = ({ datos }) => {
         <div className="container-fluid">
             <div className={"card shadow p-2 mb-2 " + (!collapsed && "h-100")}>
                 <div className="d-flex flex-column flex-md-row">
-                    <div className="ms-3 w-100">
+                    <div className=" w-100">
                         {location.pathname == "/profile" && <Getstatus id={datos.id} />}
                         <div className='d-flex'>
                             <Link className='link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover col-9'

@@ -295,7 +295,6 @@ export const AppContext = ({ children }) => {
         },
         createAppRating: async (rating, user_id, application_id) => {
             const { apiUrl} = store;
-            
             try {
                 const response = await fetch(`${apiUrl}/api/profile/rank_app`, {
                     method: 'POST',
@@ -305,11 +304,10 @@ export const AppContext = ({ children }) => {
                         application_id: application_id
                     }),
                     headers: {
-                        'Authorization': `Bearer ${sessionStorage.access_token}`, //token agregar arriba
+                        'Authorization': `Bearer ${sessionStorage.access_token}`,
                         'Content-Type': 'application/json'
                     }
                 });
-                
                 // Manejo de la respuesta del servidor
                 if (!response.ok) {
                     throw new Error(`Error: ${response.statusText}`);
@@ -322,8 +320,24 @@ export const AppContext = ({ children }) => {
                 console.log("Error al registrar el ranking:", error.message);
             }
         },
-    }
-    )
+        completeJobPost: async (id) => {
+            const {apiUrl} = store;
+            try{
+                const response = await fetch(`${apiUrl}/api/job_postings/complete/${id}`, {
+                    method: 'PATCH',
+                    body: JSON.stringify,
+                    headers: {
+                        'Authorization': `Bearer ${sessionStorage.access_token}`,
+                        'Content-Type': 'application/json'
+                    }
+                })
+            }
+            catch (error) {
+                console.log("Error al completar Job:", error.message);
+            }
+        }
+    })
+    
     useEffect(() => {
         actions.checkUser()
     }, [])
