@@ -193,7 +193,7 @@ const Profile = () => {
             </button>
             <div className="collapse multi-collapse" id="multiCollapseExample2">
               <div className="">
-                {applications.length > 0 ? (
+                {applications?.length > 0 ? (
                   applications.map((app, index) => (
                     <Applications item={app} key={index} />
                   ))
