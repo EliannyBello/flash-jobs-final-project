@@ -144,7 +144,7 @@ const ProfilePostCard = ({ datos }) => {
                     </button>
                 )}
                 {(datos?.status_id == 2 && !datos?.applicant?.rated) && (
-                    <button onClick={() => rateApplicant(datos.applicant.user_id, datos.applicant.application_id)} className="btn btn-warning btn-sm">
+                    <button onClick={() => rateApplicant(datos?.applicant?.user_id, datos?.applicant?.application_id)} className="btn btn-warning btn-sm">
                         Calification pending
                     </button>
                 )}
