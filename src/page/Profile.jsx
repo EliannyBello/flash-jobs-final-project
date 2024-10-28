@@ -5,6 +5,7 @@ import { FaGithub, FaLinkedin, FaBookOpen, FaEnvelope, FaPhone, FaLocationDot } 
 import { Context } from '../context/GlobalContext'
 import '../styles/Profile.css'
 import { TbBriefcase2Filled } from "react-icons/tb";
+import Swal from 'sweetalert2';
 
 const Profile = () => {
 
@@ -31,6 +32,52 @@ const Profile = () => {
 
   }
 
+  const rateJob = async (user_id, job_id) => {
+    Swal.fire({
+      title: "Rate the applicant",
+      input: 'select',
+      inputOptions: {
+        '1': '1',
+        '2': '2',
+        '3': '3',
+        '4': '4',
+        '5': '5',
+      },
+      inputPlaceholder: 'Select a rate',
+      showCancelButton: true,
+      confirmButtonText: 'Rate',
+      showLoaderOnConfirm: true,
+      preConfirm: (rate) => {
+        return actions.rateJob(user_id, job_id, rate)
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: `${result.value.title}!`,
+          text: result.value.message,
+          icon: result.value.status
+        }).then(() => {
+          (result.value.status == 'success') && window.location.reload();
+        });
+      }
+    })
+  }
+
+  const Applications = ({ item }) => (
+    <div className="card application-card p-3">
+      <h5 className='text-center'> Job Title: {item.job_posting.title}</h5>
+      <div className='d-flex justify-content-between align-items-center'>
+        <p>Application Status: {item.status}</p>
+        {(item?.status_id == 2 && !item?.job_posting?.rated) && (
+          <button onClick={() => rateJob(item.job_posting.employer, item.job_posting.id)} className="btn btn-warning btn-sm">
+            Calification pending
+          </button>
+        )}
+      </div>
+    </div>
+  )
+
   useEffect(() => {
     const waitToFetch = setTimeout(() => {
       cardsJob()
@@ -44,10 +91,10 @@ const Profile = () => {
     <div className="container mt-5 py-3">
       {!loaded ? (
         <div className="d-flex justify-content-center mt-5">
-        <div className="spinner-border text-info mt-5" role="status">
-          <span className="visually-hidden">Loading...</span>
+          <div className="spinner-border text-info mt-5" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
         </div>
-      </div>
       ) : (<div className="row ">
         <div className="col-md-5">
           <h2 className=" mt-5 ms-5">{store?.user?.username}</h2>
@@ -146,20 +193,13 @@ const Profile = () => {
             </button>
             <div className="collapse multi-collapse" id="multiCollapseExample2">
               <div className="">
-              {applications.length > 0 ? (
-                    applications.map((app, index) => (
-                      <div key={index} className="card application-card p-3">
-                        {/* Display each application */}
-                        <h5 className='text-center'> Title: {app.job_posting.title}</h5>
-                        {/* <p>Job status: {app.job_posting.status}</p> */}
-                        <p>Application response: {app.status}</p>
-
-                        
-                      </div>
-                    ))
-                  ) : (
-                    <p>No applications found.</p>
-                  )}
+                {applications.length > 0 ? (
+                  applications.map((app, index) => (
+                    <Applications item={app} key={index} />
+                  ))
+                ) : (
+                  <p>No applications found.</p>
+                )}
               </div>
             </div>
           </div>

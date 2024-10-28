@@ -358,6 +358,28 @@ export const AppContext = ({ children }) => {
             catch (error) {
                 console.log("Error al calificar aplicante:", error.message);
             }
+        },
+        rateJob: async (user_id, job_id, rate) => {
+            const { apiUrl } = store;
+            try {
+                const response = await fetch(`${apiUrl}/api/profile/rank_job`, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        ranking_id: rate,
+                        job_posting_id: job_id,
+                        user_id: user_id
+                    }),
+                    headers: {
+                        'Authorization': `Bearer ${sessionStorage.access_token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                const data = await response.json();
+                return data;
+            }
+            catch (error) {
+                console.log("Error al calificar trabajo:", error.message);
+            }
         }
     })
 

@@ -30,6 +30,16 @@ const Post = () => {
         return toString;
     }
 
+    const calculateRating = (ratingList) => {
+        let sum = 0;
+        let average = 0;
+        for (let num of ratingList) {
+            sum += num;
+        }
+        average = Math.round(sum / ratingList.length);
+        return average;
+    }
+
     const displayRating = (rating, index) => {
         return index < rating ? < FaStar key={index} /> : <FaRegStar key={index} />
     }
@@ -115,13 +125,13 @@ const Post = () => {
 
     const UserCard = () => (
         <div className="col-12 col-lg-4 col-xxl-3">
-            <div className="card">         
+            <div className="card">
                 <div className="d-flex justify-content-center">
                     <img src={user?.profile?.avatar || imgPrf} className="profile-avatar rounded-circle" alt="user avatar" />
                 </div>
                 <div className="card-body">
                     <h5 className="card-title">{user.username}</h5>
-                    <p className="card-text"><b>Rating: </b>{[...new Array(5)].map((_, i) => displayRating(defaultUser.rating, i))}</p>
+                    <p className="card-text"><b>Rating: </b>{[...new Array(5)].map((_, i) => displayRating(calculateRating(user.profile.employer_ratings), i))}</p>
                 </div>
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item"><b>Published Jobs: </b>{user.job_postings.length}</li>
@@ -133,7 +143,7 @@ const Post = () => {
     const PostCard = () => (
         <div className="col-12 col-lg-8">
             <div className="card" >
-                
+
                 <div className="card-header">
                     <div className="d-flex justify-content-between align-items-center">
                         <h5 className="card-title">{post.title}</h5>
