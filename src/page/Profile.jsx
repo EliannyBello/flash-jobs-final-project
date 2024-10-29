@@ -68,10 +68,10 @@ const Profile = () => {
     <div className="card application-card p-3">
       <h5 className='text-center'> Job Title: {item.job_posting.title}</h5>
       <div className='d-flex justify-content-between align-items-center'>
-        <p>Application Status: {item.status}</p>
+        <p className='m-0'>Application Status: {item.status}</p>
         {(item?.status_id == 2 && !item?.job_posting?.rated) && (
           <button onClick={() => rateJob(item.job_posting.employer, item.job_posting.id)} className="btn btn-warning btn-sm">
-            Calification pending
+            Calificate
           </button>
         )}
       </div>

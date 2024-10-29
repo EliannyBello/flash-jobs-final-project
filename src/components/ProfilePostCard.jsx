@@ -44,11 +44,11 @@ const ProfilePostCard = ({ datos }) => {
         }
 
         return (
-            <div className="">
+            <div className="d-flex flex-column flex-md-row gap-1 justify-content-center align-items-center">
                 <Link to={`/post/${id}/edit`}>
-                    <FaPencilAlt className="me-3" />
+                    <FaPencilAlt className='p-0' />
                 </Link>
-                <FaTrash onClick={() => handleDelete(datos.id)} style={{ cursor: "pointer", color: "red" }} />
+                <FaTrash className='p-0' onClick={() => handleDelete(datos.id)} style={{ cursor: "pointer", color: "red" }} />
             </div>
         );
     };
@@ -136,12 +136,13 @@ const ProfilePostCard = ({ datos }) => {
                 )}
                 {(datos?.status_id == 2 && !datos?.applicant?.rated) && (
                     <button onClick={() => rateApplicant(datos?.applicant?.user_id, datos?.applicant?.application_id)} className="btn btn-warning btn-sm">
-                        <p className='p-0 m-0'>Calification pending</p>
+                        Calificate
                     </button>
                 )}
             </div>
         </div>
     )
+
     if (datos.status_id === 8) return null;
 
     return (
@@ -156,13 +157,13 @@ const ProfilePostCard = ({ datos }) => {
                             <EditsIcon id={datos.id} />
                         </div>
                         <div className="d-flex justify-content-start">
-                           <p className='m-0'>{datos.rank}</p> 
+                            <p className='m-0'>{datos.rank}</p>
                         </div>
                         <div className="d-flex justify-content-start">
-                            <p className='m-0'>{`$ ${datos.payment}`}</p>     
+                            <p className='m-0'>{`$ ${datos.payment}`}</p>
                         </div>
                         <div className="d-flex justify-content-start">
-                           <p className='m-0'>{` ${datos.technologies.join(', ')}`}</p> 
+                            <p className='m-0'>{` ${datos.technologies.join(', ')}`}</p>
                         </div>
                     </div>
                 </div>
