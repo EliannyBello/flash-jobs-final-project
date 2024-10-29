@@ -13,9 +13,9 @@ const PostCard = ({ datos, data }) => {
     const location = useLocation()
 
     const EditsIcon = ({ id }) => {
-      
-    
-        
+
+
+
         return (
             <div className="ms-auto">
                 <Link to={`/post/${id}/edit`}>
@@ -26,7 +26,7 @@ const PostCard = ({ datos, data }) => {
         );
     };
 
-    
+
 
     const {
         register,
@@ -42,7 +42,7 @@ const PostCard = ({ datos, data }) => {
         return (
             <div className="container pe-4">
                 <form onChange={handleSubmit(onSubmit)} className="row row-jobform my-3">
-                    <select name="status" defaultValue={datos.status_id} id="status"className="form-control" {...register('status_id', { required: 'Status is required!' })}>
+                    <select name="status" defaultValue={datos.status_id} id="status" className="form-control" {...register('status_id', { required: 'Status is required!' })}>
                         <option value="1" >Public</option>
                         <option value="2" >Completed</option>
                         <option value="3" >In Process</option>
@@ -72,14 +72,14 @@ const PostCard = ({ datos, data }) => {
                     <div className="ms-3 w-100">
                         {location.pathname == "/profile" && <Getstatus id={datos.id} />}
                         <Link className='link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover'
-                        to={`/post/${datos.id}`}>{datos.title}</Link>
+                            to={`/post/${datos.id}`}>{datos.title}</Link>
                         <div className="">
                             {datos.rank}
                         </div>
                         <div className="text-muted">
                             {datos.description}
                         </div>
-                        <div className="text-muted">
+                        <div className="text-primary fw-bold">
                             {`$ ${datos.payment}`}
                         </div>
                         <div className="text ">

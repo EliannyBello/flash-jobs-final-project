@@ -292,7 +292,7 @@ const UpdateCard = () => {
                             </div>
                         </div>
 
-                        <button type="submit" className="btn btn-primary mt-4">Submit</button>
+                        <button type="submit" className="btn btn-primary my-2 w-100">Update</button>
                     </form>
                 </div>
             </div>

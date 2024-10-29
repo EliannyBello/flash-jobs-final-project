@@ -126,14 +126,16 @@ const Post = () => {
     const UserCard = () => (
         <div className="col-12 col-lg-4 col-xxl-3">
             <div className="card">
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center mt-3">
                     <img src={user?.profile?.avatar || imgPrf} className="profile-avatar rounded-circle" alt="user avatar" />
                 </div>
                 <div className="card-body">
                     <Link to={`/profile/${user.id}`} className="m-0 text-dark text-decoration-none">
-                        {user.username}
+                        <p className="text-center mb-0">
+                            {user.username}
+                        </p>
                     </Link>
-                    <p className="card-text"><b>Rating: </b>{[...new Array(5)].map((_, i) => displayRating(calculateRating(user.profile.employer_ratings), i))}</p>
+                    <p className="card-text text-center">{[...new Array(5)].map((_, i) => displayRating(calculateRating(user.profile.employer_ratings), i))}</p>
                 </div>
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item"><b>Published Jobs: </b>{user.job_postings.length}</li>
@@ -177,11 +179,11 @@ const Post = () => {
 
 
     return (
-        <div className="container-fluid mt-5 py-4">
+        <div className="container-fluid mt-5 py-5">
             {logged ? (loading ? (
                 <div>Loading...</div>
             ) : (
-                <div className="row g-3">
+                <div className="d-flex justify-content-center row g-3">
                     {<UserCard />}
                     {<PostCard />}
                 </div>
