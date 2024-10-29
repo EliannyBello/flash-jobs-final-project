@@ -38,7 +38,7 @@ const Icon = ({ icon, len, index }) => {
 
 const PostIcons = ({ list, len, collapsed }) => {
     return (
-        <div className={"col-3 h-100 " + ((collapsed) && "w-100")}>
+        <div className={"col-3 h-100 my-3 my-md-0 " + ((collapsed) && "w-100")}>
             <div className={"d-flex justify-content-evenly align-items-center h-100 " + (((len >= 3) || collapsed) ? "row flex-row row-cols-4 row-cols-md-2" : "flex-column")}>
                 {list.map((item, index) => <Icon icon={item} key={index} len={len} index={index} />)}
             </div>
