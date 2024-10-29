@@ -89,7 +89,7 @@ const ProfileSettings = () => {
             <h4 className="text-center mt-5">Edit Profile</h4>
             <form onSubmit={handleSubmit(onSubmit)} className="my-3 p-4 ">
                 <div className="mb-3 text-center">
-                    <img src={store?.user?.profile?.avatar || imgSrc} alt="" className='img-fluid w-50' />
+                    <img src={store?.user?.profile?.avatar || imgSrc} alt="" className='img-fluid w-50 profile-avatar rounded-circle mb-3' />
                     <input type="file" accept='.png,.jpg,.jpeg' className={"form-control " + (errors.avatar ? 'is-invalid' : '')} id="avatar" name='avatar' {...register('avatar')} />
                     <small className="invalid-feedback">{errors?.avatar?.message}</small>
                 </div>
