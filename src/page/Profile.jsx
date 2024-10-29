@@ -88,7 +88,7 @@ const Profile = () => {
   }, [])
 
   return (
-    <div className="container mt-5 py-3">
+    <div className="container mt-5 py-3 text-center">
       {!loaded ? (
         <div className="d-flex justify-content-center mt-5">
           <div className="spinner-border text-info mt-5" role="status">
@@ -97,42 +97,42 @@ const Profile = () => {
         </div>
       ) : (<div className="row ">
         <div className="col-md-5">
-          <h2 className=" mt-5 ms-5">{store?.user?.username}</h2>
+          <h2 className=" mt-5 m-3">{store?.user?.username}</h2>
           <div className="mx-auto my-1 p-2">
             <img src={store?.user?.profile?.avatar || imgSrc} alt="Profile Avatar"
               className='img-fluid w-50 my-3 profile-avatar rounded-circle' />
           </div>
           <div className="d-flex justify-content-start mb-3">
-            <FaEnvelope className='fs-4 mx-4' />
+            <FaEnvelope className='fs-4 me-2' />
             <h5>{store?.user?.email}</h5>
           </div>
           <div className="d-flex justify-content-start  mb-3">
-            <FaBookOpen className='fs-4 mx-4' />
+            <FaBookOpen className='fs-4 me-2' />
             <h5>{store?.user?.profile?.biography || "No biography"} </h5>
           </div>
           <div className="d-flex justify-content-start  mb-3">
-            <FaPhone className='fs-4 mx-4' />
+            <FaPhone className='fs-4 me-2' />
             <h5>{store?.user?.profile?.phone || "No phone number"} </h5>
           </div>
           <div className="d-flex justify-content-start  mb-3">
-            <FaLocationDot className='fs-4 mx-4' />
+            <FaLocationDot className='fs-4 me-2' />
             <h5>{store?.user?.profile?.country || "No country added"} </h5>
           </div>
           <div className="d-flex justify-content-start  mb-3">
-            <FaGithub className='fs-4 mx-4' />
+            <FaGithub className='fs-4 me-2' />
             <h5 > {store?.user?.profile?.github || "No Github link"} </h5>
           </div>
           <div className="d-flex justify-content-start  mb-3">
-            <FaLinkedin className='fs-4 mx-4' />
+            <FaLinkedin className='fs-4 me-2' />
             <h5>{store?.user?.profile?.linkedin || "No LinkedIn link"}</h5>
           </div>
 
-          <div className="d-flex justify-content-start mb-3">
+          <div className="d-flex justify-content-start">
             {store?.user?.profile?.resume ? (
               <div className="d-flex flex-column">
                 <div className="d-flex justify-content-start mb-3">
                   {/* esto va para el perfil publico */}
-                  <TbBriefcase2Filled className="fs-4 mx-4" />
+                  <TbBriefcase2Filled className="fs-4 me-2" />
                   <h5 className='me-1'>Resume:</h5>
                   <a href={store?.user?.profile?.resume} target='_blank'
                     className='link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover h5'>See more</a>
@@ -150,8 +150,8 @@ const Profile = () => {
               </div>
             ) : (
               <div className="d-flex flex-column">
-                <div className="d-flex justify-content-start mb-3">
-                  <TbBriefcase2Filled className="fs-4 mx-4" />
+                <div className="d-flex justify-content-start">
+                  <TbBriefcase2Filled className="fs-4 me-2" />
                   <h5 className='me-1'>No Resume</h5>
                 </div>
               </div>
@@ -162,10 +162,10 @@ const Profile = () => {
 
         <div className="col-md-7 ">
 
-          <div className="row mt-5">
+          <div className="row mt-5 justify-content-center mx-2">
 
             <button
-              className="btn btn-warning"
+              className="btn btn-warning mx-2"
               data-bs-toggle="collapse"
               href="#multiCollapseExample1"
               role="button"
@@ -180,9 +180,9 @@ const Profile = () => {
             </div>
           </div>
 
-          <div className="row">
+          <div className="row justify-content-center pb-4 mx-2">
             <button
-              className="btn btn-info"
+              className="btn btn-info m-2"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#multiCollapseExample2"
