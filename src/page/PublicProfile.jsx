@@ -39,10 +39,10 @@ const PublicProfile = () => {
               <div className="mx-auto my-1 p-2 img-public">
                 <img src={user.profile?.avatar || imgSrc} alt="Profile Avatar" className='img-fluid w-50 my-3 profile-avatar rounded-circle' />
               </div>
-            <div><p>holis</p>
+            {/* <div><p>holis</p> */}
             
             
-            </div>
+            {/* </div> */}
             </div>
             <div className='col-md-5 mt-5 py-5 biografia-public'>
               <div className="d-flex justify-content-start mb-3">
