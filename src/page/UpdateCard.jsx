@@ -45,7 +45,7 @@ const UpdateCard = () => {
             setValue('required_time', data.required_time);
             setValue('expiration_date', dateConverter(data.expiration_date));
             setValue('languages', data.languages);
-            setValue('technologies',data.technologies);
+            setValue('technologies', data.technologies);
         }
     };
 
@@ -72,13 +72,13 @@ const UpdateCard = () => {
 
     return (
         <div className="container-fluid pt-3 mt-5">
-
             <div className="container container-jobform m-auto justify-content-center pt-3">
                 <h3>Edit Post Job</h3>
 
                 {jobPost ? (
-                    <form onSubmit={handleSubmit(onSubmit)} className="row row-jobform my-3">
-                        <div className="form-group form-group-jobform">
+                    <form onSubmit={handleSubmit(onSubmit)} className="row row-jobform">
+                        {/* Title Field */}
+                        <div className="form-group form-group-jobform col-12">
                             <label htmlFor="postTitle">Title</label>
                             <input
                                 type="text"
@@ -95,7 +95,8 @@ const UpdateCard = () => {
                             )}
                         </div>
 
-                        <div className="form-group form-group-jobform">
+                        {/* Description Field */}
+                        <div className="form-group form-group-jobform col-12">
                             <label htmlFor="postDescription">Description</label>
                             <textarea
                                 className="form-control"
@@ -111,37 +112,57 @@ const UpdateCard = () => {
                             )}
                         </div>
 
-                        <div className="col-mb-6">
-                            <label htmlFor="payment">Budget USD</label>
-                            <input
-                                type="number"
-                                className="form-control"
-                                id="payment"
-                                name="payment"
-                                {...register('payment', { required: 'Payment is required!' })}
-                            />
-                            {errors.payment && (
-                                <p className="text-danger p-1 m-1" role="alert">
-                                    {errors.payment.message}
-                                </p>
-                            )}
-                        </div>
-                        <div className="row row-jobform">
-                            <div className="col-mb-6">
-                                <label htmlFor="requiredTime">Required Time</label>
-                                <input onKeyUp={e => onChange(e.target.value)} type="number" className="form-control" id="requiredTime" defaultValue={3}{...register('required_time', { required: 'Required time is required!' })}
+                        {/* Row with Budget, Expiration Date, and Required Time */}
+                        <div className="w-100 d-flex mb-3">
+                            <div className="form-group form-group-jobform col-md-4">
+                                <label htmlFor="payment">Budget USD</label>
+                                <input
+                                    type="number"
+                                    className="form-control"
+                                    id="payment"
+                                    name="payment"
+                                    {...register('payment', { required: 'Payment is required!' })}
                                 />
-                                {errors.required_time?.type === "required" && (
-                                    <p className="text-danger p-1 m-1" role="alert">{errors.required_time.message}</p>
+                                {errors.payment && (
+                                    <p className="text-danger p-1 m-1" role="alert">
+                                        {errors.payment.message}
+                                    </p>
                                 )}
                             </div>
 
-                            <div className="col-mb-6">
-                                <label htmlFor="expirationDate">Expiration Date</label>
-                                <input type="date" min={minDate} className="form-control" id="expirationDate" {...register('expiration_date', { required: 'Expiration date is required!' })}
+                            <div className="form-group col-md-4">
+                                <label htmlFor="requiredTime">Required Time</label>
+                                <input
+                                    type="number"
+                                    className="form-control"
+                                    id="requiredTime"
+                                    defaultValue={3}
+                                    {...register('required_time', { required: 'Required time is required!' })}
                                 />
+                                {errors.required_time && (
+                                    <p className="text-danger p-1 m-1" role="alert">
+                                        {errors.required_time.message}
+                                    </p>
+                                )}
+                            </div>
+
+                            <div className="form-group col-md-4">
+                                <label htmlFor="expirationDate">Expiration Date</label>
+                                <input
+                                    type="date"
+                                    min={minDate}
+                                    className="form-control"
+                                    id="expirationDate"
+                                    {...register('expiration_date', { required: 'Expiration date is required!' })}
+                                />
+                                {errors.expiration_date && (
+                                    <p className="text-danger p-1 m-1" role="alert">
+                                        {errors.expiration_date.message}
+                                    </p>
+                                )}
                             </div>
                         </div>
+
                         <div className="row mt-4">
                             <div className="col-md-6">
                                 <h6 htmlFor="postLanguages">Post Languages</h6>
@@ -267,7 +288,7 @@ const UpdateCard = () => {
                         </div>
 
 
-                        <button type="submit" className="btn btn-primary">
+                        <button type="submit" className="btn btn-primary mt-4">
                             Submit
                         </button>
                     </form>
@@ -276,6 +297,7 @@ const UpdateCard = () => {
                 )}
             </div>
         </div>
+
     );
 }
 

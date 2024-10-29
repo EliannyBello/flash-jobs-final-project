@@ -1,7 +1,5 @@
 .container-jobform {
-  margin: 30px;
   max-width: 800px;
-  padding: 20px;
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -25,8 +23,6 @@
 
 .container-jobform .form-control {
   font-size: 1rem;
-  padding: 10px;
-  margin-bottom: 20px;
   border-radius: 5px;
   border: 1px solid #ccc;
 }
@@ -34,14 +30,12 @@
 .container-jobform button {
   background-color: #007bff;
   color: #fff;
-  padding: 10px 10px;
   font-size: 1.1rem;
   font-weight: bold;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin: auto;
   width: 1300px;
 }
 
@@ -53,7 +47,6 @@ button[type="submit"]:hover {
   color: #ff4d4d;
   font-size: 0.9rem;
   font-weight: normal;
-  margin-top: 5px;
 }
 
 #postLanguages, #techKnowledges {
