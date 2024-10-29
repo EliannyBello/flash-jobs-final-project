@@ -217,7 +217,7 @@ const JobForm = () => {
                                     <input
                                         type="checkbox"
                                         id="techJavaScript"
-                                        value="JavaScript"
+                                        value="Javascript"
                                         {...register('technologies', { required: 'Tech Knowledges is required!' })}
                                     />
                                     <label className="ms-1" htmlFor="techJavaScript">JavaScript</label>
