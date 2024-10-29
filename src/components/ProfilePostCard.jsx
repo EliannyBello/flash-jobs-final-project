@@ -44,7 +44,7 @@ const ProfilePostCard = ({ datos }) => {
         }
 
         return (
-            <div className="ms-auto">
+            <div className="">
                 <Link to={`/post/${id}/edit`}>
                     <FaPencilAlt className="me-3" />
                 </Link>
@@ -128,16 +128,7 @@ const ProfilePostCard = ({ datos }) => {
     const Getstatus = () => (
         <div className="w-100">
             <div className="d-flex w-100 justify-content-between align-items-center">
-
-                {/* <form onChange={handleSubmit(onSubmit)} className=" w-50 ">
-                    <select name="status" defaultValue={datos.status_id} id="status" className="form-control"
-                        {...register('status_id', { required: 'Status is required!' })}>
-                        <option value="1" >Public</option>
-                        <option value="3" >In Process</option>
-                        <option value="7" >Private</option>
-                    </select>
-                </form> */}
-                <p>{datos.status}</p>
+                <p className='m-0 text-muted'>{datos.status}</p>
                 {(datos?.status_id == 3) && (
                     <button onClick={() => completeJob(datos.id)} className="btn btn-success btn-sm">
                         Mark as Completed
@@ -145,7 +136,7 @@ const ProfilePostCard = ({ datos }) => {
                 )}
                 {(datos?.status_id == 2 && !datos?.applicant?.rated) && (
                     <button onClick={() => rateApplicant(datos?.applicant?.user_id, datos?.applicant?.application_id)} className="btn btn-warning btn-sm">
-                        Calification pending
+                        <p className='p-0 m-0'>Calification pending</p>
                     </button>
                 )}
             </div>
@@ -154,24 +145,24 @@ const ProfilePostCard = ({ datos }) => {
     if (datos.status_id === 8) return null;
 
     return (
-        <div className="container-fluid">
+        <div className="w-100">
             <div className={"card shadow p-2 mb-2 " + (!collapsed && "h-100")}>
                 <div className="d-flex flex-column flex-md-row">
-                    <div className="w-100 m-2">
+                    <div className=" w-100">
                         {location.pathname == "/profile" && <Getstatus id={datos.id} />}
-                        <div className='d-flex'>
-                            <Link className='link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover col-9'
+                        <div className='d-flex justify-content-between'>
+                            <Link className='link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover'
                                 to={`/post/${datos.id}`}>{datos.title}</Link>
                             <EditsIcon id={datos.id} />
                         </div>
-                        <div className="">
-                            {datos.rank}
+                        <div className="d-flex justify-content-start">
+                           <p className='m-0'>{datos.rank}</p> 
                         </div>
-                        <div className="text-muted">
-                            {`$ ${datos.payment}`}
+                        <div className="d-flex justify-content-start">
+                            <p className='m-0'>{`$ ${datos.payment}`}</p>     
                         </div>
-                        <div className="text-muted">
-                            {datos.technologies.join(", ")}
+                        <div className="d-flex justify-content-start">
+                           <p className='m-0'>{` ${datos.technologies.join(', ')}`}</p> 
                         </div>
                     </div>
                 </div>
