@@ -220,7 +220,7 @@ const UpdateCard = () => {
                                         <input
                                             type="checkbox"
                                             id="techJavaScript"
-                                            value="JavaScript"
+                                            value="Javascript"
                                             {...register('technologies', { required: 'Tech Knowledges is required!' })}
                                         />
                                         <label htmlFor="techJavaScript">JavaScript</label>
