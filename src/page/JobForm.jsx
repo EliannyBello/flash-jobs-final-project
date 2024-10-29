@@ -44,14 +44,13 @@ const JobForm = () => {
 
     return (
         <div className="container-fluid d-flex pt-5 mt-3 mb-5 justify-content-center">
-            <div className="card justify-content-center col-8 pt-3 mt-5">
+            <div className="card justify-content-center col-12 col-md-10 col-lg-8 col-xl-7 pt-3 mt-5 card-form">
                 <div className="card-body">
-
                     <h2 className="text-center">Post Job</h2>
 
-                    <form onSubmit={handleSubmit(onSubmit)} className="row w-100">
+                    <form onSubmit={handleSubmit(onSubmit)} className="w-100">
 
-                        <div className="row gy-3 w-100">
+                        <div className="w-100">
                             <div className="col-md-12 form-group">
                                 <h6 htmlFor="postTitle">Title</h6>
                                 <input
@@ -67,7 +66,7 @@ const JobForm = () => {
                                 )}
                             </div>
 
-                            <div className="col-md-12 form-group">
+                            <div className="col-md-12 form-group mt-2">
                                 <h6 htmlFor="postDescription">Description</h6>
                                 <textarea
                                     className="form-control"
@@ -83,7 +82,7 @@ const JobForm = () => {
                         </div>
 
 
-                        <div className="row gy-2">
+                        <div className="row mt-1 gy-2">
                             <div className="col-md-6 col-lg-3">
                                 <h6 htmlFor="rank">Rank</h6>
                                 <select
@@ -112,7 +111,7 @@ const JobForm = () => {
                             </div>
 
                             <div className="col-md-6 col-lg-3">
-                                <h6 htmlFor="requiredTime">Required Time (days)</h6>
+                                <h6 htmlFor="requiredTime">Required Days</h6>
                                 <input
                                     ref={daysRef}
                                     onKeyUp={e => onChange(e.target.value)}
@@ -138,7 +137,7 @@ const JobForm = () => {
                             </div>
                         </div>
 
-                        <div className="row mt-4">
+                        <div className="row mt-2">
                             <div className="col-md-6">
                                 <h6 htmlFor="postLanguages">Post Languages</h6>
                                 <div className="form-control" id="postLanguages">
@@ -173,7 +172,7 @@ const JobForm = () => {
                                 {errors.languages && <p className="text-danger p-1 m-1">{errors.languages.message}</p>}
                             </div>
 
-                            <div className="col-md-6">
+                            <div className="col-md-6 mt-2 mt-md-0">
                                 <h6 htmlFor="techKnowledges">Tech Knowledges</h6>
                                 <div className="form-control tech-knowledges-list" id="techKnowledges">
                                     <div>
