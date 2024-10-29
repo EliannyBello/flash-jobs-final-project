@@ -80,17 +80,17 @@ const UserDropDown = ({ collapsed }) => {
                         </div>
                         <div className="mb-3">
                             <div className="form-check">
-                                <input type="checkbox" className="form-check-input" id="dropdownCheck" />
+                                {/* <input type="checkbox" className="form-check-input" id="dropdownCheck" />
                                 <label className="form-check-label" htmlFor="dropdownCheck">
                                     Remember me
-                                </label>
+                                </label> */}
                             </div>
                         </div>
                         <button type="submit" className="btn btn-primary">Sign in</button>
                     </form>
                     <div className="dropdown-divider"></div>
                     <Link to="/register" className="sing-item dropdown-item">New around here? Sign up</Link>
-                    <a className="sing-item dropdown-item" href="#">Forgot password?</a>
+                    {/* <a className="sing-item dropdown-item" href="#">Forgot password?</a> */}
                 </div>
             </div >
         );

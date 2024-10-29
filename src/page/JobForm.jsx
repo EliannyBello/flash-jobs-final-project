@@ -49,7 +49,7 @@ const JobForm = () => {
 
                 <form onSubmit={handleSubmit(onSubmit)} className="row row-jobform my-3">
 
-                    <div className="row">
+                    <div className="row gy-3">
                         <div className="col-md-12 form-group form-group-jobform">
                             <h6 htmlFor="postTitle">Title</h6>
                             <input
@@ -81,7 +81,7 @@ const JobForm = () => {
                     </div>
 
 
-                    <div className="row">
+                    <div className="row gy-2">
                         <div className="col-md-6 col-lg-3">
                             <h6 htmlFor="rank">Rank</h6>
                             <select
@@ -263,7 +263,7 @@ const JobForm = () => {
                         </div>
                     </div>
 
-                    <button type="submit" className="btn btn-primary mt-4">Submit</button>
+                    <button type="submit" className="btn btn-primary m-2 w-100">Submit</button>
                 </form>
             </div>
         </div>

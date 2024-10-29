@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { Context } from "../context/GlobalContext";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
@@ -9,7 +9,7 @@ const UpdateCard = () => {
     const params = useParams()
     const [minDate, setMinDate] = useState('')
     const { store, actions } = useContext(Context);
-
+    const daysRef = useRef()
 
     const [jobPost, setJobPost] = useState([]);
 
@@ -63,7 +63,7 @@ const UpdateCard = () => {
                 text: response.message,
                 icon: response.status
             }).then(() => {
-                navigate('/');
+                navigate('/profile');
             });
         }
     };
@@ -71,15 +71,15 @@ const UpdateCard = () => {
 
 
     return (
-        <div className="container-fluid pt-3 mt-5">
-            <div className="container container-jobform m-auto justify-content-center pt-3">
-                <h3>Edit Post Job</h3>
+        <div className="container-fluid  pt-3 mt-5 mb-5">
+            <div className="container container-jobform m-auto justify-content-center pt-3 mt-5">
+                <h2>Update Post</h2>
 
-                {jobPost ? (
-                    <form onSubmit={handleSubmit(onSubmit)} className="row row-jobform">
-                        {/* Title Field */}
-                        <div className="form-group form-group-jobform col-12">
-                            <label htmlFor="postTitle">Title</label>
+                <form onSubmit={handleSubmit(onSubmit)} className="row row-jobform my-3">
+
+                    <div className="row gy-3">
+                        <div className="col-md-12 form-group form-group-jobform">
+                            <h6 htmlFor="postTitle">Title</h6>
                             <input
                                 type="text"
                                 className="form-control"
@@ -88,16 +88,13 @@ const UpdateCard = () => {
                                 placeholder="Title"
                                 {...register('title', { required: 'Title is required!' })}
                             />
-                            {errors.title && (
-                                <p className="text-danger p-1 m-1" role="alert">
-                                    {errors.title.message}
-                                </p>
+                            {errors.title?.type === "required" && (
+                                <p className="text-danger p-1 m-1" role="alert">{errors.title.message}</p>
                             )}
                         </div>
 
-                        {/* Description Field */}
-                        <div className="form-group form-group-jobform col-12">
-                            <label htmlFor="postDescription">Description</label>
+                        <div className="col-md-12 form-group form-group-jobform">
+                            <h6 htmlFor="postDescription">Description</h6>
                             <textarea
                                 className="form-control"
                                 id="postDescription"
@@ -105,199 +102,199 @@ const UpdateCard = () => {
                                 placeholder="Enter job description"
                                 {...register('description', { required: 'Description is required!' })}
                             ></textarea>
-                            {errors.description && (
-                                <p className="text-danger p-1 m-1" role="alert">
-                                    {errors.description.message}
-                                </p>
+                            {errors.description?.type === "required" && (
+                                <p className="text-danger p-1 m-1" role="alert">{errors.description.message}</p>
+                            )}
+                        </div>
+                    </div>
+
+
+                    <div className="row gy-2">
+                        <div className="col-md-6 col-lg-3">
+                            <h6 htmlFor="rank">Rank</h6>
+                            <select
+                                name="rank"
+                                id="rank"
+                                className="form-control"
+                                {...register('rank', { required: 'Seniority is required!' })}
+                            >
+                                <option value="1">Junior</option>
+                                <option value="2">Semi Senior</option>
+                                <option value="3">Senior</option>
+                            </select>
+                        </div>
+
+                        <div className="col-md-6 col-lg-3">
+                            <h6 htmlFor="payment">Budget USD</h6>
+                            <input
+                                type="number"
+                                className="form-control"
+                                id="payment"
+                                {...register('payment', { required: 'Payment is required!' })}
+                            />
+                            {errors.payment?.type === "required" && (
+                                <p className="text-danger p-1 m-1" role="alert">{errors.payment.message}</p>
                             )}
                         </div>
 
-                        {/* Row with Budget, Expiration Date, and Required Time */}
-                        <div className="w-100 d-flex mb-3">
-                            <div className="form-group form-group-jobform col-md-4">
-                                <label htmlFor="payment">Budget USD</label>
-                                <input
-                                    type="number"
-                                    className="form-control"
-                                    id="payment"
-                                    name="payment"
-                                    {...register('payment', { required: 'Payment is required!' })}
-                                />
-                                {errors.payment && (
-                                    <p className="text-danger p-1 m-1" role="alert">
-                                        {errors.payment.message}
-                                    </p>
-                                )}
-                            </div>
+                        <div className="col-md-6 col-lg-3">
+                            <h6 htmlFor="requiredTime">Required Time (days)</h6>
+                            <input
+                                ref={daysRef}
+                                onKeyUp={e => onChange(e.target.value)}
+                                type="number"
+                                className="form-control"
+                                id="requiredTime"
+                                {...register('required_time', { required: 'Required time is required!' })}
+                            />
+                            {errors.required_time?.type === "required" && (
+                                <p className="text-danger p-1 m-1" role="alert">{errors.required_time.message}</p>
+                            )}
+                        </div>
+                        <div className="col-md-6 col-lg-3">
+                            <h6 htmlFor="expirationDate">Expiration Date</h6>
+                            <input
+                                type="date"
+                                className="form-control"
+                                min={minDate}
+                                id="expirationDate"
+                                {...register('expiration_date', { required: 'Expiration date is required!' })}
+                            />
 
-                            <div className="form-group col-md-4">
-                                <label htmlFor="requiredTime">Required Time</label>
-                                <input
-                                    type="number"
-                                    className="form-control"
-                                    id="requiredTime"
-                                    defaultValue={3}
-                                    {...register('required_time', { required: 'Required time is required!' })}
-                                />
-                                {errors.required_time && (
-                                    <p className="text-danger p-1 m-1" role="alert">
-                                        {errors.required_time.message}
-                                    </p>
-                                )}
-                            </div>
+                        </div>
+                    </div>
 
-                            <div className="form-group col-md-4">
-                                <label htmlFor="expirationDate">Expiration Date</label>
-                                <input
-                                    type="date"
-                                    min={minDate}
-                                    className="form-control"
-                                    id="expirationDate"
-                                    {...register('expiration_date', { required: 'Expiration date is required!' })}
-                                />
-                                {errors.expiration_date && (
-                                    <p className="text-danger p-1 m-1" role="alert">
-                                        {errors.expiration_date.message}
-                                    </p>
-                                )}
+
+
+
+                    <div className="row mt-4">
+                        <div className="col-md-6">
+                            <h6 htmlFor="postLanguages">Post Languages</h6>
+                            <div className="form-control" id="postLanguages">
+                                <div>
+                                    <input
+                                        type="checkbox"
+                                        id="languageEnglish"
+                                        value="English"
+                                        {...register('languages', { required: 'Languages is required!' })}
+                                    />
+                                    <label className="ms-1" htmlFor="languageEnglish">English</label>
+                                </div>
+                                <div>
+                                    <input
+                                        type="checkbox"
+                                        id="languageSpanish"
+                                        value="Spanish"
+                                        {...register('languages', { required: 'Languages is required!' })}
+                                    />
+                                    <label className="ms-1" htmlFor="languageSpanish"> Spanish</label>
+                                </div>
+                                <div>
+                                    <input
+                                        type="checkbox"
+                                        id="languageKorean"
+                                        value="Korean"
+                                        {...register('languages', { required: 'Languages is required!' })}
+                                    />
+                                    <label className="ms-1" htmlFor="languageKorean"> Korean</label>
+                                </div>
                             </div>
+                            {errors.languages && <p className="text-danger p-1 m-1">{errors.languages.message}</p>}
                         </div>
 
-                        <div className="row mt-4">
-                            <div className="col-md-6">
-                                <h6 htmlFor="postLanguages">Post Languages</h6>
-                                <div className="form-control" id="postLanguages">
-                                    <div>
-                                        <input
-                                            type="checkbox"
-                                            id="languageEnglish"
-                                            value="English"
-                                            {...register('languages', { required: 'Languages is required!' })}
-                                        />
-                                        <label htmlFor="languageEnglish">English</label>
-                                    </div>
-                                    <div>
-                                        <input
-                                            type="checkbox"
-                                            id="languageSpanish"
-                                            value="Spanish"
-                                            {...register('languages', { required: 'Languages is required!' })}
-                                        />
-                                        <label htmlFor="languageSpanish">Spanish</label>
-                                    </div>
-                                    <div>
-                                        <input
-                                            type="checkbox"
-                                            id="languageKorean"
-                                            value="Korean"
-                                            {...register('languages', { required: 'Languages is required!' })}
-                                        />
-                                        <label htmlFor="languageKorean">Korean</label>
-                                    </div>
+                        <div className="col-md-6">
+                            <h6 htmlFor="techKnowledges">Tech Knowledges</h6>
+                            <div className="form-control tech-knowledges-list" id="techKnowledges">
+                                <div>
+                                    <input
+                                        type="checkbox"
+                                        id="techSQL"
+                                        value="SQL"
+                                        {...register('technologies', { required: 'Tech Knowledges is required!' })}
+                                    />
+                                    <label className="ms-1" htmlFor="techSQL">SQL</label>
                                 </div>
-                                {errors.languages && <p className="text-danger p-1 m-1">{errors.languages.message}</p>}
-                            </div>
-
-                            <div className="col-md-6">
-                                <h6 htmlFor="techKnowledges">Tech Knowledges</h6>
-                                <div className="form-control tech-knowledges-list" id="techKnowledges">
-                                    <div>
-                                        <input
-                                            type="checkbox"
-                                            id="techSQL"
-                                            value="SQL"
-                                            {...register('technologies', { required: 'Tech Knowledges is required!' })}
-                                        />
-                                        <label htmlFor="techSQL">SQL</label>
-                                    </div>
-                                    <div>
-                                        <input
-                                            type="checkbox"
-                                            id="techReact"
-                                            value="React"
-                                            {...register('technologies', { required: 'Tech Knowledges is required!' })}
-                                        />
-                                        <label htmlFor="techReact">React</label>
-                                    </div>
-                                    <div>
-                                        <input
-                                            type="checkbox"
-                                            id="techPython"
-                                            value="Python"
-                                            {...register('technologies', { required: 'Tech Knowledges is required!' })}
-                                        />
-                                        <label htmlFor="techPython">Python</label>
-                                    </div>
-                                    <div>
-                                        <input
-                                            type="checkbox"
-                                            id="techJava"
-                                            value="Java"
-                                            {...register('technologies', { required: 'Tech Knowledges is required!' })}
-                                        />
-                                        <label htmlFor="techJava">Java</label>
-                                    </div>
-                                    <div>
-                                        <input
-                                            type="checkbox"
-                                            id="techJavaScript"
-                                            value="Javascript"
-                                            {...register('technologies', { required: 'Tech Knowledges is required!' })}
-                                        />
-                                        <label htmlFor="techJavaScript">JavaScript</label>
-                                    </div>
-                                    <div>
-                                        <input
-                                            type="checkbox"
-                                            id="techCSS"
-                                            value="CSS"
-                                            {...register('technologies', { required: 'Tech Knowledges is required!' })}
-                                        />
-                                        <label htmlFor="techCSS">CSS</label>
-                                    </div>
-                                    <div>
-                                        <input
-                                            type="checkbox"
-                                            id="techGo"
-                                            value="GO"
-                                            {...register('technologies', { required: 'Tech Knowledges is required!' })}
-                                        />
-                                        <label htmlFor="techGo">GO</label>
-                                    </div>
-                                    <div>
-                                        <input
-                                            type="checkbox"
-                                            id="techNodeJS"
-                                            value="NodeJS"
-                                            {...register('technologies', { required: 'Tech Knowledges is required!' })}
-                                        />
-                                        <label htmlFor="techNodeJS">NodeJS</label>
-                                    </div>
-                                    <div>
-                                        <input
-                                            type="checkbox"
-                                            id="techBootstrap"
-                                            value="Bootstrap"
-                                            {...register('technologies', { required: 'Tech Knowledges is required!' })}
-                                        />
-                                        <label htmlFor="techBootstrap">Bootstrap</label>
-                                    </div>
+                                <div>
+                                    <input
+                                        type="checkbox"
+                                        id="techReact"
+                                        value="React"
+                                        {...register('technologies', { required: 'Tech Knowledges is required!' })}
+                                    />
+                                    <label className="ms-1" htmlFor="techReact">React</label>
                                 </div>
-                                {errors.technologies && <p className="text-danger p-1 m-1">{errors.technologies.message}</p>}
+                                <div>
+                                    <input
+                                        type="checkbox"
+                                        id="techPython"
+                                        value="Python"
+                                        {...register('technologies', { required: 'Tech Knowledges is required!' })}
+                                    />
+                                    <label className="ms-1" htmlFor="techPython">Python</label>
+                                </div>
+                                <div>
+                                    <input
+                                        type="checkbox"
+                                        id="techJava"
+                                        value="Java"
+                                        {...register('technologies', { required: 'Tech Knowledges is required!' })}
+                                    />
+                                    <label className="ms-1" htmlFor="techJava">Java</label>
+                                </div>
+                                <div>
+                                    <input
+                                        type="checkbox"
+                                        id="techJavaScript"
+                                        value="Javascript"
+                                        {...register('technologies', { required: 'Tech Knowledges is required!' })}
+                                    />
+                                    <label className="ms-1" htmlFor="techJavaScript">JavaScript</label>
+                                </div>
+                                <div>
+                                    <input
+                                        type="checkbox"
+                                        id="techCSS"
+                                        value="CSS"
+                                        {...register('technologies', { required: 'Tech Knowledges is required!' })}
+                                    />
+                                    <label className="ms-1" htmlFor="techCSS">CSS</label>
+                                </div>
+                                <div>
+                                    <input
+                                        type="checkbox"
+                                        id="techGo"
+                                        value="GO"
+                                        {...register('technologies', { required: 'Tech Knowledges is required!' })}
+                                    />
+                                    <label className="ms-1" htmlFor="techGo">GO</label>
+                                </div>
+                                <div>
+                                    <input
+                                        type="checkbox"
+                                        id="techNodeJS"
+                                        value="NodeJS"
+                                        {...register('technologies', { required: 'Tech Knowledges is required!' })}
+                                    />
+                                    <label className="ms-1" htmlFor="techNodeJS">NodeJS</label>
+                                </div>
+                                <div>
+                                    <input
+                                        type="checkbox"
+                                        id="techBootstrap"
+                                        value="Bootstrap"
+                                        {...register('technologies', { required: 'Tech Knowledges is required!' })}
+                                    />
+                                    <label className="ms-1" htmlFor="techBootstrap">Bootstrap</label>
+                                </div>
                             </div>
+                            {errors.technologies && <p className="text-danger p-1 m-1">{errors.technologies.message}</p>}
                         </div>
+                    </div>
 
-
-                        <button type="submit" className="btn btn-primary mt-4">
-                            Submit
-                        </button>
-                    </form>
-                ) : (
-                    <p>Loading...</p>
-                )}
+                    <button type="submit" className="btn btn-primary mt-4">Submit</button>
+                </form>
             </div>
         </div>
-
     );
 }
 
