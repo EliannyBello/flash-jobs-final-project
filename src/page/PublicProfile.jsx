@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';  // Importamos useParams
 import imgSrc from './img/avatarDefault.png';
 import { FaGithub, FaLinkedin, FaBookOpen, FaEnvelope, FaPhone, FaLocationDot } from "react-icons/fa6";
+import { FaRegStar, FaStar } from "react-icons/fa";
 import { Context } from '../context/GlobalContext';
 import '../styles/publicProfile.css';
 import { TbBriefcase2Filled } from "react-icons/tb";
@@ -22,14 +23,28 @@ const PublicProfile = () => {
     }
   };
 
+  const calculateRating = (ratingList) => {
+    let sum = 0;
+    let average = 0;
+    for (let num of ratingList) {
+      sum += num;
+    }
+    average = Math.round(sum / ratingList.length);
+    return average;
+  }
+
+  const displayRating = (rating, index) => {
+    return index < rating ? < FaStar key={index} /> : <FaRegStar key={index} />
+  }
+
 
   useEffect(() => {
     getInfo();
   }, [id]);
 
   return (
-    <>
-      <div className="container container-public mt-5 py-3">
+    <div className='mt-2 py-5'>
+      <div className="container container-public">
         {!loaded ? (
           <div><h1>Loading...</h1></div>
         ) : (
@@ -39,12 +54,16 @@ const PublicProfile = () => {
               <div className="mx-auto my-1 p-2 img-public">
                 <img src={user.profile?.avatar || imgSrc} alt="Profile Avatar" className='img-fluid w-50 my-3 profile-avatar rounded-circle' />
               </div>
-            {/* <div><p>holis</p> */}
-            
-            
-            {/* </div> */}
+              <div className="d-flex justify-content-center">
+                <p className="card-text text-center">{
+                  [...new Array(5)].map((_, i) => displayRating(calculateRating([...user?.profile?.employer_ratings, ...user?.profile?.applicant_ratings]), i))
+                }</p>
+                <p className="card-text text-center">({
+                  [...user?.profile?.employer_ratings, ...user?.profile?.applicant_ratings].length
+                })</p>
+              </div>
             </div>
-            <div className='col-md-5 mt-5 py-5 biografia-public'>
+            <div className='col-md-5 mt-2 biografia-public'>
               <div className="d-flex justify-content-start mb-3">
                 <FaEnvelope className='fs-4 mx-4' />
                 <h5>{user.email}</h5>
@@ -101,7 +120,7 @@ const PublicProfile = () => {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

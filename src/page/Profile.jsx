@@ -107,7 +107,7 @@ const Profile = () => {
             <h5>{store?.user?.email}</h5>
           </div>
           <div className="d-flex justify-content-start  mb-3">
-          <div><FaBookOpen className='fs-4 me-2' /></div>
+            <div><FaBookOpen className='fs-4 me-2' /></div>
             <h5>{store?.user?.profile?.biography || "No biography"} </h5>
           </div>
           <div className="d-flex justify-content-start  mb-3">
@@ -120,11 +120,19 @@ const Profile = () => {
           </div>
           <div className="d-flex justify-content-start  mb-3">
             <div><FaGithub className='fs-4 me-2' /></div>
-            <h5 > {store?.user?.profile?.github || "No Github link"} </h5>
+            {(store?.user?.profile?.github) ? (
+              <a className='h5 link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover' target='_blank' href={`http://www.github.com/${store?.user?.profile?.github}`}>{store?.user?.profile?.github}</a>
+            ) : (
+              <h5>No Github link</h5>
+            )}
           </div>
           <div className="d-flex justify-content-start  mb-3">
-           <div> <FaLinkedin className='fs-4 me-2' /></div>
-            <h5>{store?.user?.profile?.linkedin || "No LinkedIn link"}</h5>
+            <div> <FaLinkedin className='fs-4 me-2' /></div>
+            {(store?.user?.profile?.linkedin) ? (
+              <a className='h5 link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover' target='_blank' href={`http://www.linkedin.com/in/${store?.user?.profile?.github}`}>{store?.user?.profile?.github}</a>
+            ) : (
+              <h5>No LinkedIn link</h5>
+            )}
           </div>
 
           <div className="d-flex justify-content-start">

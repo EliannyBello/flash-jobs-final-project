@@ -27,7 +27,7 @@ const Register = () => {
         (response.status == 'success') && navigate('/')
     }
     return (
-        <div className="container container-register">
+        <div className="container pt-3 mt-3">
             <div className="card card-register">
                 <h3 className="text-center">Register</h3>
                 <form onSubmit={handleSubmit(onSubmit)} className="w-50 mx-auto">
