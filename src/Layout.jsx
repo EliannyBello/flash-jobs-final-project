@@ -9,7 +9,7 @@ import Settings from './page/Settings'
 import Post from './page/Post'
 import JobForm from './page/JobForm'
 import ApplicantsList from './page/ApplicantsList'
-import UpdateCard from './page/updateCard'
+import UpdateCard from './page/UpdateCard'
 import Help from './page/Help'
 import PublicProfile from './page/PublicProfile'
 
