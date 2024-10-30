@@ -95,8 +95,8 @@ const Profile = () => {
             <span className="visually-hidden">Loading...</span>
           </div>
         </div>
-      ) : (<div className="row ">
-        <div className="col-md-5">
+      ) : (<div className="row justify-content-center ">
+        <div className="col-md-5 col-lg-3">
           <h2 className=" mt-5 m-3">{store?.user?.username}</h2>
           <div className="mx-auto my-1 p-2">
             <img src={store?.user?.profile?.avatar || imgSrc} alt="Profile Avatar"
