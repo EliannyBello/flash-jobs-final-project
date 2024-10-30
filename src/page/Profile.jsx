@@ -103,27 +103,27 @@ const Profile = () => {
               className='img-fluid w-50 my-3 profile-avatar rounded-circle' />
           </div>
           <div className="d-flex justify-content-start mb-3">
-            <FaEnvelope className='fs-4 me-2' />
+            <div><FaEnvelope className='fs-4 me-2' /></div>
             <h5>{store?.user?.email}</h5>
           </div>
           <div className="d-flex justify-content-start  mb-3">
-            <FaBookOpen className='fs-4 me-2' />
+          <div><FaBookOpen className='fs-4 me-2' /></div>
             <h5>{store?.user?.profile?.biography || "No biography"} </h5>
           </div>
           <div className="d-flex justify-content-start  mb-3">
-            <FaPhone className='fs-4 me-2' />
+            <div><FaPhone className='fs-4 me-2' /></div>
             <h5>{store?.user?.profile?.phone || "No phone number"} </h5>
           </div>
           <div className="d-flex justify-content-start  mb-3">
-            <FaLocationDot className='fs-4 me-2' />
+            <div><FaLocationDot className='fs-4 me-2' /></div>
             <h5>{store?.user?.profile?.country || "No country added"} </h5>
           </div>
           <div className="d-flex justify-content-start  mb-3">
-            <FaGithub className='fs-4 me-2' />
+            <div><FaGithub className='fs-4 me-2' /></div>
             <h5 > {store?.user?.profile?.github || "No Github link"} </h5>
           </div>
           <div className="d-flex justify-content-start  mb-3">
-            <FaLinkedin className='fs-4 me-2' />
+           <div> <FaLinkedin className='fs-4 me-2' /></div>
             <h5>{store?.user?.profile?.linkedin || "No LinkedIn link"}</h5>
           </div>
 
