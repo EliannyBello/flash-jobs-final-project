@@ -35,7 +35,7 @@ const UserDropDown = ({ collapsed }) => {
         }
     };
 
-    if (logged) {
+    if (logged) { 
         return (
             <div className="nabvar-menu">
                 <div className="dropdown">

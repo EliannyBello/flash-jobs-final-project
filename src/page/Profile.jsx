@@ -6,6 +6,7 @@ import { Context } from '../context/GlobalContext'
 import '../styles/Profile.css'
 import { TbBriefcase2Filled } from "react-icons/tb";
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
 
@@ -88,7 +89,7 @@ const Profile = () => {
   }, [])
 
   return (
-    <div className="container mt-5 py-3 text-center">
+    <div className="container mt-5 py-5 text-center">
       {!loaded ? (
         <div className="d-flex justify-content-center mt-5">
           <div className="spinner-border text-info mt-5" role="status">
@@ -97,7 +98,7 @@ const Profile = () => {
         </div>
       ) : (<div className="row justify-content-center ">
         <div className="col-md-5 col-lg-3">
-          <h2 className=" mt-5 m-3">{store?.user?.username}</h2>
+          <Link to={`/profile/${store?.user?.id}`} className="h2 link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-50-hover">{store?.user?.username}</Link>
           <div className="mx-auto my-1 p-2">
             <img src={store?.user?.profile?.avatar || imgSrc} alt="Profile Avatar"
               className='img-fluid w-50 my-3 profile-avatar rounded-circle' />
@@ -118,6 +119,7 @@ const Profile = () => {
             <div><FaLocationDot className='fs-4 me-2' /></div>
             <h5>{store?.user?.profile?.country || "No country added"} </h5>
           </div>
+
           <div className="d-flex justify-content-start  mb-3">
             <div><FaGithub className='fs-4 me-2' /></div>
             {(store?.user?.profile?.github) ? (
