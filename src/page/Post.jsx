@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { Context } from "../context/GlobalContext";
 import { FaRegStar, FaStar, FaTrash, FaPencilAlt } from "react-icons/fa";
 import imgPrf from '../page/img/avatarDefault.png'
@@ -12,6 +12,7 @@ const Post = () => {
     const [user, setUser] = useState({})
     const params = useParams();
     const [isCreator, setIsCreator] = useState(false);
+    const navigate = useNavigate();
 
 
     const defaultUser = {
@@ -88,6 +89,36 @@ const Post = () => {
         setLoading(false)
     }
 
+    const handleDelete = async (id) => {
+        const result = await Swal.fire({
+            title: '¿Are you sure?',
+            text: "This action cannot be undone",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete',
+            cancelButtonText: 'Cancel'
+        }).then(async (result) => {
+            try {
+                if (result.isConfirmed) {
+                    const response = await actions.updateJobCards(id, { status_id: 8 }, sessionStorage.access_token);
+                    if (response && response.status === "success") {
+                        Swal.fire("Deleted", "The post has been deleted.", "success");
+                    } Swal.fire({
+                        title: `${response.title}!`,
+                        text: response.message,
+                        icon: response.status
+                    }).then(() => {
+                        (response.status == 'success') && navigate('/');
+                    });
+                }
+            } catch (error) {
+                console.log(error.message)
+            }
+        });
+    }
+
     const applyToJob = async () => {
         const success = await actions.jobApplication(sessionStorage.access_token, params.id);
         console.log(success)
@@ -115,7 +146,7 @@ const Post = () => {
             <Link to={`/post/${id}/edit`}>
                 <FaPencilAlt className="me-3" />
             </Link>
-            <FaTrash />
+            <FaTrash className="p-0" onClick={() => handleDelete(id)} style={{ cursor: "pointer", color: "red" }}/>
         </div>
     )
 
