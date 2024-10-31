@@ -3,9 +3,11 @@
 
 Proyecto Final Flash Jobs
 
-Elianny Bello
-Franco Alvarez
-Anahi Vera
+- Elianny Bello
+
+- Franco Alvarez
+
+- Anahi Vera
 
 Dirección de Backend Database
 
