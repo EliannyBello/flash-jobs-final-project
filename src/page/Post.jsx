@@ -146,7 +146,7 @@ const Post = () => {
             <Link to={`/post/${id}/edit`}>
                 <FaPencilAlt className="me-3" />
             </Link>
-            <FaTrash className="p-0" onClick={() => handleDelete(id)} style={{ cursor: "pointer", color: "red" }}/>
+            <FaTrash className="p-0" onClick={() => handleDelete(id)} style={{ cursor: "pointer", color: "red" }} />
         </div>
     )
 
@@ -166,7 +166,14 @@ const Post = () => {
                             {user.username}
                         </p>
                     </Link>
-                    <p className="card-text text-center">{[...new Array(5)].map((_, i) => displayRating(calculateRating(user.profile.employer_ratings), i))}</p>
+                    <div className="d-flex justify-content-center">
+                        <p className="card-text text-center">{
+                            [...new Array(5)].map((_, i) => displayRating(calculateRating([...user?.profile?.employer_ratings, ...user?.profile?.applicant_ratings]), i))
+                        }</p>
+                        <p className="card-text text-center">({
+                            [...user?.profile?.employer_ratings, ...user?.profile?.applicant_ratings].length
+                        })</p>
+                    </div>
                 </div>
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item"><b>Published Jobs: </b>{user.job_postings.length}</li>

@@ -35,7 +35,7 @@ const UserDropDown = ({ collapsed }) => {
         }
     };
 
-    if (logged) {
+    if (logged) { 
         return (
             <div className="nabvar-menu">
                 <div className="dropdown">
@@ -59,7 +59,7 @@ const UserDropDown = ({ collapsed }) => {
     } else {
         return (
             <div className={"dropdown mx-2"}>
-                <button className="nav-link dropdown-toggle not-arrow me-2" href="#" role="button" data-bs-auto-close="false" data-bs-toggle="dropdown" aria-expanded="false">
+                <button className="nav-link dropdown-toggle not-arrow me-2" href="#" role="button" data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false">
                     <FaRegUserCircle className="fs-1 nb-item" />
                 </button>
                 <div className={"dropdown-menu mt-3 " + (collapsed ? ' full-width' : 'dropdown-menu-end me-1 mid-width')}>
